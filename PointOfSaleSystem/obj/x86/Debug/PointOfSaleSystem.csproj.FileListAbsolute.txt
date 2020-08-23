@@ -1,0 +1,11 @@
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\bin\Debug\PointOfSaleSystem.exe
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\bin\Debug\PointOfSaleSystem.pdb
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Dashboard.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Home.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Properties.Resources.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.csproj.GenerateResource.Cache
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.exe
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.pdb
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Stocks.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\bin\Debug\PointOfSaleSystem.exe.config
