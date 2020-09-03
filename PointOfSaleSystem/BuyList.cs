@@ -184,7 +184,7 @@ namespace PointOfSaleSystem
                 btnUpdate.HeaderText = "ပြင်မည်";
                 btnUpdate.DataPropertyName = "update";
                 btnUpdate.Width = 100;
-                btnUpdate.CellTemplate.Style.BackColor = Color.Honeydew;
+                btnUpdate.CellTemplate.Style.BackColor = Color.Black;
                 btnUpdate.FlatStyle = FlatStyle.Standard;
                 btnUpdate.UseColumnTextForButtonValue = true;
                 dataGridView1.Columns.Insert(6,btnUpdate);
@@ -195,7 +195,8 @@ namespace PointOfSaleSystem
                 btnDelete.HeaderText = "ဖြတ်မည်";
                 btnDelete.DataPropertyName = "delete";
                 btnDelete.Width = 100;
-                btnDelete.CellTemplate.Style.BackColor = Color.Honeydew;
+                btnDelete.CellTemplate.Style.BackColor = Color.Black;
+               
                 btnDelete.FlatStyle = FlatStyle.Standard;
                 btnDelete.UseColumnTextForButtonValue = true;
                 dataGridView1.Columns.Insert(7, btnDelete);
@@ -631,7 +632,7 @@ namespace PointOfSaleSystem
                 if (con)
                     if (Convert.ToInt32(textBox2.Text.ToString()) > 12)
                     {
-                        MessageBox.Show("Over limit...");
+                        MessageBox.Show("1လ မှ 12 လအတွင်းဝင်ပါ", "သတိပေးချက်");
                         textBox2.Text = null;
                     }
                     else 

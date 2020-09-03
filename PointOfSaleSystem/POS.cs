@@ -25,6 +25,7 @@ namespace PointOfSaleSystem
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.TopLevel = true;
             this.WindowState = FormWindowState.Maximized;
+            this.Cursor = Cursors.Arrow;
             viewForm();
             
         }

@@ -1014,8 +1014,6 @@ namespace PointOfSaleSystem
         }
 
        
-        
-       
         }
     
     }

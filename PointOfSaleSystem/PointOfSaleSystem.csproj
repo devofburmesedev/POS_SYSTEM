@@ -77,12 +77,6 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputDate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputDate.Designer.cs">
-      <DependentUpon>InputDate.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyConnection.cs" />
     <Compile Include="POS.cs">
       <SubType>Form</SubType>
@@ -103,9 +97,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputDate.resx">
-      <DependentUpon>InputDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
