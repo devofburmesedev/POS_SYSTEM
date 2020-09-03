@@ -472,9 +472,11 @@ namespace PointOfSaleSystem
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.Columns.Clear();
                 DataGridViewCellStyle style = dataGridView1.ColumnHeadersDefaultCellStyle;
-                style.BackColor = Color.Blue;
+                style.BackColor = Color.Green;
                 style.ForeColor = Color.White;
-                style.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+               
+                style.Font = new Font("Times New Roman", 20); 
+                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman",20,FontStyle.Bold);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
                 id.HeaderText = "စဉ်";
@@ -500,6 +502,7 @@ namespace PointOfSaleSystem
                 price.DataPropertyName = "price";
                 price.Width = 200;
                 dataGridView1.Columns.Insert(3, price);
+                
                 dataGridView1.DataSource = null;
                 MySqlConnection con = new MyConnection().GetConnection();
                 MySqlCommand cmd;
@@ -1010,6 +1013,7 @@ namespace PointOfSaleSystem
             }
         }
 
+       
         
        
         }
