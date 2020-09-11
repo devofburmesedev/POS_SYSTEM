@@ -849,12 +849,14 @@ namespace PointOfSaleSystem
 
         }
 
-        private void productUpdateLabel_Click(object sender, EventArgs e)
+      
+        private void productUpdateLabel_Click_1(object sender, EventArgs e)
         {
             productUpdateLabel.Visible = false;
             productDeleteLabel.Visible = false;
             comboBoxProductUD.Visible = true;
             product = productUpdateLabel.Text.ToString().Trim();
+
         }
 
         private void comboBoxProductUD_SelectedIndexChanged(object sender, EventArgs e)
@@ -885,7 +887,8 @@ namespace PointOfSaleSystem
 
         }
 
-        private void priceUpdateLabel_Click(object sender, EventArgs e)
+        
+        private void priceUpdateLabel_Click_1(object sender, EventArgs e)
         {
             priceUpdateLabel.Visible = false;
             priceDeleteLabel.Visible = false;
@@ -893,6 +896,9 @@ namespace PointOfSaleSystem
             price = priceUpdateLabel.Text.ToString().Trim();
         }
 
+       
+
+       
         private void priceDeleteLabel_Click(object sender, EventArgs e)
         {
             priceUpdateLabel.Visible = false;
@@ -1013,7 +1019,7 @@ namespace PointOfSaleSystem
             }
         }
 
-       
+     
         }
     
     }

@@ -140,7 +140,7 @@ namespace PointOfSaleSystem
                 style.Font = new Font("Times New Roman", 20,FontStyle.Bold);
                 
                 
-                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 16);
+                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 14);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
                 id.HeaderText = "စဉ်";
@@ -179,9 +179,9 @@ namespace PointOfSaleSystem
                 desc.Width = 130;
                 dataGridView1.Columns.Insert(5, desc);
                 DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.Name = "Updates";
+               // btnUpdate.Name = "Updates";
                 btnUpdate.Text = "ပြင်မည်";
-                btnUpdate.HeaderText = "ပြင်မည်";
+                //btnUpdate.HeaderText = "ပြင်မည်";
                 btnUpdate.DataPropertyName = "update";
                 btnUpdate.Width = 100;
                 btnUpdate.CellTemplate.Style.BackColor = Color.Black;
@@ -190,9 +190,9 @@ namespace PointOfSaleSystem
                 dataGridView1.Columns.Insert(6,btnUpdate);
                 
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-                btnDelete.Name = "Delete";
+                //btnDelete.Name = "Delete";
                 btnDelete.Text = "ဖြတ်မည်";
-                btnDelete.HeaderText = "ဖြတ်မည်";
+               // btnDelete.HeaderText = "ဖြတ်မည်";
                 btnDelete.DataPropertyName = "delete";
                 btnDelete.Width = 100;
                 btnDelete.CellTemplate.Style.BackColor = Color.Black;
@@ -370,7 +370,7 @@ namespace PointOfSaleSystem
                 {
                     cmd = con.CreateCommand();
                     cmd.CommandText = "Select * From BuyList Where C_id=@c_id and P_id=@p_id and U_id=@u_id and U_amt=@u_amt and TotalPrice=@totalamount";
-                   // cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                    //cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
                     cmd.Parameters.AddWithValue("@p_id", p_id);
                     //cmd.Parameters.AddWithValue("@c_id", c_id);
                     cmd.Parameters.AddWithValue("@u_id", u_id);
@@ -548,7 +548,7 @@ namespace PointOfSaleSystem
                        
                         con.Open();
                         cmd = con.CreateCommand();
-                        cmd.CommandText = "Update BuyList Set U_amt=@u_amt,TotalPrice=@price,Description=@desc Where C_id=@c_id and P_id=@p_id ";
+                        cmd.CommandText = "Update BuyList Set U_amt=@u_amt,TotalPrice=@price,Description=@desc Where C_id=@c_id and P_id=@p_id and U_id=@u_id";
                         cmd.Parameters.AddWithValue("@c_id", c_id);
                         cmd.Parameters.AddWithValue("@p_id", p_id);
                         cmd.Parameters.AddWithValue("@u_id", u_id);

@@ -12,3 +12,4 @@ C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSal
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.BuyList.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\Interop.AccessibilityCplAdminLib.dll
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.csproj.ResolveComReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.UseCost.resources

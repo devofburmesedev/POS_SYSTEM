@@ -19,6 +19,7 @@ namespace PointOfSaleSystem
         private Dashboard dForm = null;
         private Stocks sForm = null;
         private BuyList bForm = null;
+        private UseCost usecostForm = null;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -91,6 +92,23 @@ namespace PointOfSaleSystem
                 bForm.BringToFront();
             }
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (usecostForm == null)
+            {
+                usecostForm = new UseCost();
+                usecostForm.TopLevel = false;
+                panel1.Controls.Add(usecostForm);
+                usecostForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                usecostForm.Dock = DockStyle.Fill;
+                usecostForm.Show();
+            }
+            else
+            {
+                usecostForm.BringToFront();
+            }
         }
     }
 }
