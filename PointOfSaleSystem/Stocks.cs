@@ -842,13 +842,15 @@ namespace PointOfSaleSystem
               comboBoxUnitUpdate.Visible = false;
         }
 
-        private void unitUpdateLabel_Click(object sender, EventArgs e)
+        
+        private void unitUpdateLabel_Click_1(object sender, EventArgs e)
         {
             unitUpdateLabel.Visible = false;
             comboBoxUnitUpdate.Visible = true;
-
         }
 
+       
+       
       
         private void productUpdateLabel_Click_1(object sender, EventArgs e)
         {
@@ -1019,7 +1021,7 @@ namespace PointOfSaleSystem
             }
         }
 
-     
+       
         }
     
     }
