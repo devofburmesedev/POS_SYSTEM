@@ -44,6 +44,7 @@
             this.comboBoxCategory2 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.productUpdateLabel = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,10 +64,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCategory = new System.Windows.Forms.Button();
             this.tetCategory = new System.Windows.Forms.TextBox();
-            this.updateLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.updateLabel = new System.Windows.Forms.Label();
             this.comboBoxUpdate = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.addUnit = new System.Windows.Forms.Button();
+            this.tetUnit = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.unitUpdateLabel = new System.Windows.Forms.Label();
             this.comboBoxUnitUpdate = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,14 +84,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tetUnit = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.addUnit = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.unitUpdateLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -91,10 +91,10 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tableLayoutPanel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -141,9 +141,9 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 5;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.04878F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.15447F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.39837F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.99187F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.79675F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.56911F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.17886F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.998F));
             this.tableLayoutPanel5.Controls.Add(this.label5, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label6, 0, 1);
@@ -159,8 +159,8 @@
             this.tableLayoutPanel5.Location = new System.Drawing.Point(6, 180);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.48148F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.98765F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.71605F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.37037F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.15528F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(492, 162);
@@ -172,9 +172,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(147, 0);
+            this.label5.Location = new System.Drawing.Point(144, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 36);
+            this.label5.Size = new System.Drawing.Size(109, 34);
             this.label5.TabIndex = 1;
             this.label5.Text = "ကုန်ပစ္စည်းထည့်မည်";
             // 
@@ -184,11 +184,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(28, 36);
+            this.label6.Location = new System.Drawing.Point(16, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 51);
+            this.label6.Size = new System.Drawing.Size(119, 52);
             this.label6.TabIndex = 2;
-            this.label6.Text = "ကုန်ပစ္စည်းအမျိုးအစား";
+            this.label6.Text = "ကုန်ပစ္စည်းအမည်";
             // 
             // label7
             // 
@@ -207,12 +207,12 @@
             this.productDeleteLabel.AutoSize = true;
             this.productDeleteLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.productDeleteLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.productDeleteLabel.ForeColor = System.Drawing.Color.Gray;
+            this.productDeleteLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.productDeleteLabel.Image = ((System.Drawing.Image)(resources.GetObject("productDeleteLabel.Image")));
             this.productDeleteLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.productDeleteLabel.Location = new System.Drawing.Point(311, 0);
+            this.productDeleteLabel.Location = new System.Drawing.Point(315, 0);
             this.productDeleteLabel.Name = "productDeleteLabel";
-            this.productDeleteLabel.Size = new System.Drawing.Size(53, 36);
+            this.productDeleteLabel.Size = new System.Drawing.Size(49, 34);
             this.productDeleteLabel.TabIndex = 14;
             this.productDeleteLabel.Text = "\r\nဖြတ်မည်";
             this.productDeleteLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -234,8 +234,8 @@
             // 
             this.addProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.addProduct.BackColor = System.Drawing.Color.Lime;
-            this.addProduct.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addProduct.ForeColor = System.Drawing.Color.Gray;
+            this.addProduct.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.addProduct.Location = new System.Drawing.Point(138, 125);
             this.addProduct.Margin = new System.Windows.Forms.Padding(0);
             this.addProduct.Name = "addProduct";
@@ -253,7 +253,7 @@
             this.comboBoxCategory2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCategory2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.comboBoxCategory2.FormattingEnabled = true;
-            this.comboBoxCategory2.Location = new System.Drawing.Point(141, 46);
+            this.comboBoxCategory2.Location = new System.Drawing.Point(141, 45);
             this.comboBoxCategory2.Name = "comboBoxCategory2";
             this.comboBoxCategory2.Size = new System.Drawing.Size(103, 31);
             this.comboBoxCategory2.TabIndex = 6;
@@ -267,6 +267,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(99, 30);
             this.textBox3.TabIndex = 12;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // productUpdateLabel
             // 
@@ -277,21 +278,30 @@
             this.productUpdateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.productUpdateLabel.Image = ((System.Drawing.Image)(resources.GetObject("productUpdateLabel.Image")));
             this.productUpdateLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.productUpdateLabel.Location = new System.Drawing.Point(250, 0);
+            this.productUpdateLabel.Location = new System.Drawing.Point(263, 0);
             this.productUpdateLabel.Name = "productUpdateLabel";
-            this.productUpdateLabel.Size = new System.Drawing.Size(55, 36);
+            this.productUpdateLabel.Size = new System.Drawing.Size(46, 34);
             this.productUpdateLabel.TabIndex = 16;
             this.productUpdateLabel.Text = "ပြင်မည်";
             this.productUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.productUpdateLabel.Click += new System.EventHandler(this.productUpdateLabel_Click_1);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(315, 87);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 32);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "label16";
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 5;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.84553F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.35772F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.58537F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.00813F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.21951F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.552846F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.17886F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.97864F));
             this.tableLayoutPanel6.Controls.Add(this.label8, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label9, 0, 1);
@@ -324,9 +334,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(147, 0);
+            this.label8.Location = new System.Drawing.Point(141, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 31);
+            this.label8.Size = new System.Drawing.Size(121, 31);
             this.label8.TabIndex = 1;
             this.label8.Text = "စျေးနှုန်းထည့်မည်";
             // 
@@ -400,13 +410,14 @@
             this.tetAmount.Size = new System.Drawing.Size(87, 30);
             this.tetAmount.TabIndex = 11;
             this.tetAmount.TextChanged += new System.EventHandler(this.tetAmount_TextChanged);
+            this.tetAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tetAmount_KeyPress);
             // 
             // btnPrice
             // 
             this.btnPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnPrice.BackColor = System.Drawing.Color.Lime;
-            this.btnPrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrice.ForeColor = System.Drawing.Color.Gray;
+            this.btnPrice.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPrice.Location = new System.Drawing.Point(137, 180);
             this.btnPrice.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrice.Name = "btnPrice";
@@ -443,12 +454,12 @@
             this.priceDeleteLabel.AutoSize = true;
             this.priceDeleteLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.priceDeleteLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceDeleteLabel.ForeColor = System.Drawing.Color.Gray;
+            this.priceDeleteLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.priceDeleteLabel.Image = ((System.Drawing.Image)(resources.GetObject("priceDeleteLabel.Image")));
             this.priceDeleteLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.priceDeleteLabel.Location = new System.Drawing.Point(307, 0);
+            this.priceDeleteLabel.Location = new System.Drawing.Point(316, 0);
             this.priceDeleteLabel.Name = "priceDeleteLabel";
-            this.priceDeleteLabel.Size = new System.Drawing.Size(58, 31);
+            this.priceDeleteLabel.Size = new System.Drawing.Size(49, 31);
             this.priceDeleteLabel.TabIndex = 17;
             this.priceDeleteLabel.Text = "\r\nဖြတ်မည်";
             this.priceDeleteLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -468,12 +479,12 @@
             this.priceUpdateLabel.AutoSize = true;
             this.priceUpdateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.priceUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceUpdateLabel.ForeColor = System.Drawing.Color.Gray;
+            this.priceUpdateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.priceUpdateLabel.Image = ((System.Drawing.Image)(resources.GetObject("priceUpdateLabel.Image")));
             this.priceUpdateLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.priceUpdateLabel.Location = new System.Drawing.Point(250, 0);
+            this.priceUpdateLabel.Location = new System.Drawing.Point(269, 0);
             this.priceUpdateLabel.Name = "priceUpdateLabel";
-            this.priceUpdateLabel.Size = new System.Drawing.Size(51, 31);
+            this.priceUpdateLabel.Size = new System.Drawing.Size(41, 31);
             this.priceUpdateLabel.TabIndex = 20;
             this.priceUpdateLabel.Text = "\r\nပြင်မည်";
             this.priceUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -482,8 +493,8 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.45382F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.54618F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.05623F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.94378F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxUpdate, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -499,22 +510,22 @@
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 3;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.93671F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.50633F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.42623F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.31975F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.81191F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.55486F));
             this.tableLayoutPanel9.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.btnCategory, 2, 1);
             this.tableLayoutPanel9.Controls.Add(this.tetCategory, 1, 1);
-            this.tableLayoutPanel9.Controls.Add(this.updateLabel, 2, 0);
             this.tableLayoutPanel9.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.updateLabel, 2, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.83562F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.16438F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(316, 73);
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.46575F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.53425F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(318, 73);
             this.tableLayoutPanel9.TabIndex = 0;
             // 
             // label2
@@ -523,7 +534,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(79, 39);
+            this.label2.Location = new System.Drawing.Point(72, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 26);
             this.label2.TabIndex = 3;
@@ -533,12 +544,12 @@
             // 
             this.btnCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCategory.BackColor = System.Drawing.Color.Lime;
-            this.btnCategory.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategory.ForeColor = System.Drawing.Color.Gray;
-            this.btnCategory.Location = new System.Drawing.Point(270, 39);
+            this.btnCategory.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCategory.Location = new System.Drawing.Point(261, 38);
             this.btnCategory.Margin = new System.Windows.Forms.Padding(0);
             this.btnCategory.Name = "btnCategory";
-            this.btnCategory.Size = new System.Drawing.Size(46, 27);
+            this.btnCategory.Size = new System.Drawing.Size(57, 27);
             this.btnCategory.TabIndex = 5;
             this.btnCategory.Text = "ထည့်မည်";
             this.btnCategory.UseVisualStyleBackColor = false;
@@ -548,26 +559,10 @@
             // 
             this.tetCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tetCategory.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tetCategory.Location = new System.Drawing.Point(145, 37);
+            this.tetCategory.Location = new System.Drawing.Point(138, 36);
             this.tetCategory.Name = "tetCategory";
             this.tetCategory.Size = new System.Drawing.Size(96, 30);
             this.tetCategory.TabIndex = 4;
-            // 
-            // updateLabel
-            // 
-            this.updateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateLabel.AutoSize = true;
-            this.updateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.updateLabel.ForeColor = System.Drawing.Color.Gray;
-            this.updateLabel.Image = ((System.Drawing.Image)(resources.GetObject("updateLabel.Image")));
-            this.updateLabel.Location = new System.Drawing.Point(271, 1);
-            this.updateLabel.Margin = new System.Windows.Forms.Padding(1);
-            this.updateLabel.Name = "updateLabel";
-            this.updateLabel.Size = new System.Drawing.Size(44, 30);
-            this.updateLabel.TabIndex = 6;
-            this.updateLabel.Text = "\r\n\r\nပြင်မည်\r\n";
-            this.updateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.updateLabel.Click += new System.EventHandler(this.updateLabel_Click);
             // 
             // label1
             // 
@@ -575,20 +570,35 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(145, 0);
+            this.label1.Location = new System.Drawing.Point(138, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 32);
+            this.label1.Size = new System.Drawing.Size(117, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "အမျိုးအစားထည့်မည်";
             // 
+            // updateLabel
+            // 
+            this.updateLabel.AutoSize = true;
+            this.updateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.updateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.updateLabel.Image = ((System.Drawing.Image)(resources.GetObject("updateLabel.Image")));
+            this.updateLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.updateLabel.Location = new System.Drawing.Point(264, 0);
+            this.updateLabel.Name = "updateLabel";
+            this.updateLabel.Size = new System.Drawing.Size(51, 30);
+            this.updateLabel.TabIndex = 6;
+            this.updateLabel.Text = "\r\nပြင်မည်";
+            this.updateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.updateLabel.Click += new System.EventHandler(this.updateLabel_Click_1);
+            // 
             // comboBoxUpdate
             // 
-            this.comboBoxUpdate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxUpdate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUpdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUpdate.ForeColor = System.Drawing.Color.Gray;
             this.comboBoxUpdate.FormattingEnabled = true;
-            this.comboBoxUpdate.Location = new System.Drawing.Point(319, 21);
+            this.comboBoxUpdate.Location = new System.Drawing.Point(321, 3);
             this.comboBoxUpdate.Name = "comboBoxUpdate";
             this.comboBoxUpdate.Size = new System.Drawing.Size(115, 31);
             this.comboBoxUpdate.TabIndex = 1;
@@ -597,10 +607,10 @@
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.07217F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.92784F));
-            this.tableLayoutPanel10.Controls.Add(this.comboBoxUnitUpdate, 1, 0);
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.87952F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.12048F));
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.comboBoxUnitUpdate, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 90);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
@@ -611,14 +621,107 @@
             this.tableLayoutPanel10.Size = new System.Drawing.Size(498, 84);
             this.tableLayoutPanel10.TabIndex = 5;
             // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 3;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.68643F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.05764F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.29107F));
+            this.tableLayoutPanel11.Controls.Add(this.label4, 0, 1);
+            this.tableLayoutPanel11.Controls.Add(this.addUnit, 2, 1);
+            this.tableLayoutPanel11.Controls.Add(this.tetUnit, 1, 1);
+            this.tableLayoutPanel11.Controls.Add(this.label14, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.unitUpdateLabel, 2, 0);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 2;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.05479F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.94521F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(347, 73);
+            this.tableLayoutPanel11.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(85, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 26);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "အမည်";
+            // 
+            // addUnit
+            // 
+            this.addUnit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addUnit.BackColor = System.Drawing.Color.Lime;
+            this.addUnit.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.addUnit.Location = new System.Drawing.Point(288, 39);
+            this.addUnit.Margin = new System.Windows.Forms.Padding(0);
+            this.addUnit.Name = "addUnit";
+            this.addUnit.Size = new System.Drawing.Size(57, 31);
+            this.addUnit.TabIndex = 6;
+            this.addUnit.Text = "ထည့်မည်";
+            this.addUnit.UseVisualStyleBackColor = false;
+            this.addUnit.Click += new System.EventHandler(this.addUnit_Click);
+            // 
+            // tetUnit
+            // 
+            this.tetUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tetUnit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tetUnit.Location = new System.Drawing.Point(151, 40);
+            this.tetUnit.Name = "tetUnit";
+            this.tetUnit.Size = new System.Drawing.Size(96, 30);
+            this.tetUnit.TabIndex = 5;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(3, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(50, 16);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "label14";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(151, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 37);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "ယူနစ်ထည့်မည်                ";
+            // 
+            // unitUpdateLabel
+            // 
+            this.unitUpdateLabel.AutoSize = true;
+            this.unitUpdateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.unitUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitUpdateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.unitUpdateLabel.Image = ((System.Drawing.Image)(resources.GetObject("unitUpdateLabel.Image")));
+            this.unitUpdateLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.unitUpdateLabel.Location = new System.Drawing.Point(289, 0);
+            this.unitUpdateLabel.Name = "unitUpdateLabel";
+            this.unitUpdateLabel.Size = new System.Drawing.Size(55, 37);
+            this.unitUpdateLabel.TabIndex = 9;
+            this.unitUpdateLabel.Text = "ပြင်မည်";
+            this.unitUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.unitUpdateLabel.Click += new System.EventHandler(this.unitUpdateLabel_Click_1);
+            // 
             // comboBoxUnitUpdate
             // 
-            this.comboBoxUnitUpdate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxUnitUpdate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnitUpdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUnitUpdate.ForeColor = System.Drawing.Color.Gray;
             this.comboBoxUnitUpdate.FormattingEnabled = true;
-            this.comboBoxUnitUpdate.Location = new System.Drawing.Point(346, 21);
+            this.comboBoxUnitUpdate.Location = new System.Drawing.Point(350, 3);
             this.comboBoxUnitUpdate.Name = "comboBoxUnitUpdate";
             this.comboBoxUnitUpdate.Size = new System.Drawing.Size(113, 31);
             this.comboBoxUnitUpdate.TabIndex = 2;
@@ -683,10 +786,11 @@
             // 
             // label15
             // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Gray;
-            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label15.Location = new System.Drawing.Point(5, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(113, 31);
             this.label15.TabIndex = 8;
@@ -738,109 +842,6 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "label13";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(50, 16);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "label14";
-            // 
-            // tetUnit
-            // 
-            this.tetUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tetUnit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tetUnit.Location = new System.Drawing.Point(149, 40);
-            this.tetUnit.Name = "tetUnit";
-            this.tetUnit.Size = new System.Drawing.Size(96, 30);
-            this.tetUnit.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(149, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(137, 37);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "ယူနစ်ထည့်မည်                ";
-            // 
-            // addUnit
-            // 
-            this.addUnit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addUnit.BackColor = System.Drawing.Color.Lime;
-            this.addUnit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addUnit.ForeColor = System.Drawing.Color.Gray;
-            this.addUnit.Location = new System.Drawing.Point(290, 41);
-            this.addUnit.Margin = new System.Windows.Forms.Padding(0);
-            this.addUnit.Name = "addUnit";
-            this.addUnit.Size = new System.Drawing.Size(53, 27);
-            this.addUnit.TabIndex = 6;
-            this.addUnit.Text = "ထည့်မည်";
-            this.addUnit.UseVisualStyleBackColor = false;
-            this.addUnit.Click += new System.EventHandler(this.addUnit_Click);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(83, 42);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 26);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "အမည်";
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 3;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.68643F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.10168F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.21189F));
-            this.tableLayoutPanel11.Controls.Add(this.label4, 0, 1);
-            this.tableLayoutPanel11.Controls.Add(this.addUnit, 2, 1);
-            this.tableLayoutPanel11.Controls.Add(this.tetUnit, 1, 1);
-            this.tableLayoutPanel11.Controls.Add(this.label14, 0, 0);
-            this.tableLayoutPanel11.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel11.Controls.Add(this.unitUpdateLabel, 2, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 2;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(343, 73);
-            this.tableLayoutPanel11.TabIndex = 0;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(311, 87);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 16);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "label16";
-            // 
-            // unitUpdateLabel
-            // 
-            this.unitUpdateLabel.AutoSize = true;
-            this.unitUpdateLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.unitUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitUpdateLabel.ForeColor = System.Drawing.Color.Gray;
-            this.unitUpdateLabel.Image = ((System.Drawing.Image)(resources.GetObject("unitUpdateLabel.Image")));
-            this.unitUpdateLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.unitUpdateLabel.Location = new System.Drawing.Point(293, 0);
-            this.unitUpdateLabel.Name = "unitUpdateLabel";
-            this.unitUpdateLabel.Size = new System.Drawing.Size(47, 37);
-            this.unitUpdateLabel.TabIndex = 9;
-            this.unitUpdateLabel.Text = "ပြင်မည်";
-            this.unitUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.unitUpdateLabel.Click += new System.EventHandler(this.unitUpdateLabel_Click_1);
-            // 
             // Stocks
             // 
             this.AllowDrop = true;
@@ -865,12 +866,12 @@
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -909,7 +910,6 @@
         private System.Windows.Forms.Button btnCategory;
         private System.Windows.Forms.ComboBox comboBoxUpdate;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label updateLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.ComboBox comboBoxUnitUpdate;
         private System.Windows.Forms.Label productDeleteLabel;
@@ -930,5 +930,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label unitUpdateLabel;
+        private System.Windows.Forms.Label updateLabel;
     }
 }

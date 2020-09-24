@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace PointOfSaleSystem
 {
     class MyConnection
     {
-        public MySqlConnection GetConnection()
+        public SqlConnection GetConnection()
         {
-            return new MySqlConnection {ConnectionString=@"Server=localhost;Database=pointofsale;User=root;Password=" };
+            return new SqlConnection { ConnectionString = @"Data Source=DESKTOP-1P3FEHV\MSSQLSERVER02;Initial Catalog=pointofsale;Integrated Security=True" };
         }
     }
 }

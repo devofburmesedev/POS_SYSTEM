@@ -6,10 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
-using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
+using System.Data.SqlClient;
+
 namespace PointOfSaleSystem
 {
     public partial class BuyList : Form
@@ -22,26 +21,25 @@ namespace PointOfSaleSystem
             categoryComobox();
         }
         String p_id= null, c_id = null, u_id = null;
-        String months, years;
+        
         private void BuyList_Load(object sender, EventArgs e)
         {
+            int month, year;
             productComobox();
             unitComobox();
             categoryComobox();
-           
+                string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
                 
-               
-                comboBoxCategory2.SelectedItem = "ကုန်ပစ္စည်းအမျိုးအစား";
-                //dateTime();
-                months ="9";
-                years= "2020";
-                BindGrid(comboBoxCategory1.SelectedItem.ToString());
+                int.TryParse(dateTime[0], out month);
+                int.TryParse(dateTime[1], out year);
+                if (comboBoxCategory1.DataSource!= null)
+                BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
          
         }
         private void productComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdProduct;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdProduct;
             con.Open();
             try
             {
@@ -51,7 +49,7 @@ namespace PointOfSaleSystem
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBoxProduct.Items.Add(reader.GetString("P_Name"));
+                    comboBoxProduct.Items.Add(reader["P_Name"].ToString());
 
                 }
                 comboBoxProduct.SelectedIndex = 0;
@@ -69,8 +67,8 @@ namespace PointOfSaleSystem
 
         private void unitComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdUnit;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdUnit;
             con.Open();
             try
             {
@@ -80,7 +78,7 @@ namespace PointOfSaleSystem
                 var reader = cmdUnit.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBoxUnit.Items.Add(reader.GetString("U_Name"));
+                    comboBoxUnit.Items.Add(reader["U_Name"]);
 
                 }
                 comboBoxUnit.SelectedIndex = 0;
@@ -98,8 +96,8 @@ namespace PointOfSaleSystem
 
         private void categoryComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
@@ -107,7 +105,7 @@ namespace PointOfSaleSystem
                 comboBoxCategory2.Items.Clear();
                 cmdCate = con.CreateCommand();
                 cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
                     comboBoxCategory1.Items.Add(reader["C_Name"].ToString());
@@ -128,7 +126,7 @@ namespace PointOfSaleSystem
         }
 
 
-        private void BindGrid(String data)
+        private void BindGrid(String data,int month,int year)
         {
             try
             {
@@ -137,7 +135,7 @@ namespace PointOfSaleSystem
                 DataGridViewCellStyle style = dataGridView1.ColumnHeadersDefaultCellStyle;
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.Green;
-                style.Font = new Font("Times New Roman", 20,FontStyle.Bold);
+                style.Font = new Font("Times New Roman", 18,FontStyle.Bold);
                 
                 
                 dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 14);
@@ -145,7 +143,7 @@ namespace PointOfSaleSystem
                 id.Name = "id";
                 id.HeaderText = "စဉ်";
                 id.DataPropertyName = "No.";
-                id.Width = 50;
+                id.Width = 60;
                 dataGridView1.Columns.Insert(0, id);
                 DataGridViewColumn date = new DataGridViewTextBoxColumn();
                 date.Name = "date";
@@ -184,7 +182,7 @@ namespace PointOfSaleSystem
                 //btnUpdate.HeaderText = "ပြင်မည်";
                 btnUpdate.DataPropertyName = "update";
                 btnUpdate.Width = 100;
-                btnUpdate.CellTemplate.Style.BackColor = Color.Black;
+                btnUpdate.CellTemplate.Style.BackColor = Color.Aqua;
                 btnUpdate.FlatStyle = FlatStyle.Standard;
                 btnUpdate.UseColumnTextForButtonValue = true;
                 dataGridView1.Columns.Insert(6,btnUpdate);
@@ -195,14 +193,14 @@ namespace PointOfSaleSystem
                // btnDelete.HeaderText = "ဖြတ်မည်";
                 btnDelete.DataPropertyName = "delete";
                 btnDelete.Width = 100;
-                btnDelete.CellTemplate.Style.BackColor = Color.Black;
+                btnDelete.CellTemplate.Style.BackColor = Color.Aqua;
                
                 btnDelete.FlatStyle = FlatStyle.Standard;
                 btnDelete.UseColumnTextForButtonValue = true;
                 dataGridView1.Columns.Insert(7, btnDelete);
                 dataGridView1.DataSource = null;
-                MySqlConnection con = new MyConnection().GetConnection();
-                MySqlCommand cmd;
+                SqlConnection con = new MyConnection().GetConnection();
+                SqlCommand cmd;
                 con.Open();
                 try
                 {
@@ -211,9 +209,9 @@ namespace PointOfSaleSystem
                         cmd = con.CreateCommand();
                         cmd.CommandText = "SELECT Product.P_Name,Unit.U_Name,BuyList.DateAndTime,BuyList.TotalPrice,BuyList.U_amt,BuyList.Description FROM Product,Unit,Category,BuyList Where Category.C_Name=@c_name And Category.C_id=BuyList.C_id And Month(BuyList.DateAndTime)=@month and Year(BuyList.DateAndTime)=@year and Product.P_id=BuyList.P_id and BuyList.U_id=Unit.U_id";
                         cmd.Parameters.AddWithValue("@c_name", data);
-                        cmd.Parameters.AddWithValue("@year", years);
-                        cmd.Parameters.AddWithValue("@month", months);
-                        MySqlDataReader reader = cmd.ExecuteReader();
+                        cmd.Parameters.AddWithValue("@year", year);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.HasRows)
                         {
                             int i = 1;
@@ -263,8 +261,8 @@ namespace PointOfSaleSystem
 
         private void comboBoxCategoryMethod(String data)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             con.Open();
             try
             {
@@ -275,7 +273,7 @@ namespace PointOfSaleSystem
                 while (reader.Read())
                 {
 
-                    c_id = reader.GetString("C_id");
+                    c_id = reader["C_id"].ToString();
 
                 }
             }
@@ -297,8 +295,8 @@ namespace PointOfSaleSystem
 
         private void comboBoxProductMethod(String data)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             con.Open();
             try
             {
@@ -310,7 +308,7 @@ namespace PointOfSaleSystem
                 while (reader.Read())
                 {
 
-                    p_id = reader.GetString("P_id");
+                    p_id = reader["P_id"].ToString();
 
                 }
             }
@@ -332,8 +330,8 @@ namespace PointOfSaleSystem
 
         private void comboBoxUnitMethod(String data)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             con.Open();
             try
             {
@@ -344,7 +342,7 @@ namespace PointOfSaleSystem
                 while (reader.Read())
                 {
 
-                    u_id = reader.GetString("U_id");
+                    u_id = reader["U_id"].ToString();
 
                 }
             }
@@ -361,8 +359,8 @@ namespace PointOfSaleSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             con.Open();
             try
             {
@@ -370,18 +368,19 @@ namespace PointOfSaleSystem
                 {
                     cmd = con.CreateCommand();
                     cmd.CommandText = "Select * From BuyList Where C_id=@c_id and P_id=@p_id and U_id=@u_id and U_amt=@u_amt and TotalPrice=@totalamount";
-                    //cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                   
                     cmd.Parameters.AddWithValue("@p_id", p_id);
-                    //cmd.Parameters.AddWithValue("@c_id", c_id);
+                    
                     cmd.Parameters.AddWithValue("@u_id", u_id);
                     cmd.Parameters.AddWithValue("@c_id", c_id);
                     cmd.Parameters.AddWithValue("@u_amt", txtQty.Text.ToString());
                     cmd.Parameters.AddWithValue("@totalamount", txtTotalPrice.Text.ToString());
                     cmd.Parameters.AddWithValue("@des", txtTotalPrice.Text.ToString());
                     var reader=cmd.ExecuteReader();
-                    con.Close();
+                   
                     if (!reader.HasRows)
                     {
+                        con.Close();
                         try
                         {
                             con.Open();
@@ -395,13 +394,18 @@ namespace PointOfSaleSystem
                             cmd.Parameters.AddWithValue("@totalamount", txtTotalPrice.Text.ToString());
                             cmd.Parameters.AddWithValue("@desc", txtDesc.Text.ToString());
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("ဒေတာထည့်သွင်းမှုအောင်မြင်ပါသည်", "သတိပေးချက်");
+                            MessageBoxShowing.showSuccessfulMessage();
                             txtQty.Text = "";
                             txtTotalPrice.Text = "";
                             txtDesc.Text = "";
                             comboBoxProduct.SelectedIndex = 0;
                             comboBoxUnit.SelectedIndex = 0;
                             comboBoxCategory2.SelectedIndex = 0;
+                            string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+                            int month, year;
+                            int.TryParse(dateTime[0], out month);
+                            int.TryParse(dateTime[1], out year);
+                            BindGrid(comboBoxCategory1.SelectedItem.ToString(), month, year);
                         }
                         catch
                         {
@@ -413,7 +417,7 @@ namespace PointOfSaleSystem
                     }
                     else
                     {
-                        MessageBox.Show("သင်ထည့်သောဒေတာမာထည့်ပြီးသားဖြစ်ပါသည်", "သတိပေးချက်");
+                        MessageBoxShowing.showWarningMessage();
                         txtQty.Text = "";
                         txtTotalPrice.Text = "";
                         comboBoxProduct.SelectedIndex = 0;
@@ -424,6 +428,7 @@ namespace PointOfSaleSystem
                 }
                 else
                 {
+                    MessageBoxShowing.showIncomplementMessage();
                 }
             }
             catch
@@ -433,23 +438,27 @@ namespace PointOfSaleSystem
             finally
             {
                 con.Close();
-                BindGrid(comboBoxCategory1.SelectedItem.ToString());
+            
             }
         }
 
         private void comboBoxCategory1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGrid(comboBoxCategory1.SelectedItem.ToString());
+            string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+            int month, year;
+            int.TryParse(dateTime[0], out month);
+            int.TryParse(dateTime[1], out year);
+            BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             String c_name = null;
-            //dataGridView1.Columns["DateAndTime"].ReadOnly=true;
+            
             this.dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Rows[0].ReadOnly = false;
+           
             String date = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             String product = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             String[] qty = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString().Split(' ');
@@ -477,7 +486,7 @@ namespace PointOfSaleSystem
                 while (reader.Read())
                 {
 
-                    c_name = reader.GetString("C_Name");
+                    c_name = reader["C_Name"].ToString();
 
                 }
             }
@@ -556,8 +565,12 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@price",totalprice);
                         cmd.Parameters.AddWithValue("@desc", desc);
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ဒေတာပြင်ဆင်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                        BindGrid(comboBoxCategory1.SelectedItem.ToString());
+                        MessageBoxShowing.showSuccessfulUpdateMessage();
+                        string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+                        int month, year;
+                        int.TryParse(dateTime[0], out month);
+                        int.TryParse(dateTime[1], out year);
+                        BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
                     }
                     catch
                     {
@@ -591,7 +604,11 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@price", totalprice);
                     cmd.Parameters.AddWithValue("@c_id", c_id);
                     cmd.ExecuteNonQuery();
-                    BindGrid(comboBoxCategory1.SelectedItem.ToString());
+                    string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+                    int month, year;
+                    int.TryParse(dateTime[0], out month);
+                    int.TryParse(dateTime[1], out year);
+                    BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
 
                 }
                 catch
@@ -603,65 +620,32 @@ namespace PointOfSaleSystem
                 
                
         }
-        
 
-        
-    
        
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
 
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) )
-                 e.Handled = true;
-           
-            
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
-            bool con = false;
-            if (Regex.IsMatch(textBox2.Text.ToString(), @"^\d+$"))
-            {
-                con = true;
-                
-            }
-            else
-                con = false;
-            try
-            {
-                if (con)
-                    if (Convert.ToInt32(textBox2.Text.ToString()) > 12)
-                    {
-                        MessageBox.Show("1လ မှ 12 လအတွင်းဝင်ပါ", "သတိပေးချက်");
-                        textBox2.Text = null;
-                    }
-                    else 
-                    {
-                        months = textBox2.Text.ToString();
-                        if(textBox3.Text.ToString()!="")
-                        BindGrid(comboBoxCategory1.SelectedItem.ToString());
-                    }
-                
-            }
-            catch
-            {
-                
-            }
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        
             if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
                 e.Handled = true;
-            
+
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void txtTotalPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            years = textBox3.Text.ToString();
-            BindGrid(comboBoxCategory1.SelectedItem.ToString());
+             if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+                e.Handled = true;
         }
 
-      
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+            int month, year;
+            int.TryParse(dateTime[0], out month);
+            int.TryParse(dateTime[1], out year);
+            BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
+        }
+
+       
     }
 }

@@ -32,12 +32,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtYearly = new System.Windows.Forms.TextBox();
-            this.txtMonthly = new System.Windows.Forms.TextBox();
-            this.txtDaily = new System.Windows.Forms.TextBox();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnDaily = new System.Windows.Forms.Button();
             this.btnYearly = new System.Windows.Forms.Button();
             this.btnMonthly = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -103,12 +103,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.txtYearly, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtMonthly, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtDaily, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker3, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnDaily, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnYearly, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnMonthly, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -118,33 +118,27 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(558, 68);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // txtYearly
+            // dateTimePicker3
             // 
-            this.txtYearly.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtYearly.Location = new System.Drawing.Point(312, 3);
-            this.txtYearly.Name = "txtYearly";
-            this.txtYearly.Size = new System.Drawing.Size(70, 30);
-            this.txtYearly.TabIndex = 2;
-            this.txtYearly.Text = "2020";
+            this.dateTimePicker3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker3.CustomFormat = "yyyy";
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(317, 3);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.ShowUpDown = true;
+            this.dateTimePicker3.Size = new System.Drawing.Size(60, 30);
+            this.dateTimePicker3.TabIndex = 8;
             // 
-            // txtMonthly
+            // dateTimePicker2
             // 
-            this.txtMonthly.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtMonthly.Location = new System.Drawing.Point(173, 3);
-            this.txtMonthly.Name = "txtMonthly";
-            this.txtMonthly.Size = new System.Drawing.Size(70, 30);
-            this.txtMonthly.TabIndex = 1;
-            this.txtMonthly.Text = "9/2020";
-            // 
-            // txtDaily
-            // 
-            this.txtDaily.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDaily.ForeColor = System.Drawing.Color.Gray;
-            this.txtDaily.Location = new System.Drawing.Point(34, 3);
-            this.txtDaily.Name = "txtDaily";
-            this.txtDaily.Size = new System.Drawing.Size(70, 30);
-            this.txtDaily.TabIndex = 0;
-            this.txtDaily.Text = "9/9/2020";
+            this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker2.CustomFormat = "MM/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(177, 3);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(62, 30);
+            this.dateTimePicker2.TabIndex = 7;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // btnDaily
             // 
@@ -185,6 +179,16 @@
             this.btnMonthly.UseVisualStyleBackColor = false;
             this.btnMonthly.Click += new System.EventHandler(this.btnMonthly_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(39, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(60, 30);
+            this.dateTimePicker1.TabIndex = 6;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -216,13 +220,14 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(552, 355);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.4557F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.5443F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel5.Controls.Add(this.txtTotalAmount, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -236,7 +241,7 @@
             // txtTotalAmount
             // 
             this.txtTotalAmount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtTotalAmount.Location = new System.Drawing.Point(435, 9);
+            this.txtTotalAmount.Location = new System.Drawing.Point(428, 9);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.Size = new System.Drawing.Size(70, 30);
             this.txtTotalAmount.TabIndex = 2;
@@ -246,7 +251,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(344, 13);
+            this.label1.Location = new System.Drawing.Point(337, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 23);
             this.label1.TabIndex = 3;
@@ -279,6 +284,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.60484F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 496);
             this.tableLayoutPanel6.TabIndex = 1;
+            this.tableLayoutPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel6_Paint);
             // 
             // label2
             // 
@@ -328,6 +334,8 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(70, 30);
             this.txtAmount.TabIndex = 8;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 
             // txtDes
             // 
@@ -394,7 +402,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -410,9 +417,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox txtYearly;
-        private System.Windows.Forms.TextBox txtMonthly;
-        private System.Windows.Forms.TextBox txtDaily;
         private System.Windows.Forms.Button btnDaily;
         private System.Windows.Forms.Button btnYearly;
         private System.Windows.Forms.Button btnMonthly;
@@ -432,5 +436,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
     }
 }

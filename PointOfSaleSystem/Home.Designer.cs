@@ -59,7 +59,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1278, 685);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.UseWaitCursor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -88,11 +87,10 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(127, 685);
             this.tableLayoutPanel2.TabIndex = 0;
-            this.tableLayoutPanel2.UseWaitCursor = true;
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.PaleGreen;
+            this.button7.BackColor = System.Drawing.Color.Lime;
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -103,11 +101,11 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "\r\nပြင်ဆင်မှု";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.UseWaitCursor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.PaleGreen;
+            this.button6.BackColor = System.Drawing.Color.Lime;
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -118,11 +116,11 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "\r\nကြိုတင်အရောင်းစာရင်း";
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.UseWaitCursor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.PaleGreen;
+            this.button5.BackColor = System.Drawing.Color.Lime;
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -133,12 +131,11 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "\r\nအသုံးစာရင်း";
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.UseWaitCursor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.PaleGreen;
+            this.button4.BackColor = System.Drawing.Color.Lime;
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -149,12 +146,11 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "\r\nဝယ်ယူမှုဆိုင်ရာ";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.UseWaitCursor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.PaleGreen;
+            this.button3.BackColor = System.Drawing.Color.Lime;
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -165,11 +161,11 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "\r\nအရောင်းစာရင်း";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.UseWaitCursor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.PaleGreen;
+            this.button2.BackColor = System.Drawing.Color.Lime;
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -180,12 +176,12 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "\r\nကုန်ပစ္စည်းများ";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.UseWaitCursor = true;
+            this.button2.ForeColorChanged += new System.EventHandler(this.button2_Click_1);
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.PaleGreen;
+            this.button1.BackColor = System.Drawing.Color.Lime;
             this.button1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -203,7 +199,7 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.UseWaitCursor = true;
+            this.button1.ForeColorChanged += new System.EventHandler(this.button1_Click);
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
@@ -214,7 +210,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1151, 685);
             this.panel1.TabIndex = 1;
-            this.panel1.UseWaitCursor = true;
             // 
             // Home
             // 
@@ -225,7 +220,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1278, 685);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Font = new System.Drawing.Font("Times New Roman", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -234,7 +229,6 @@
             this.RightToLeftLayout = true;
             this.Text = "Sein Sein";
             this.TopMost = true;
-            this.UseWaitCursor = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

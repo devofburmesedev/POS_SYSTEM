@@ -71,13 +71,24 @@
     <Compile Include="BuyList.Designer.cs">
       <DependentUpon>BuyList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreditList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreditList.Designer.cs">
+      <DependentUpon>CreditList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageBoxShowing.cs" />
+    <Compile Include="MonthPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MyConnection.cs" />
+    <Compile Include="NMHDR.cs" />
     <Compile Include="POS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +103,12 @@
     <Compile Include="Stocks.Designer.cs">
       <DependentUpon>Stocks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stores.Designer.cs">
+      <DependentUpon>Stores.cs</DependentUpon>
+    </Compile>
     <Compile Include="UseCost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,8 +118,14 @@
     <EmbeddedResource Include="BuyList.resx">
       <DependentUpon>BuyList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreditList.resx">
+      <DependentUpon>CreditList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthPicker.resx">
+      <DependentUpon>MonthPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POS.resx">
       <DependentUpon>POS.cs</DependentUpon>
@@ -119,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Stocks.resx">
       <DependentUpon>Stocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stores.resx">
+      <DependentUpon>Stores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UseCost.resx">
       <DependentUpon>UseCost.cs</DependentUpon>

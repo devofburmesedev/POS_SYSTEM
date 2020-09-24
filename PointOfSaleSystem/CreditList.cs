@@ -6,30 +6,60 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using MySql.Data;
+using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 namespace PointOfSaleSystem
 {
-    public partial class UseCost : Form
+    public partial class CreditList : Form
     {
-        public UseCost()
+        public CreditList()
         {
             InitializeComponent();
+            categoryComobox();
+        }
+        int c_id;
+        private void categoryComobox()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            try
+            {
+                comboBoxCategory1.Items.Clear();
+              
+                cmdCate = con.CreateCommand();
+                cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
+                SqlDataReader reader = cmdCate.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBoxCategory1.Items.Add(reader["C_Name"].ToString());
+                    
+                }
+                comboBoxCategory1.SelectedIndex = 0;
+               
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
         }
         String date, method;
-        private void UseCost_Load(object sender, EventArgs e)
+        private void CreditList_Load(object sender, EventArgs e)
         {
-           
             BindGrid(dateTimePicker1.Text.ToString(), "dailyreport");
             btnMonthly.BackColor = Color.Aqua;
             btnYearly.BackColor = Color.Aqua;
             date = dateTimePicker1.Text.ToString();
             method = "dailyreport";
-           
+            
         }
-
-        
-        private void BindGrid(String dates,String method)
+        private void BindGrid(String dates, String method)
         {
             try
             {
@@ -48,33 +78,33 @@ namespace PointOfSaleSystem
                 id.DataPropertyName = "No.";
                 id.Width = 93;
                 dataGridView1.Columns.Insert(0, id);
-                
+
                 DataGridViewColumn product = new DataGridViewTextBoxColumn();
                 product.Name = "Product";
-                product.HeaderText = "အမည်";
+                product.HeaderText = "ကုန်ပစ္စည်းအမျိုးအစား";
                 product.DataPropertyName = "Product";
                 product.Width = 260;
                 dataGridView1.Columns.Insert(1, product);
-                
+
 
                 DataGridViewColumn price = new DataGridViewTextBoxColumn();
                 price.Name = "price";
-                price.HeaderText = "ကုန်ကျငွေ";
+                price.HeaderText = "ပမာဏ";
                 price.DataPropertyName = "price";
                 price.Width = 200;
                 dataGridView1.Columns.Insert(2, price);
                 DataGridViewColumn desc = new DataGridViewTextBoxColumn();
                 desc.Name = "ဖော်ပြချက်";
-                desc.HeaderText = "ဖော်ပြချက်";
+                desc.HeaderText = "လက်ခံသူ";
                 desc.DataPropertyName = "ဖော်ပြချက်";
                 desc.Width = 240;
                 dataGridView1.Columns.Insert(3, desc);
-               
+
 
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-              
+                // btnDelete.Name = "Delete";
                 btnDelete.Text = "ဖြတ်မည်";
-             
+                //btnDelete.HeaderText = "ဖြတ်မည်";
                 btnDelete.DataPropertyName = "delete";
                 btnDelete.Width = 90;
                 btnDelete.CellTemplate.Style.BackColor = Color.Aqua;
@@ -86,35 +116,35 @@ namespace PointOfSaleSystem
                 SqlConnection con = new MyConnection().GetConnection();
                 SqlCommand cmd;
                 con.Open();
-                
-                SqlDataReader reader=null;
-               
+
+                SqlDataReader reader = null;
+
                 try
                 {
                     if (dates != null)
                     {
-                       
+
                         if (method.Equals("default"))
                         {
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT *  FROM UseCost Where Year(DateAndTime)=@year";
+                            cmd.CommandText = "SELECT *  FROM CreditList Where Year(DateAndTime)=@year";
                             cmd.Parameters.AddWithValue("@year", dates);
                             reader = cmd.ExecuteReader();
-                            
+
                         }
                         else if (method.Equals("monthlyreport"))
                         {
                             string[] dateTime = dates.Split('/');
                             int year, month;
-                            int.TryParse(dateTime[0],out month);
+                            int.TryParse(dateTime[0], out month);
                             int.TryParse(dateTime[1], out year);
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT * FROM UseCost Where Year(DateAndTime)=@year and Month(DateAndTime)=@month";
-                            cmd.Parameters.AddWithValue("@year",year);
+                            cmd.CommandText = "SELECT * FROM CreditList Where Year(DateAndTime)=@year and Month(DateAndTime)=@month";
+                            cmd.Parameters.AddWithValue("@year", year);
                             cmd.Parameters.AddWithValue("@month", month);
-                           
+
                             reader = cmd.ExecuteReader();
-                            
+                         
                         }
                         else if (method.Equals("dailyreport"))
                         {
@@ -124,34 +154,34 @@ namespace PointOfSaleSystem
                             int.TryParse(dateTime[1], out month);
                             int.TryParse(dateTime[2], out year);
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT *  FROM UseCost Where Year(DateAndTime)=@year and Month(DateAndTime)=@month and Day(DateAndTime)=@day";
+                            cmd.CommandText = "SELECT *  FROM CreditList Where Year(DateAndTime)=@year and Month(DateAndTime)=@month and Day(DateAndTime)=@day";
                             cmd.Parameters.AddWithValue("@year", year);
                             cmd.Parameters.AddWithValue("@month", month);
                             cmd.Parameters.AddWithValue("@day", day);
                             reader = cmd.ExecuteReader();
-                           
+
                         }
                         int i = 1;
                         double sum = 0.0;
                         if (reader.HasRows)
-                        {   
-                            
+                        {
+
                             while (reader.Read())
                             {
                                 DataGridViewRow newRow = new DataGridViewRow();
                                 newRow.CreateCells(dataGridView1);
                                 newRow.Cells[0].Value = i;
-                               
-                                newRow.Cells[1].Value = reader["UC_Name"].ToString();
-                                newRow.Cells[2].Value = reader["Amount"].ToString() ;
-                                newRow.Cells[3].Value = reader["Description"].ToString();
+
+                                newRow.Cells[1].Value = reader["C_id"].ToString();
+                                newRow.Cells[2].Value = reader["Amount"].ToString();
+                                newRow.Cells[3].Value = reader["Receiver"].ToString();
                                 sum += Convert.ToInt32(reader["Amount"].ToString());
                                 i++;
                                 dataGridView1.Rows.Add(newRow);
 
 
                             }
-                            
+
                         }
                         txtTotalAmount.ReadOnly = true;
                         txtTotalAmount.Text = sum.ToString();
@@ -178,7 +208,6 @@ namespace PointOfSaleSystem
 
         }
 
-       
         private void btnSave_Click(object sender, EventArgs e)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -186,59 +215,53 @@ namespace PointOfSaleSystem
             con.Open();
             try
             {
-                if ( txtName.Text.ToString().Trim() != "" && txtAmount.Text.ToString().Trim() != "" && txtDes.Text.ToString().Trim()!="")
+                if (comboBoxCategory1.SelectedItem.ToString()!=null && txtAmount.Text.ToString().Trim() != "" && txtRec.Text.ToString().Trim() != "")
                 {
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "Select * From usecost Where UC_Name=@name and Amount=@amount and Description=@des";
-                  
-                    cmd.Parameters.AddWithValue("@name", txtName.Text.ToString().Trim());
+                    cmd.CommandText = "Select * From CreditList Where C_id=@c_id and Amount=@amount and Receiver=@rec";
+
+                    cmd.Parameters.AddWithValue("@c_id", c_id);
 
                     cmd.Parameters.AddWithValue("@amount", txtAmount.Text.ToString().Trim());
-                    cmd.Parameters.AddWithValue("@des", txtDes.Text.ToString().Trim());
-                    
+                    cmd.Parameters.AddWithValue("@rec", txtRec.Text.ToString().Trim());
+
                     var reader = cmd.ExecuteReader();
-                  
                     
                     if (!reader.HasRows)
                     {
-                       
                         con.Close();
-                      
                         try
                         {
-                           
                             con.Open();
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "Insert Into usecost(DateAndTime,UC_Name,Amount,Description) Values(@date,@name,@amount,@des)";
-                            cmd.Parameters.AddWithValue("@date", DateTime.Now);
-                            cmd.Parameters.AddWithValue("@name", txtName.Text.ToString().Trim());
+                            cmd.CommandText = "Insert Into CreditList(C_id,Receiver,DateAndTime,Amount) Values(@c_id,@receiver,@date,@amount)";
+                            cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                            cmd.Parameters.AddWithValue("@c_id",c_id);
 
                             cmd.Parameters.AddWithValue("@amount", txtAmount.Text.ToString().Trim());
-                            cmd.Parameters.AddWithValue("@des", txtDes.Text.ToString().Trim());
+                            cmd.Parameters.AddWithValue("@receiver", txtRec.Text.ToString().Trim());
                             cmd.ExecuteNonQuery();
-
                             MessageBoxShowing.showSuccessfulMessage();
-                            txtName.Text = "";
+                            comboBoxCategory1.SelectedIndex = 0;
                             txtAmount.Text = "";
-                            txtDes.Text = "";
-                            BindGrid(date,method);
+                            txtRec.Text = "";
+                            BindGrid(date, method);
                         }
                         catch
                         {
-                            
+
                         }
                         finally
                         {
                             con.Close();
-                            
                         }
                     }
                     else
                     {
                         MessageBoxShowing.showWarningMessage();
-                        txtName.Text = "";
+                        comboBoxCategory1.SelectedIndex = 0;
                         txtAmount.Text = "";
-                        txtDes.Text = "";
+                        txtRec.Text = "";
                     }
                 }
                 else
@@ -248,15 +271,16 @@ namespace PointOfSaleSystem
             }
             catch
             {
-                
+
             }
             finally
             {
-                
                 con.Close();
-                
+
             }
         }
+
+       
         private void btnDaily_Click(object sender, EventArgs e)
         {
             BindGrid(dateTimePicker1.Text.ToString(), "dailyreport");
@@ -265,23 +289,21 @@ namespace PointOfSaleSystem
             btnDaily.BackColor = Color.Lime;
             date = dateTimePicker1.Text.ToString();
             method = "dailyreport";
-
         }
 
         private void btnMonthly_Click(object sender, EventArgs e)
         {
-            BindGrid(dateTimePicker2.Text.ToString().Trim(),"monthlyreport");
+            BindGrid(dateTimePicker2.Text.ToString().Trim(), "monthlyreport");
             btnDaily.BackColor = Color.Aqua;
             btnYearly.BackColor = Color.Aqua;
             btnMonthly.BackColor = Color.Lime;
             date = dateTimePicker2.Text.ToString();
             method = "monthlyreport";
-            
         }
 
         private void btnYearly_Click(object sender, EventArgs e)
         {
-            BindGrid(dateTimePicker3.Text.ToString().Trim(),"default");
+            BindGrid(dateTimePicker3.Text.ToString().Trim(), "default");
             btnDaily.BackColor = Color.Aqua;
             btnMonthly.BackColor = Color.Aqua;
             btnYearly.BackColor = Color.Lime;
@@ -289,36 +311,55 @@ namespace PointOfSaleSystem
             method = "default";
         }
 
-        private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        private void comboBoxCategory1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
 
-        }
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category WHERE C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxCategory1.SelectedItem.ToString());
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
-        private void txtAmount_TextChanged(object sender, EventArgs e)
-        {
+                    c_id =Convert.ToInt32( reader["C_id"].ToString());
 
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
             if (e.ColumnIndex == 4)
             {
-                String name= dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                String name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                String des = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                String rec= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 con.Open();
                 try
                 {
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "Delete  From usecost  Where UC_Name=@name and Amount=@amount and Description=@des";
-                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec";
+                    cmd.Parameters.AddWithValue("@c_id", c_id);
 
                     cmd.Parameters.AddWithValue("@amount", amount);
-                    cmd.Parameters.AddWithValue("@des", des);
+                    cmd.Parameters.AddWithValue("@rec", rec);
                     cmd.ExecuteNonQuery();
                     BindGrid(date, method);
 
@@ -333,18 +374,10 @@ namespace PointOfSaleSystem
                 }
 
             }
-
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
-        private void tableLayoutPanel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
        
     }
 }

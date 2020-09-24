@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+
+using System.Data.SqlClient;
 namespace PointOfSaleSystem
 {
     public partial class Stocks : Form
@@ -17,10 +17,12 @@ namespace PointOfSaleSystem
             InitializeComponent();
         }
         
-        String p_id=null,u_id=null,previous_price=null;
+        String p_id=null,u_id=null,category_id=null,previous_price=null;
         String product, price;
+        bool load = false;
         private void Stocks_Load(object sender, EventArgs e)
         {
+            load = true;
             categoryComobox();
             unitComobox();
             productComobox();
@@ -38,6 +40,7 @@ namespace PointOfSaleSystem
             comboBoxUpdateUnit();
             comboBoxUDProduct();
             comboBoxUPPrice();
+            if(comboBoxCategory1.DataSource!=null)
             BindGrid(comboBoxCategory1.SelectedItem.ToString());
            
          }
@@ -45,8 +48,8 @@ namespace PointOfSaleSystem
             
         private void btnCategory_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd, cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd, cmdCate;
             con.Open();
             bool condition = false;
 
@@ -65,7 +68,7 @@ namespace PointOfSaleSystem
                 else
                 {
                     tetCategory.Text = " ";
-                    MessageBox.Show("သင်ထည့်သောဒေတာမာထည့်ပြီးသားဖြစ်ပါသည်", "သတိပေးချက်");
+                   MessageBoxShowing.showWarningMessage();
                 }
             }
 
@@ -81,9 +84,9 @@ namespace PointOfSaleSystem
             try
             {
                 con.Open();
-                if (tetCategory.Text.ToString().Trim()=="")
-                    MessageBox.Show("ကျေးဇူးပြု၍ဒေတာထည့်သွင်းပါ");
-                else if (condition == true && tetCategory.Text.ToString().Trim() != null && tetCategory.Text.ToString().Trim()!="" && btnCategory.Text.ToString().Equals("ထည့်မည်"))
+                if (tetCategory.Text.ToString().Trim() == "" && condition == true)
+                    MessageBoxShowing.showIncomplementMessage();
+                else if (condition == true && tetCategory.Text.ToString().Trim() != null && tetCategory.Text.ToString().Trim() != "" && btnCategory.Text.ToString().Equals("ထည့်မည်"))
                 {
                     try
                     {
@@ -92,7 +95,7 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@name", tetCategory.Text.ToString().Trim());
                         cmd.ExecuteNonQuery();
                         tetCategory.Text = "";
-                        MessageBox.Show("ဒေတာထည့်သွင်းမှုအောင်မြင်ပါသည်", "သတိပေးချက်");
+                        MessageBoxShowing.showSuccessfulMessage();
                     }
                     catch
                     {
@@ -110,8 +113,8 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@nameUpdate", comboBoxUpdate.SelectedItem.ToString());
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ဒေတာပြင်ဆင်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                        btnCategory.Text="ထည့်မည်";
+                        MessageBoxShowing.showSuccessfulUpdateMessage();
+                        btnCategory.Text = "ထည့်မည်";
                         tetCategory.Text = " ";
                     }
                     catch
@@ -137,16 +140,18 @@ namespace PointOfSaleSystem
         }
         private void comboBoxUPPrice()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
                 //comboBoxUpdate.DataSource = null;
                 comboBoxPriceUD.Items.Clear();
                 cmdCate = con.CreateCommand();
-                cmdCate.CommandText = "SELECT Price FROM Price";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                cmdCate.CommandText = "SELECT Price FROM Price Where P_id=@p_id and U_id=@u_id";
+                cmdCate.Parameters.AddWithValue("@p_id", p_id);
+                cmdCate.Parameters.AddWithValue("@u_id", u_id);
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
 
@@ -168,8 +173,8 @@ namespace PointOfSaleSystem
         }
         private void addUnit_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd, cmdUnit;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd, cmdUnit;
             bool condition = false;
             con.Open();
             try
@@ -184,8 +189,9 @@ namespace PointOfSaleSystem
                 }
                 else
                 {
+
+                    MessageBoxShowing.showWarningMessage();
                     tetUnit.Text = "";
-                    MessageBox.Show("သင်ထည့်သောဒေတာမာထည့်ပြီးသားဖြစ်ပါသည်", "သတိပေးချက်");
                     
                 }
 
@@ -200,55 +206,55 @@ namespace PointOfSaleSystem
                 con.Close();
             }
             try{
-                if (tetUnit.Text.ToString().Trim() == "")
-                    MessageBox.Show("ကျေးဇူးပြု၍ဒေတာထည့်သွင်းပါ");
-                else if (condition == true && tetUnit.Text.ToString().Trim() != null && tetUnit.Text.ToString().Trim() !="" && addUnit.Text.ToString().Equals("ထည့်မည်"))
+                if (tetUnit.Text.ToString().Trim() == "" && condition == true)
+                    MessageBoxShowing.showIncomplementMessage();
+                else if (condition == true && tetUnit.Text.ToString().Trim() != null && tetUnit.Text.ToString().Trim() != "" && addUnit.Text.ToString().Equals("ထည့်မည်"))
                 {
-                con.Open();
-                try
-                {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "INSERT INTO Unit(U_Name) VALUES(@name)";
-                    cmd.Parameters.AddWithValue("@name", tetUnit.Text.Trim());
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("ဒေတာထည့်သွင်းမှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                    tetUnit.Text = "";
-                }
-                catch (Exception)
-                {
+                    con.Open();
+                    try
+                    {
+                        cmd = con.CreateCommand();
+                        cmd.CommandText = "INSERT INTO Unit(U_Name) VALUES(@name)";
+                        cmd.Parameters.AddWithValue("@name", tetUnit.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                        MessageBoxShowing.showSuccessfulMessage();
+                        tetUnit.Text = "";
+                    }
+                    catch (Exception)
+                    {
 
-                    throw;
+                        throw;
 
+                    }
+                    finally
+                    {
+
+                    }
                 }
-                finally
-                {
-                   
-                }
-            }
 
                 else if (condition == true && tetUnit.Text.ToString().Trim() != null && tetUnit.Text.ToString().Trim() != "" && (addUnit.Text.ToString().Equals("ပြင်မည်")))
-            {
-                con.Open();
-                try
                 {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "Update Unit Set U_Name=@name Where U_Name=@nameUpdate";
-                    cmd.Parameters.AddWithValue("@name", tetUnit.Text.ToString().Trim());
-                    cmd.Parameters.AddWithValue("@nameUpdate", comboBoxUnitUpdate.SelectedItem.ToString());
+                    con.Open();
+                    try
+                    {
+                        cmd = con.CreateCommand();
+                        cmd.CommandText = "Update Unit Set U_Name=@name Where U_Name=@nameUpdate";
+                        cmd.Parameters.AddWithValue("@name", tetUnit.Text.ToString().Trim());
+                        cmd.Parameters.AddWithValue("@nameUpdate", comboBoxUnitUpdate.SelectedItem.ToString());
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("ဒေတာပြင်ဆင်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                    addUnit.Text = "ထည့်မည်";
-                    tetUnit.Text = "";
+                        cmd.ExecuteNonQuery();
+                        MessageBoxShowing.showSuccessfulUpdateMessage();
+                        addUnit.Text = "ထည့်မည်";
+                        tetUnit.Text = "";
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
-                catch
-                {
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
 
             }
             catch
@@ -264,8 +270,8 @@ namespace PointOfSaleSystem
         }
         private void addProduct_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd, cmdProduct;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd, cmdProduct;
             bool condition = false;
             String c_id = null;
             con.Open();
@@ -282,7 +288,7 @@ namespace PointOfSaleSystem
                 }
                 else if (!addProduct.Text.ToString().Equals("ဖြတ်မည်") && !addProduct.Text.ToString().Equals("ပြင်မည်"))
                 {
-                    MessageBox.Show("သင်ထည့်သောဒေတာမာထည့်ပြီးသားဖြစ်ပါသည်", "သတိပေးချက်");
+                    MessageBoxShowing.showWarningMessage();
                     textBox3.Text = "";
                     comboBoxCategory2.SelectedIndex = 0;
                 }
@@ -297,7 +303,7 @@ namespace PointOfSaleSystem
                 con.Close();
             }
             
-                if (comboBoxCategory2.SelectedItem != null)
+                if (comboBoxCategory2.SelectedItem != null )
                 {
                     con.Open();
                     try
@@ -305,11 +311,11 @@ namespace PointOfSaleSystem
                         cmd = con.CreateCommand();
                         cmd.CommandText = "SELECT C_id FROM Category WHERE C_Name=@name";
                         cmd.Parameters.AddWithValue("@name", comboBoxCategory2.SelectedItem);
-                        MySqlDataReader reads = cmd.ExecuteReader();
+                        SqlDataReader reads = cmd.ExecuteReader();
                         while (reads.Read())
                         {
 
-                            c_id = reads.GetString("C_id");
+                            c_id = reads["C_id"].ToString();
                         }
                     }
                     catch
@@ -326,10 +332,11 @@ namespace PointOfSaleSystem
                 con.Open();
                 try
                 {
-                    if (condition && c_id != null && textBox3.Text.ToString().Trim() != null && addProduct.Text.ToString().Equals("ထည့်မည်"))
+                    if (textBox3.Text.ToString().Trim() == "" && condition)
+                        MessageBoxShowing.showIncomplementMessage();
+                    if (condition && c_id != null && textBox3.Text.ToString().Trim() != "" && addProduct.Text.ToString().Equals("ထည့်မည်"))
                     {
-                    if (textBox3.Text.ToString().Trim() == "")
-                        MessageBox.Show("ကျေးဇူးပြု၍ဒေတာထည့်သွင်းပါ", "သတိပေးချက်");
+                        
                         try
                         {
                             cmd = con.CreateCommand();
@@ -337,7 +344,7 @@ namespace PointOfSaleSystem
                             cmd.Parameters.AddWithValue("@c_id", c_id);
                             cmd.Parameters.AddWithValue("@name", textBox3.Text.Trim());
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("ဒေတာထည့်သွင်းမှုအောင်မြင်ပါသည်", "သတိပေးချက်");
+                            MessageBoxShowing.showSuccessfulMessage();
                             textBox3.Text = "";
                             comboBoxCategory2.SelectedIndex = 0;
                         }
@@ -355,9 +362,9 @@ namespace PointOfSaleSystem
                             cmd.Parameters.AddWithValue("@nameUpdate", comboBoxProductUD.SelectedItem.ToString());
 
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("ဒေတာပြင်ဆင်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
+                            MessageBoxShowing.showSuccessfulUpdateMessage();
                             addProduct.Text = "ထည့်မည်";
-                            addProduct.Text = "";
+                            textBox3.Text = "";
                             comboBoxCategory2.SelectedIndex = 0;
                         }
                         catch
@@ -369,11 +376,11 @@ namespace PointOfSaleSystem
                         try
                         {
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "Delete Price.*,Product.* From Product,Price Where Product.P_Name=@nameUpdate";
+                            cmd.CommandText = "Delete  From Product Where P_Name=@nameUpdate";
                             cmd.Parameters.AddWithValue("@nameUpdate", comboBoxProductUD.SelectedItem.ToString());
 
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("ဒေတာဖြတ်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
+                            MessageBoxShowing.showSuccessfulDeleteMessage();
                             textBox3.Text = "";
                             comboBoxCategory2.SelectedIndex = 0;
                             addProduct.Text = "ထည့်မည်";
@@ -405,15 +412,17 @@ namespace PointOfSaleSystem
         private void comboBoxUDProduct()
         {
 
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
                 comboBoxProductUD.Items.Clear();
                 cmdCate = con.CreateCommand();
-                cmdCate.CommandText = "SELECT P_Name FROM Product";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                cmdCate.CommandText = "SELECT P_Name FROM Product Where C_id=@c_id";
+                cmdCate.Parameters.AddWithValue("@c_id",category_id );
+                
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
 
@@ -436,15 +445,15 @@ namespace PointOfSaleSystem
 
         private void comboBoxUpdateUnit()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
                 comboBoxUnitUpdate.Items.Clear();
                 cmdCate = con.CreateCommand();
                 cmdCate.CommandText = "SELECT U_Name FROM Unit";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
 
@@ -474,8 +483,8 @@ namespace PointOfSaleSystem
                 DataGridViewCellStyle style = dataGridView1.ColumnHeadersDefaultCellStyle;
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.White;
-               
-                style.Font = new Font("Times New Roman", 20); 
+
+                style.Font = new Font("Times New Roman", 18, FontStyle.Bold); 
                 dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman",20,FontStyle.Bold);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
@@ -504,15 +513,15 @@ namespace PointOfSaleSystem
                 dataGridView1.Columns.Insert(3, price);
                 
                 dataGridView1.DataSource = null;
-                MySqlConnection con = new MyConnection().GetConnection();
-                MySqlCommand cmd;
+                SqlConnection con = new MyConnection().GetConnection();
+                SqlCommand cmd;
                 con.Open();
                 try
                 {
                     cmd = con.CreateCommand();
                    cmd.CommandText= "SELECT Product.P_Name,Unit.U_Name,Price.Price FROM Price,Product,Unit,Category Where Category.C_id=Product.C_id and Category.C_Name=@c_name and Unit.U_id=Price.U_id and Product.P_id=Price.P_id";
                     cmd.Parameters.AddWithValue("@c_name", data);
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
                     {
                         int i = 1;
@@ -551,8 +560,8 @@ namespace PointOfSaleSystem
 
         private void productComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdProduct;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdProduct;
             con.Open();
             try
             {
@@ -562,7 +571,7 @@ namespace PointOfSaleSystem
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBoxProduct.Items.Add(reader.GetString("P_Name"));
+                    comboBoxProduct.Items.Add(reader["P_Name"].ToString());
 
                 }
                 comboBoxProduct.SelectedIndex = 0;
@@ -580,8 +589,8 @@ namespace PointOfSaleSystem
 
         private void unitComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdUnit;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdUnit;
             con.Open();
             try
             {
@@ -591,7 +600,7 @@ namespace PointOfSaleSystem
                 var reader = cmdUnit.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBoxUnit.Items.Add(reader.GetString("U_Name"));
+                    comboBoxUnit.Items.Add(reader["U_Name"].ToString());
 
                 }
                 comboBoxUnit.SelectedIndex = 0;
@@ -609,8 +618,8 @@ namespace PointOfSaleSystem
 
         private void categoryComobox()
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
@@ -618,7 +627,7 @@ namespace PointOfSaleSystem
                 comboBoxCategory2.Items.Clear();
                 cmdCate = con.CreateCommand();
                 cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
                     comboBoxCategory1.Items.Add(reader["C_Name"].ToString());
@@ -652,8 +661,8 @@ namespace PointOfSaleSystem
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
             con.Open();
             try
             {   
@@ -665,7 +674,7 @@ namespace PointOfSaleSystem
                 while (reader.Read())
                 {
 
-                    p_id = reader.GetString("P_id");
+                    p_id = reader["P_id"].ToString();
                    
                 }
             }
@@ -679,122 +688,29 @@ namespace PointOfSaleSystem
                 con.Close();
             }
         }
-        private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
-            con.Open();
-            try
-            {
-                cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT U_id FROM Unit WHERE U_Name=@name";
-                cmd.Parameters.AddWithValue("@name", comboBoxUnit.SelectedItem);
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    u_id = reader.GetString("U_id");
-                   
-                }
-            }
-            catch
-            {
-
-
-            }
-            finally
-            {
-                con.Close();
-            }
-            con.Open();
-            try
-            {
-                if (p_id != null && u_id != null)
-                {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT Price FROM Price WHERE P_id=@p_id and U_id=@u_id";
-                    cmd.Parameters.AddWithValue("@p_id", p_id);
-                    cmd.Parameters.AddWithValue("@u_id", u_id);
-                    var reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            previous_price=tetAmount.Text = reader.GetString("Price");
-                           // btnPrice.Enabled = false;
-                            
-                        }
-
-                    }
-                    else
-                    {
-                        btnPrice.Text = "ထည့်မည်";
-                    }
-                }
-                else
-                {
-                }
-            }
-            catch
-            {
-
-                
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-
+        
         private void tetAmount_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (previous_price.Equals(tetAmount.Text.ToString()))
-                {
-                    if (btnPrice.Text.ToString().Equals("ဖြတ်မည်"))
-                        btnPrice.Enabled = true;
-                    else
-                    {
-                        
-                        btnPrice.Enabled = false;
-                    }
-                    btnPrice.Text = "ထည့်မည်";
-                }
-                else
-                {
-                    btnPrice.Text = "ပြင်မည်";
-                    btnPrice.Enabled = true;
 
-                }
-            }
-            catch
-            {
-            }
-            
         }
 
-       
-
-        private void updateLabel_Click(object sender, EventArgs e)
+        private void updateLabel_Click_1(object sender, EventArgs e)
         {
             comboBoxUpdate.Visible = true;
             updateLabel.Visible = false;
-            
         }
-
         private void comoBoxUpdateCategory()
         {
             
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmdCate;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
             con.Open();
             try
             {
                 comboBoxUpdate.Items.Clear();
                 cmdCate = con.CreateCommand();
                 cmdCate.CommandText = "SELECT C_Name FROM Category";
-                MySqlDataReader reader = cmdCate.ExecuteReader();
+                SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
                        
@@ -867,11 +783,13 @@ namespace PointOfSaleSystem
             productDeleteLabel.Visible = true;
             
 
-            if (!comboBoxProductUD.Visible == false)
+            if (!comboBoxProductUD.Visible == false && load==false)
             {
+               
                 textBox3.Text = comboBoxProductUD.SelectedItem.ToString();
                 addProduct.Text = product;
             }
+            load = false;
             comboBoxProductUD.Visible = false;
         }
 
@@ -886,7 +804,35 @@ namespace PointOfSaleSystem
 
         private void comboBoxCategory2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            if (comboBoxCategory2.SelectedItem != null)
+            {
+                con.Open();
+                try
+                {
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT C_id FROM Category WHERE C_Name=@name";
+                    cmd.Parameters.AddWithValue("@name", comboBoxCategory2.SelectedItem.ToString());
+                    SqlDataReader reads = cmd.ExecuteReader();
+                    while (reads.Read())
+                    {
 
+                        category_id = reads["C_id"].ToString();
+                        comboBoxUDProduct();
+                    }
+                }
+                catch
+                {
+
+
+                }
+                finally
+                {
+                   
+                    con.Close();
+                }
+            }
         }
 
         
@@ -920,6 +866,7 @@ namespace PointOfSaleSystem
                 tetAmount.Text = comboBoxPriceUD.SelectedItem.ToString();
                 btnPrice.Text =price;
             }
+            previous_price = comboBoxPriceUD.SelectedItem.ToString();
             comboBoxPriceUD.Visible = false;
         }
 
@@ -930,88 +877,104 @@ namespace PointOfSaleSystem
 
         private void btnPrice_Click_1(object sender, EventArgs e)
         {
-            MySqlConnection con = new MyConnection().GetConnection();
-            MySqlCommand cmd;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
 
             con.Open();
             try
             {
-                if (tetAmount.Text.Trim() == "" && p_id == null && u_id == null)
-                    MessageBox.Show("ကျေးဇူးပြု၍ဒေတာထည့်သွင်းပါ", "သတိပေးချက်");
+                if (tetAmount.Text.Trim() == "" || p_id == null || u_id == null)
+                    MessageBoxShowing.showIncomplementMessage();
                 else
-                if (p_id != null && u_id != null && btnPrice.Text.Equals("ထည့်မည်"))
-                {
-                    
-                    
-                    try
+                    if (p_id != null && u_id != null && btnPrice.Text.Equals("ထည့်မည်"))
                     {
+
                         cmd = con.CreateCommand();
-                        cmd.CommandText = "INSERT INTO Price(Price,P_id,U_id) VALUES(@price,@p_id,@u_id)";
+                        cmd.CommandText = "Select * From Price Where Price=@price and P_id=@p_id and U_id=@u_id";
                         cmd.Parameters.AddWithValue("@price", tetAmount.Text.Trim());
                         cmd.Parameters.AddWithValue("@p_id", p_id);
                         cmd.Parameters.AddWithValue("@u_id", u_id);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("ဒေတာထည့်သွင်းမှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                        tetAmount.Text = "";
-                        comboBoxProduct.SelectedIndex = 0;
-                        comboBoxUnit.SelectedIndex = 0;
-                    }
-                    catch
-                    {
-                    }
-                }
-                else if (p_id != null && u_id != null && btnPrice.Text.Equals("ပြင်မည်"))
-                {
-                    try
-                    {
-                        cmd = con.CreateCommand();
-                        cmd.CommandText = "Update Price Set Price=@price,U_id=@p_id,U_id=@u_id Where P_id=@p_id and U_id=@u_id and Price=@prices";
-                        cmd.Parameters.AddWithValue("@price", tetAmount.Text.Trim());
-                        cmd.Parameters.AddWithValue("@p_id", p_id);
-                        cmd.Parameters.AddWithValue("@u_id", u_id);
-                        cmd.Parameters.AddWithValue("@prices", previous_price);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("ဒေတာပြင်ဆင်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                        tetAmount.Text = "";
-                        comboBoxProduct.SelectedIndex = 0;
-                        comboBoxUnit.SelectedIndex = 0;
-                        btnPrice.Text = "ထည့်မည်";
-                    }
-                    catch
-                    {
-                    }
+                        var reader = cmd.ExecuteReader();
 
-                }
-                else if (btnPrice.Text.ToString().Equals("ဖြတ်မည်") && p_id != null && u_id != null)
-                {
-                   
-                    try
-                    {
-                        cmd = con.CreateCommand();
-                        cmd.CommandText = "Delete  From Price  Where Price=@prices and U_id=@u_id and P_id=@p_id";
+                        if (!reader.HasRows)
+                        {
 
-                        cmd.Parameters.AddWithValue("@prices", comboBoxPriceUD.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@u_id", u_id);
-                        cmd.Parameters.AddWithValue("@p_id", p_id);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("ဒေတာဖြတ်မှုအောင်မြင်ပါသည်", "သတိပေးချက်");
-                        tetAmount.Text = "";
-                        comboBoxProduct.SelectedIndex = 0;
-                        comboBoxUnit.SelectedIndex = 0;
-                        btnPrice.Text = "ထည့်မည်";
-                    }
-                    catch
-                    {
-                        
-                    }
+                            con.Close();
+                            try
+                            {
+                                con.Open();
+                                cmd = con.CreateCommand();
+                                cmd.CommandText = "INSERT INTO Price(Price,P_id,U_id) VALUES(@price,@p_id,@u_id)";
+                                cmd.Parameters.AddWithValue("@price", tetAmount.Text.Trim());
+                                cmd.Parameters.AddWithValue("@p_id", p_id);
+                                cmd.Parameters.AddWithValue("@u_id", u_id);
+                                cmd.ExecuteNonQuery();
+                                MessageBoxShowing.showSuccessfulMessage();
+                                tetAmount.Text = "";
+                                comboBoxProduct.SelectedIndex = 0;
+                                comboBoxUnit.SelectedIndex = 0;
+                            }
+                            catch
+                            {
 
-                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxShowing.showWarningMessage();
+                            tetAmount.Text = "";
+                            comboBoxProduct.SelectedIndex = 0;
+                            comboBoxUnit.SelectedIndex = 0;
+                        }
+                    }
+                    else if (p_id != null && u_id != null && btnPrice.Text.Equals("ပြင်မည်"))
+                    {
+                        try
+                        {
+                            cmd = con.CreateCommand();
+                            cmd.CommandText = "Update Price Set Price=@price,P_id=@p_id,U_id=@u_id  Where P_id=@p_id and U_id=@u_id and Price=@prices";
+                            cmd.Parameters.AddWithValue("@price", tetAmount.Text.Trim());
+                            cmd.Parameters.AddWithValue("@p_id", p_id);
+                            cmd.Parameters.AddWithValue("@u_id", u_id);
+                            cmd.Parameters.AddWithValue("@prices",previous_price );
+                            cmd.ExecuteNonQuery();
+                            MessageBoxShowing.showSuccessfulUpdateMessage();
+                            tetAmount.Text = "";
+                            comboBoxProduct.SelectedIndex = 0;
+                            comboBoxUnit.SelectedIndex = 0;
+                            btnPrice.Text = "ထည့်မည်";
+                        }
+                        catch
+                        {
+                        }
+
+                    }
+                    else if (btnPrice.Text.ToString().Equals("ဖြတ်မည်") && p_id != null && u_id != null)
+                    {
+
+                        try
+                        {
+                            cmd = con.CreateCommand();
+                            cmd.CommandText = "Delete  From Price  Where Price=@prices and U_id=@u_id and P_id=@p_id";
+                            cmd.Parameters.AddWithValue("@u_id", u_id);
+                            cmd.Parameters.AddWithValue("@p_id", p_id);
+                            cmd.Parameters.AddWithValue("@prices", tetAmount.Text.Trim());
+                            cmd.ExecuteNonQuery();
+                            MessageBoxShowing.showSuccessfulDeleteMessage();
+                            tetAmount.Text = "";
+                            comboBoxProduct.SelectedIndex = 0;
+                            comboBoxUnit.SelectedIndex = 0;
+                            btnPrice.Text = "ထည့်မည်";
+                        }
+                        catch
+                        {
+
+                        }
+
+                    }
             }
-            catch (Exception)
+            catch 
             {
-
-                throw;
-
             }
             finally
             {
@@ -1020,9 +983,91 @@ namespace PointOfSaleSystem
                 con.Close();
             }
         }
+        private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-       
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT U_id FROM Unit WHERE U_Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxUnit.SelectedItem);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    u_id = reader["U_id"].ToString();
+
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            con.Open();
+            try
+            {
+                if (p_id != null && u_id != null)
+                {
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT Price FROM Price WHERE P_id=@p_id and U_id=@u_id";
+                    cmd.Parameters.AddWithValue("@p_id", p_id);
+                    cmd.Parameters.AddWithValue("@u_id", u_id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            previous_price = reader["Price"].ToString();
+                            comboBoxUPPrice();
+
+                        }
+
+                    }
+                    else
+                    {
+                        btnPrice.Text = "ထည့်မည်";
+                    }
+                }
+                else
+                {
+                    tetAmount.Text = "";
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                
+                con.Close();
+            }
         }
-    
-    }
 
+        private void tetAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
+      
+        }
+
+        
+        }
+  

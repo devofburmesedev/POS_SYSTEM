@@ -20,6 +20,8 @@ namespace PointOfSaleSystem
         private Stocks sForm = null;
         private BuyList bForm = null;
         private UseCost usecostForm = null;
+        private CreditList creditForm = null;
+        private Stores storeForm = null;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -53,6 +55,13 @@ namespace PointOfSaleSystem
         
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.BackColor = Color.Aqua;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
             viewForm();
         }
       
@@ -73,9 +82,24 @@ namespace PointOfSaleSystem
             {
                 sForm.BringToFront();
             }
-            //viewForm();
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Aqua;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
         }
-
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Aqua;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             if (bForm == null)
@@ -91,7 +115,13 @@ namespace PointOfSaleSystem
             {
                 bForm.BringToFront();
             }
-
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Aqua;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -109,6 +139,65 @@ namespace PointOfSaleSystem
             {
                 usecostForm.BringToFront();
             }
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Aqua;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (creditForm == null)
+            {
+                creditForm = new CreditList();
+                creditForm.TopLevel = false;
+                panel1.Controls.Add(creditForm);
+                creditForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                creditForm.Dock = DockStyle.Fill;
+                creditForm.Show();
+            }
+            else
+            {
+                creditForm.BringToFront();
+            }
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Aqua;
+            button7.BackColor = Color.Lime;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (storeForm == null)
+            {
+                storeForm = new Stores();
+                storeForm.TopLevel = false;
+                panel1.Controls.Add(storeForm);
+                storeForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                storeForm.Dock = DockStyle.Fill;
+                storeForm.Show();
+            }
+            else
+            {
+                storeForm.BringToFront();
+            }
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Aqua;
+        }
+
+        
+
+     
     }
 }
