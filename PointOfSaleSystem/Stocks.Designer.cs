@@ -184,11 +184,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(16, 34);
+            this.label6.Location = new System.Drawing.Point(28, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 52);
+            this.label6.Size = new System.Drawing.Size(107, 52);
             this.label6.TabIndex = 2;
-            this.label6.Text = "ကုန်ပစ္စည်းအမည်";
+            this.label6.Text = "ကုန်ပစ္စည်းအမျိုးအစား";
             // 
             // label7
             // 

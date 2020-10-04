@@ -516,7 +516,7 @@ namespace PointOfSaleSystem
 
                         dc.ReadOnly = false;
 
-
+                        
                     }
                     else
                     {
@@ -531,6 +531,8 @@ namespace PointOfSaleSystem
                     {
 
                         dr.ReadOnly = false;
+                        
+                        
 
                     }
                     else
@@ -644,6 +646,11 @@ namespace PointOfSaleSystem
             int.TryParse(dateTime[0], out month);
             int.TryParse(dateTime[1], out year);
             BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
+        }
+
+        private void txtTotalPrice_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
        

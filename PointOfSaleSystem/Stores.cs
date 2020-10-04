@@ -31,6 +31,8 @@ namespace PointOfSaleSystem
             comboBoxName.Visible = false;
             comboBoxLocation.Visible = false;
             conditions = false;
+            btnView.BackColor = Color.Aqua;
+           
         }
         private void storeComobox()
         {
@@ -903,17 +905,18 @@ namespace PointOfSaleSystem
                                 String amount = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                                String date = (dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
                                 String time = (dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
-                               
-                                con.Open();
+                                String datetime = date + " " + time;
+                                con.Open(); 
                                 try
                                 {
                                     cmd = con.CreateCommand();
-                                    cmd.CommandText = "Delete  From HistoryProductInStores  Where P_id=@p_id and U_id=@u_id and Amount=@amount";
+                                    cmd.CommandText = "Delete  From HistoryProductInStores  Where P_id=@p_id and U_id=@u_id and Amount=@amount and DateAndTime=@date";
                                     cmd.Parameters.AddWithValue("@p_id", product);
 
                                     cmd.Parameters.AddWithValue("@u_id", unit);
                                    
                                     cmd.Parameters.AddWithValue("@amount", amount);
+                                    cmd.Parameters.AddWithValue("@date", datetime);
                                     cmd.ExecuteNonQuery();
 
                                     BindGridHistory(comboBoxStores2.SelectedItem.ToString(),dateTimePicker2.Text);
@@ -941,7 +944,8 @@ namespace PointOfSaleSystem
         private void btnViewHistory_Click(object sender, EventArgs e)
         {
            dateTimePicker2.Visible = true;
-           
+           btnView.BackColor = Color.Lime;
+           btnViewHistory.BackColor = Color.Aqua;
            conditions = true;
            BindGridHistory(comboBoxStores2.SelectedItem.ToString(),dateTimePicker2.Text.ToString());
         }
@@ -949,7 +953,8 @@ namespace PointOfSaleSystem
         private void btnView_Click(object sender, EventArgs e)
         {
             dateTimePicker2.Visible = false;
-           
+            btnView.BackColor = Color.Aqua;
+            btnViewHistory.BackColor = Color.Lime;
             conditions = false;
             BindGrid(comboBoxStores2.SelectedItem.ToString());
         }

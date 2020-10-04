@@ -22,6 +22,7 @@ namespace PointOfSaleSystem
         private UseCost usecostForm = null;
         private CreditList creditForm = null;
         private Stores storeForm = null;
+        private SaleLiatMainForm saleForm = null;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -92,6 +93,20 @@ namespace PointOfSaleSystem
         }
         private void button3_Click(object sender, EventArgs e)
         {
+
+            if (saleForm== null)
+            {
+                saleForm = new SaleLiatMainForm();
+                saleForm.TopLevel = false;
+                panel1.Controls.Add(saleForm);
+                saleForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                saleForm.Dock = DockStyle.Fill;
+                saleForm.Show();
+            }
+            else
+            {
+                saleForm.BringToFront();
+            }
             button1.BackColor = Color.Lime;
             button2.BackColor = Color.Lime;
             button3.BackColor = Color.Aqua;
@@ -194,6 +209,11 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Aqua;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         

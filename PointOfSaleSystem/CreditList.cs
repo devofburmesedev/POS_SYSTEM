@@ -99,7 +99,12 @@ namespace PointOfSaleSystem
                 desc.DataPropertyName = "ဖော်ပြချက်";
                 desc.Width = 240;
                 dataGridView1.Columns.Insert(3, desc);
-
+                DataGridViewColumn time = new DataGridViewTextBoxColumn();
+                time.Name = "date";
+                time.HeaderText = "ရက်စွဲ";
+                time.DataPropertyName = "date";
+                time.Width = 100;
+                dataGridView1.Columns.Insert(4, time);
 
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
                 // btnDelete.Name = "Delete";
@@ -111,7 +116,7 @@ namespace PointOfSaleSystem
 
                 btnDelete.FlatStyle = FlatStyle.Standard;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dataGridView1.Columns.Insert(4, btnDelete);
+                dataGridView1.Columns.Insert(5, btnDelete);
                 dataGridView1.DataSource = null;
                 SqlConnection con = new MyConnection().GetConnection();
                 SqlCommand cmd;
@@ -176,6 +181,7 @@ namespace PointOfSaleSystem
                                 newRow.Cells[2].Value = reader["Amount"].ToString();
                                 newRow.Cells[3].Value = reader["Receiver"].ToString();
                                 sum += Convert.ToInt32(reader["Amount"].ToString());
+                                newRow.Cells[4].Value = reader["DateAndTime"].ToString();
                                 i++;
                                 dataGridView1.Rows.Add(newRow);
 
@@ -346,20 +352,22 @@ namespace PointOfSaleSystem
 
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 String name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                String rec= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                String rec = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                String date= dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
                 con.Open();
                 try
                 {
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec";
+                    cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec and DateAndTime=@date";
                     cmd.Parameters.AddWithValue("@c_id", c_id);
 
                     cmd.Parameters.AddWithValue("@amount", amount);
                     cmd.Parameters.AddWithValue("@rec", rec);
+                    cmd.Parameters.AddWithValue("@date",date );
                     cmd.ExecuteNonQuery();
                     BindGrid(date, method);
 
