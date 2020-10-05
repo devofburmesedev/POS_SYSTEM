@@ -540,6 +540,12 @@ namespace PointOfSaleSystem
 
         }
 
+             private void txtPaidAmount_KeyPress(object sender, KeyPressEventArgs e)
+             {
+                 if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+                     e.Handled = true;
+             }
+
             
        
     }

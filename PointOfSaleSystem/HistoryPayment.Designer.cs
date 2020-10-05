@@ -180,6 +180,7 @@
             this.txtPaidAmount.Size = new System.Drawing.Size(72, 30);
             this.txtPaidAmount.TabIndex = 7;
             this.txtPaidAmount.TextChanged += new System.EventHandler(this.txtPaidAmount_TextChanged);
+            this.txtPaidAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPaidAmount_KeyPress);
             // 
             // btnPayment
             // 
