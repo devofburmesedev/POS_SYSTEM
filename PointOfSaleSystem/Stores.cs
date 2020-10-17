@@ -421,7 +421,13 @@ namespace PointOfSaleSystem
 
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                 e.Handled = true;
 
         }
@@ -468,19 +474,20 @@ namespace PointOfSaleSystem
                 product.DataPropertyName = "Product";
                 product.Width = 180;
                 dataGridView1.Columns.Insert(3, product);
+                DataGridViewColumn price = new DataGridViewTextBoxColumn();
+                price.Name = "price";
+                price.HeaderText = "အရေအတွက်";
+                price.DataPropertyName = "price";
+                price.Width = 200;
+                dataGridView1.Columns.Insert(4, price);
+                
                 DataGridViewColumn units = new DataGridViewTextBoxColumn();
                 units.Name = "unit";
                 units.HeaderText = "ယူနစ်";
                 units.DataPropertyName = "unit";
                 units.Width = 200;
-                dataGridView1.Columns.Insert(4, units);
-                DataGridViewColumn price = new DataGridViewTextBoxColumn();
-                price.Name = "price";
-                price.HeaderText = "ပမာဏ";
-                price.DataPropertyName = "price";
-                price.Width = 200;
-                dataGridView1.Columns.Insert(5, price);
-                
+                dataGridView1.Columns.Insert(5, units);
+              
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
                 //btnDelete.Name = "Delete";
                 btnDelete.Text = "ဖြတ်မည်";
@@ -518,8 +525,8 @@ namespace PointOfSaleSystem
 
 
                                 newRow.Cells[3].Value = getProduct(reader["P_id"].ToString());
-                                newRow.Cells[4].Value =getUnit( reader["U_id"].ToString());
-                                newRow.Cells[5].Value = reader["Amount"].ToString();
+                                newRow.Cells[5].Value =getUnit( reader["U_id"].ToString());
+                                newRow.Cells[4].Value = reader["Amount"].ToString();
                                 i++;
                                 dataGridView1.Rows.Add(newRow);
 
@@ -575,20 +582,20 @@ namespace PointOfSaleSystem
                 product.DataPropertyName = "Product";
                 product.Width = 180;
                 dataGridView1.Columns.Insert(1, product);
+                
+                DataGridViewColumn price = new DataGridViewTextBoxColumn();
+                price.Name = "price";
+                price.HeaderText = "အရေအတွက်";
+                price.DataPropertyName = "price";
+                price.Width = 200;
+                dataGridView1.Columns.Insert(2, price);
+               
                 DataGridViewColumn units = new DataGridViewTextBoxColumn();
                 units.Name = "unit";
                 units.HeaderText = "ယူနစ်";
                 units.DataPropertyName = "unit";
                 units.Width = 200;
-                dataGridView1.Columns.Insert(2, units);
-                DataGridViewColumn price = new DataGridViewTextBoxColumn();
-                price.Name = "price";
-                price.HeaderText = "ပမာဏ";
-                price.DataPropertyName = "price";
-                price.Width = 200;
-                dataGridView1.Columns.Insert(3, price);
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-
+                dataGridView1.Columns.Insert(3, units);
                 DataGridViewColumn date = new DataGridViewTextBoxColumn();
                 date.Name = "date";
                 date.HeaderText = "ရက်စွဲ";
@@ -639,8 +646,8 @@ namespace PointOfSaleSystem
                                 newRow.Cells[0].Value = i;
                                 
                                 newRow.Cells[1].Value = getProduct(reader["P_id"].ToString());
-                                newRow.Cells[2].Value = getUnit(reader["U_id"].ToString());
-                                newRow.Cells[3].Value = reader["Amount"].ToString();
+                                newRow.Cells[3].Value = getUnit(reader["U_id"].ToString());
+                                newRow.Cells[2].Value = reader["Amount"].ToString();
                                 String []datetimes=(reader["DateAndTime"].ToString()).Split(' ');
                                 String dates, times;
                                 dates = datetimes[0];
@@ -864,8 +871,8 @@ namespace PointOfSaleSystem
                         int store = getStoreProductId(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                       
                         int product = getProductId(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
-                        int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
-                        String amount = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+                        int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
+                        String amount = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
                      
                         con.Open();
                         try
@@ -901,8 +908,8 @@ namespace PointOfSaleSystem
                             {
                                 
                                 int product = getProductId(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
-                                int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
-                                String amount = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                                int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
+                                String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                                String date = (dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
                                 String time = (dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
                                 String datetime = date + " " + time;

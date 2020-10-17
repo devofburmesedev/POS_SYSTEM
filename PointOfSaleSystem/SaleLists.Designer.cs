@@ -150,7 +150,7 @@
             this.comboBoxCategory1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxCategory1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory1.FormattingEnabled = true;
-            this.comboBoxCategory1.Location = new System.Drawing.Point(199, 175);
+            this.comboBoxCategory1.Location = new System.Drawing.Point(199, 172);
             this.comboBoxCategory1.Name = "comboBoxCategory1";
             this.comboBoxCategory1.Size = new System.Drawing.Size(87, 31);
             this.comboBoxCategory1.TabIndex = 20;
@@ -161,10 +161,11 @@
             this.comboBoxProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProduct.FormattingEnabled = true;
-            this.comboBoxProduct.Location = new System.Drawing.Point(199, 250);
+            this.comboBoxProduct.Location = new System.Drawing.Point(199, 247);
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(87, 31);
             this.comboBoxProduct.TabIndex = 21;
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
             // 
             // txtAmount
             // 
@@ -181,10 +182,11 @@
             this.comboBoxUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnit.FormattingEnabled = true;
-            this.comboBoxUnit.Location = new System.Drawing.Point(199, 400);
+            this.comboBoxUnit.Location = new System.Drawing.Point(199, 397);
             this.comboBoxUnit.Name = "comboBoxUnit";
             this.comboBoxUnit.Size = new System.Drawing.Size(87, 31);
             this.comboBoxUnit.TabIndex = 21;
+            this.comboBoxUnit.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnit_SelectedIndexChanged);
             // 
             // txtPrice
             // 
@@ -219,16 +221,18 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(87, 30);
             this.txtTotal.TabIndex = 19;
+            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAdd.BackColor = System.Drawing.Color.Green;
             this.btnAdd.Location = new System.Drawing.Point(199, 620);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 34);
             this.btnAdd.TabIndex = 22;
             this.btnAdd.Text = "ထည့်မည်";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label8
@@ -312,12 +316,13 @@
             // btnAmountTwo
             // 
             this.btnAmountTwo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAmountTwo.BackColor = System.Drawing.Color.Green;
             this.btnAmountTwo.Location = new System.Drawing.Point(933, 179);
             this.btnAmountTwo.Name = "btnAmountTwo";
-            this.btnAmountTwo.Size = new System.Drawing.Size(75, 40);
+            this.btnAmountTwo.Size = new System.Drawing.Size(100, 40);
             this.btnAmountTwo.TabIndex = 23;
             this.btnAmountTwo.Text = "ပေးချေမည်";
-            this.btnAmountTwo.UseVisualStyleBackColor = true;
+            this.btnAmountTwo.UseVisualStyleBackColor = false;
             this.btnAmountTwo.Click += new System.EventHandler(this.btnAmountTwo_Click);
             // 
             // txtTotalTwo
@@ -327,6 +332,7 @@
             this.txtTotalTwo.Name = "txtTotalTwo";
             this.txtTotalTwo.Size = new System.Drawing.Size(100, 30);
             this.txtTotalTwo.TabIndex = 24;
+            this.txtTotalTwo.TextChanged += new System.EventHandler(this.txtTotalTwo_TextChanged);
             // 
             // txtDiscout
             // 
@@ -351,12 +357,14 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(852, 181);
+            this.button1.BackColor = System.Drawing.Color.Green;
+            this.button1.Location = new System.Drawing.Point(852, 179);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 35);
+            this.button1.Size = new System.Drawing.Size(75, 40);
             this.button1.TabIndex = 28;
             this.button1.Text = "ထည့်မည်";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtPaidAmount
             // 

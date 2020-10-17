@@ -34,13 +34,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.txtRec = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxCategory1 = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtRec = new System.Windows.Forms.TextBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxProduct = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,7 +82,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(54, 198);
+            this.label4.Location = new System.Drawing.Point(54, 250);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 23);
@@ -92,12 +94,12 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(65, 138);
+            this.label3.Location = new System.Drawing.Point(35, 198);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 23);
+            this.label3.Size = new System.Drawing.Size(85, 23);
             this.label3.TabIndex = 5;
-            this.label3.Text = "ပမာဏ";
+            this.label3.Text = "စုစုပေါင်းငွေ";
             // 
             // dataGridView1
             // 
@@ -113,7 +115,6 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(837, 539);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -123,16 +124,18 @@
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.30962F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.69038F));
-            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.txtAmount, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.txtRec, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.btnSave, 1, 4);
             this.tableLayoutPanel6.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.label7, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.comboBoxCategory1, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.btnSave, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.txtRec, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.label4, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.txtAmount, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label3, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 7);
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxProduct, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label8, 0, 2);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(867, 5);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
@@ -149,38 +152,6 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(362, 749);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
-            // txtAmount
-            // 
-            this.txtAmount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtAmount.Location = new System.Drawing.Point(128, 135);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(103, 30);
-            this.txtAmount.TabIndex = 8;
-            // 
-            // txtRec
-            // 
-            this.txtRec.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtRec.Location = new System.Drawing.Point(128, 195);
-            this.txtRec.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRec.Name = "txtRec";
-            this.txtRec.Size = new System.Drawing.Size(103, 30);
-            this.txtRec.TabIndex = 10;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSave.BackColor = System.Drawing.Color.Lime;
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSave.Location = new System.Drawing.Point(128, 244);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 36);
-            this.btnSave.TabIndex = 11;
-            this.btnSave.Text = "သိမ်းမည်";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -190,18 +161,6 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 23);
             this.label5.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(128, 306);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(10, 23);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "\r\n";
             // 
             // label7
             // 
@@ -229,10 +188,81 @@
             this.comboBoxCategory1.TabIndex = 14;
             this.comboBoxCategory1.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategory1_SelectedIndexChanged);
             // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSave.BackColor = System.Drawing.Color.Lime;
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSave.Location = new System.Drawing.Point(128, 299);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 36);
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "သိမ်းမည်";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtRec
+            // 
+            this.txtRec.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtRec.Location = new System.Drawing.Point(128, 247);
+            this.txtRec.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRec.Name = "txtRec";
+            this.txtRec.Size = new System.Drawing.Size(103, 30);
+            this.txtRec.TabIndex = 10;
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtAmount.Location = new System.Drawing.Point(128, 195);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(103, 30);
+            this.txtAmount.TabIndex = 8;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(4, 573);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(10, 23);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "\r\n";
+            // 
+            // comboBoxProduct
+            // 
+            this.comboBoxProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboBoxProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxProduct.FormattingEnabled = true;
+            this.comboBoxProduct.Location = new System.Drawing.Point(128, 137);
+            this.comboBoxProduct.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxProduct.Name = "comboBoxProduct";
+            this.comboBoxProduct.Size = new System.Drawing.Size(103, 31);
+            this.comboBoxProduct.TabIndex = 15;
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(18, 138);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(102, 23);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "ကုန်ပစ္စည်းများ";
+            // 
             // txtTotalAmount
             // 
             this.txtTotalAmount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtTotalAmount.Location = new System.Drawing.Point(644, 22);
+            this.txtTotalAmount.Location = new System.Drawing.Point(640, 22);
             this.txtTotalAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.Size = new System.Drawing.Size(103, 30);
@@ -243,7 +273,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.4557F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.5443F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 196F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel5.Controls.Add(this.txtTotalAmount, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -260,7 +290,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(551, 25);
+            this.label1.Location = new System.Drawing.Point(547, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 23);
@@ -468,5 +498,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBoxCategory1;
+        private System.Windows.Forms.ComboBox comboBoxProduct;
+        private System.Windows.Forms.Label label8;
     }
 }

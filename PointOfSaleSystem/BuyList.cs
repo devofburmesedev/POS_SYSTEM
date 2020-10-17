@@ -36,6 +36,39 @@ namespace PointOfSaleSystem
                 BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
          
         }
+        private int getCategoryId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category Where C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["C_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
         private void productComobox()
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -45,7 +78,8 @@ namespace PointOfSaleSystem
             {
                 comboBoxProduct.Items.Clear();
                 cmdProduct = con.CreateCommand();
-                cmdProduct.CommandText = "SELECT P_Name FROM Product";
+                cmdProduct.CommandText = "SELECT P_Name FROM Product where C_id=@c_id";
+                cmdProduct.Parameters.AddWithValue("@c_id", getCategoryId(comboBoxCategory2.SelectedItem.ToString()));
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
@@ -256,6 +290,7 @@ namespace PointOfSaleSystem
 
         private void comboBoxCategory2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            productComobox();
             comboBoxCategoryMethod(comboBoxCategory2.SelectedItem.ToString());
         }
 
@@ -627,15 +662,27 @@ namespace PointOfSaleSystem
 
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
-        
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+
+            char ch = e.KeyChar;
+            if (ch == 46 && txtQty.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                 e.Handled = true;
 
         }
 
         private void txtTotalPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-             if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && txtTotalPrice.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                 e.Handled = true;
         }
 
@@ -649,6 +696,11 @@ namespace PointOfSaleSystem
         }
 
         private void txtTotalPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtQty_TextChanged(object sender, EventArgs e)
         {
 
         }

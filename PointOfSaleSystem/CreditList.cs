@@ -18,7 +18,7 @@ namespace PointOfSaleSystem
             InitializeComponent();
             categoryComobox();
         }
-        int c_id;
+        int p_id;
         private void categoryComobox()
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -29,7 +29,7 @@ namespace PointOfSaleSystem
                 comboBoxCategory1.Items.Clear();
               
                 cmdCate = con.CreateCommand();
-                cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
+                cmdCate.CommandText = "SELECT C_Name FROM Category";
                 SqlDataReader reader = cmdCate.ExecuteReader();
                 while (reader.Read())
                 {
@@ -59,6 +59,69 @@ namespace PointOfSaleSystem
             method = "dailyreport";
             
         }
+        private int getCategoryId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category Where C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["C_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
+        private void productComobox()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdProduct;
+            con.Open();
+            try
+            {
+                comboBoxProduct.Items.Clear();
+                cmdProduct = con.CreateCommand();
+                cmdProduct.CommandText = "SELECT P_Name FROM Product where C_id=@c_id";
+                cmdProduct.Parameters.AddWithValue("@c_id", getCategoryId(comboBoxCategory1.SelectedItem.ToString()));
+                var reader = cmdProduct.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBoxProduct.Items.Add(reader["P_Name"].ToString());
+
+                }
+                comboBoxProduct.SelectedIndex = 0;
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+       
         private void BindGrid(String dates, String method)
         {
             try
@@ -81,7 +144,7 @@ namespace PointOfSaleSystem
 
                 DataGridViewColumn product = new DataGridViewTextBoxColumn();
                 product.Name = "Product";
-                product.HeaderText = "ကုန်ပစ္စည်းအမျိုးအစား";
+                product.HeaderText = "ကုန်ပစ္စည်းများ";
                 product.DataPropertyName = "Product";
                 product.Width = 260;
                 dataGridView1.Columns.Insert(1, product);
@@ -89,7 +152,7 @@ namespace PointOfSaleSystem
 
                 DataGridViewColumn price = new DataGridViewTextBoxColumn();
                 price.Name = "price";
-                price.HeaderText = "ပမာဏ";
+                price.HeaderText = "စုစုပေါင်းငွေ";
                 price.DataPropertyName = "price";
                 price.Width = 200;
                 dataGridView1.Columns.Insert(2, price);
@@ -132,7 +195,7 @@ namespace PointOfSaleSystem
                         if (method.Equals("default"))
                         {
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT *  FROM CreditList Where Year(DateAndTime)=@year";
+                            cmd.CommandText = "SELECT *  FROM creditlist Where Year(DateAndTime)=@year";
                             cmd.Parameters.AddWithValue("@year", dates);
                             reader = cmd.ExecuteReader();
 
@@ -144,7 +207,7 @@ namespace PointOfSaleSystem
                             int.TryParse(dateTime[0], out month);
                             int.TryParse(dateTime[1], out year);
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT * FROM CreditList Where Year(DateAndTime)=@year and Month(DateAndTime)=@month";
+                            cmd.CommandText = "SELECT * FROM creditlist Where Year(DateAndTime)=@year and Month(DateAndTime)=@month";
                             cmd.Parameters.AddWithValue("@year", year);
                             cmd.Parameters.AddWithValue("@month", month);
 
@@ -159,33 +222,37 @@ namespace PointOfSaleSystem
                             int.TryParse(dateTime[1], out month);
                             int.TryParse(dateTime[2], out year);
                             cmd = con.CreateCommand();
-                            cmd.CommandText = "SELECT *  FROM CreditList Where Year(DateAndTime)=@year and Month(DateAndTime)=@month and Day(DateAndTime)=@day";
+                            cmd.CommandText = "SELECT *  FROM creditlist Where Year(DateAndTime)=@year and Month(DateAndTime)=@month and Day(DateAndTime)=@day";
                             cmd.Parameters.AddWithValue("@year", year);
                             cmd.Parameters.AddWithValue("@month", month);
                             cmd.Parameters.AddWithValue("@day", day);
                             reader = cmd.ExecuteReader();
+                           // MessageBox.Show(day+" "+month+" "+year+" "+reader.HasRows);
 
                         }
-                        int i = 1;
                         double sum = 0.0;
                         if (reader.HasRows)
-                        {
 
+                        {
+                            int i = 1;
+                            //MessageBox.Show(reader.HasRows+" ");
+                            
                             while (reader.Read())
                             {
                                 DataGridViewRow newRow = new DataGridViewRow();
                                 newRow.CreateCells(dataGridView1);
                                 newRow.Cells[0].Value = i;
 
-                                newRow.Cells[1].Value = reader["C_id"].ToString();
+                                newRow.Cells[1].Value =getProduct( reader["C_id"].ToString());
                                 newRow.Cells[2].Value = reader["Amount"].ToString();
                                 newRow.Cells[3].Value = reader["Receiver"].ToString();
-                                sum += Convert.ToInt32(reader["Amount"].ToString());
+                                
                                 newRow.Cells[4].Value = reader["DateAndTime"].ToString();
+                                //MessageBox.Show(reader["C_id"].ToString() + " " + reader["Amount"].ToString() + " " + reader["Receiver"].ToString() + " " + reader["DateAndTime"].ToString());
+                                //MessageBox.Show(reader["C_id"].ToString() + " " + getProduct(reader["C_id"].ToString()));
+                                sum += Convert.ToDouble(reader["Amount"].ToString() );
                                 i++;
                                 dataGridView1.Rows.Add(newRow);
-
-
                             }
 
                         }
@@ -226,7 +293,7 @@ namespace PointOfSaleSystem
                     cmd = con.CreateCommand();
                     cmd.CommandText = "Select * From CreditList Where C_id=@c_id and Amount=@amount and Receiver=@rec";
 
-                    cmd.Parameters.AddWithValue("@c_id", c_id);
+                    cmd.Parameters.AddWithValue("@c_id", p_id);
 
                     cmd.Parameters.AddWithValue("@amount", txtAmount.Text.ToString().Trim());
                     cmd.Parameters.AddWithValue("@rec", txtRec.Text.ToString().Trim());
@@ -242,7 +309,7 @@ namespace PointOfSaleSystem
                             cmd = con.CreateCommand();
                             cmd.CommandText = "Insert Into CreditList(C_id,Receiver,DateAndTime,Amount) Values(@c_id,@receiver,@date,@amount)";
                             cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
-                            cmd.Parameters.AddWithValue("@c_id",c_id);
+                            cmd.Parameters.AddWithValue("@c_id",p_id);
 
                             cmd.Parameters.AddWithValue("@amount", txtAmount.Text.ToString().Trim());
                             cmd.Parameters.AddWithValue("@receiver", txtRec.Text.ToString().Trim());
@@ -319,32 +386,8 @@ namespace PointOfSaleSystem
 
         private void comboBoxCategory1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlConnection con = new MyConnection().GetConnection();
-            SqlCommand cmd;
-            con.Open();
-            try
-            {
-
-                cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT C_id FROM Category WHERE C_Name=@name";
-                cmd.Parameters.AddWithValue("@name", comboBoxCategory1.SelectedItem.ToString());
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-
-                    c_id =Convert.ToInt32( reader["C_id"].ToString());
-
-                }
-            }
-            catch
-            {
-
-
-            }
-            finally
-            {
-                con.Close();
-            }
+          
+            productComobox();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -363,7 +406,7 @@ namespace PointOfSaleSystem
                 {
                     cmd = con.CreateCommand();
                     cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec and DateAndTime=@date";
-                    cmd.Parameters.AddWithValue("@c_id", c_id);
+                    cmd.Parameters.AddWithValue("@c_id", p_id);
 
                     cmd.Parameters.AddWithValue("@amount", amount);
                     cmd.Parameters.AddWithValue("@rec", rec);
@@ -384,8 +427,87 @@ namespace PointOfSaleSystem
             }
         }
 
-        
+        private void txtAmount_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
+                e.Handled = true;
+        }
+
+
+        private string getProduct(string ps)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            String data = null;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT P_Name FROM Product WHERE P_id=@id";
+                cmd.Parameters.AddWithValue("@id",ps);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = reader["P_Name"].ToString();
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
+
+        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT P_id FROM Product WHERE P_Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxProduct.SelectedItem.ToString());
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    p_id = Convert.ToInt32(reader["P_id"].ToString());
+
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
        
     }
 }

@@ -15,9 +15,11 @@ C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSal
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.UseCost.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.CreditList.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Stores.resources
-C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.MonthPicker.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.SaleLiatMainForm.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.HistoryPayment.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.MorePage.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.SaleLists.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.CustomerCreditLists.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.Report.Print.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\RdlCompile.cache
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\RdlCompile.compiled

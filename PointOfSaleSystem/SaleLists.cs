@@ -298,12 +298,13 @@ namespace PointOfSaleSystem
                     try
                     {
                         cmd = con.CreateCommand();
-                        cmd.CommandText = "INSERT INTO VoucherProduct(P_id,Price,Amount,U_id,V_id) VALUES(@p_id,@price,@amount,@u_id,@v_id)";
+                        cmd.CommandText = "INSERT INTO VoucherProduct(P_id,Price,Amount,U_id,V_id,Total) VALUES(@p_id,@price,@amount,@u_id,@v_id,@total)";
                         cmd.Parameters.AddWithValue("@p_id", getProductId(product));
                         cmd.Parameters.AddWithValue("@price", price);
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@u_id", getUnitId(unit));
                         cmd.Parameters.AddWithValue("@v_id", id);
+                        cmd.Parameters.AddWithValue("@total",((Convert.ToDouble( price))*(Convert.ToDouble(amount))).ToString());
                         cmd.ExecuteNonQuery();
                        
                         
@@ -317,7 +318,7 @@ namespace PointOfSaleSystem
 
         }
 
-        private int getVId(String credit,String p_amount,String total,DateTime date,String name)
+        private int getVId(String credit,String p_amount,String total,String date,String name)
         {
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
@@ -399,9 +400,9 @@ namespace PointOfSaleSystem
                                 newRow.Cells[1].Value = comboBoxProduct.SelectedItem.ToString();
                                 newRow.Cells[2].Value = txtPrice.Text.ToString();
                                 newRow.Cells[3].Value = txtAmount.Text.ToString() + " " + comboBoxUnit.SelectedItem.ToString();
-                                newRow.Cells[4].Value = Convert.ToInt32(txtPrice.Text.ToString()) * Convert.ToInt32(txtAmount.Text.ToString());
+                                newRow.Cells[4].Value = Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString());
                                 i++;
-                                totalprice += Convert.ToInt32(txtPrice.Text.ToString()) * Convert.ToInt32(txtAmount.Text.ToString());
+                                totalprice += Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString());
                                 dataGridView1.Rows.Add(newRow);
 
 
@@ -421,13 +422,25 @@ namespace PointOfSaleSystem
 
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch!=8 && ch!=46)
                 e.Handled = true;
         }
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                 e.Handled = true;
         }
 
@@ -435,15 +448,17 @@ namespace PointOfSaleSystem
         {
 
             if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
-                txtTotal.Text = (Convert.ToInt32(txtPrice.Text.ToString()) * Convert.ToInt32(txtAmount.Text.ToString())).ToString();
+                txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
         }
 
         private void txtDiscout_TextChanged(object sender, EventArgs e)
         {
             if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "" && !creditCheckBox.Checked)
-                txtPaidAmount.Text = (Convert.ToInt32(txtTotalTwo.Text.ToString()) - Convert.ToInt32(txtDiscout.Text.ToString())).ToString();
+                txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
         }
-
+        String name = null;
+        String  date;
+        String discount = null, totals = null, paidamount = null;
         private void btnAmountTwo_Click(object sender, EventArgs e)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -451,24 +466,31 @@ namespace PointOfSaleSystem
             con.Open();
             bool condition = false;
             int id = 0;
-            String name = txtCustomer.Text.ToString();
+             name = txtCustomer.Text.ToString();
             String credit = null;
             String p_amount = null;
             String total = txtTotalTwo.Text.ToString();
-            DateTime date = DateTime.Now.Date;
+            totals = txtTotalTwo.Text.ToString();
+            discount = txtDiscout.Text.ToString();
+            date = DateTime.Now.Date.ToString("dd/mm/yyyy");
             try
             {
                 cmdCate = con.CreateCommand();
-
-                cmdCate.CommandText = "SELECT * FROM Voucher WHERE  Total_Amount=@totalamount and CustomerName=@name";
+                string[] dateTime = date.Split('/');
+                int day, month, years;
+                int.TryParse(dateTime[1], out day);
+                int.TryParse(dateTime[0], out month);
+                int.TryParse(dateTime[2], out years);
+                cmdCate.CommandText = "SELECT * FROM Voucher WHERE  Total_Amount=@totalamount and CustomerName=@name and Paid_Amount=@pamount And Discount=@discount and Day(Voucher.DateAndTime)=@day and Voucher.V_id=VoucherProduct.V_id and Year(Voucher.DateAndTime)=@year";
                 cmdCate.Parameters.AddWithValue("@name", name);
-                /*if(creditCheckBox.Checked)
-                cmdCate.Parameters.AddWithValue("@credit", "true");
-                else
-                    cmdCate.Parameters.AddWithValue("@credit", "false");*/
-                //cmdCate.Parameters.AddWithValue("@p_amount",txtPaidAmount.Text.ToString());
+                cmdCate.Parameters.AddWithValue("@pamount", txtPaidAmount.Text.ToString());
+                cmdCate.Parameters.AddWithValue("@discount", txtDiscout.Text.ToString());
+                
                 cmdCate.Parameters.AddWithValue("@totalamount", txtTotalTwo.Text.ToString());
-                //cmdCate.Parameters.AddWithValue("@DateAndTime",);
+                cmdCate.Parameters.AddWithValue("@year", years);
+                cmdCate.Parameters.AddWithValue("@month", month);
+                cmdCate.Parameters.AddWithValue("@day", day);
+               
                 var reader = cmdCate.ExecuteReader();
                 if (!reader.HasRows)
                 {
@@ -502,12 +524,12 @@ namespace PointOfSaleSystem
                     if (creditCheckBox.Checked)
                     {
                         credit = "true";
-                        p_amount = txtPaidAmount.Text.ToString();
+                        paidamount=p_amount = txtPaidAmount.Text.ToString();
                     }
                     else
                     {
                         credit = "false";
-                        p_amount = txtPaidAmount.Text.ToString();
+                        paidamount=p_amount = txtPaidAmount.Text.ToString();
                     }
                     try
                     {
@@ -523,6 +545,7 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@datetime", date);
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@discount", txtDiscout.Text.ToString());
+                       
                         cmd.ExecuteNonQuery();
 
                         id = getVId(credit, p_amount, total, date, name);
@@ -572,7 +595,7 @@ namespace PointOfSaleSystem
 
         private void SaleLists_Load(object sender, EventArgs e)
         {
-
+            txtDiscout.Text = "0";
             txtPaidAmount.Visible = true;
             paidAmountLabel.Visible = true;
             txtTotalTwo.ReadOnly = true;
@@ -620,7 +643,7 @@ namespace PointOfSaleSystem
 
             DataGridViewColumn amount = new DataGridViewTextBoxColumn();
             amount.Name = "amount";
-            amount.HeaderText = "ပမာဏ";
+            amount.HeaderText = "သင့်ငွေ";
             amount.DataPropertyName = "amount";
             amount.Width = 100;
             dataGridView1.Columns.Insert(4, amount);
@@ -650,20 +673,175 @@ namespace PointOfSaleSystem
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
             if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
-                txtTotal.Text = (Convert.ToInt32(txtPrice.Text.ToString()) * Convert.ToInt32(txtAmount.Text.ToString())).ToString();
+                txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
         }
 
         private void creditCheckBox_CheckedChanged_1(object sender, EventArgs e)
         {
-            
+            if (creditCheckBox.Checked)
+                txtPaidAmount.Text = "0";
+            else
+                if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "" && !creditCheckBox.Checked)
+                    txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
         }
 
         private void comboBoxCategory1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             productComobox();
+
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Report.Print print = new Report.Print(name,date,totals,paidamount,discount);
+            print.Show();
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotalTwo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        String u_id = null, p_id = null;
+        private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT P_id FROM Product WHERE P_Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxProduct.SelectedItem);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    p_id = reader["P_id"].ToString();
+
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            //productComobox();
+        }
+
+        private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
         
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT U_id FROM Unit WHERE U_Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxUnit.SelectedItem);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    u_id = reader["U_id"].ToString();
+
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            con.Open();
+            try
+            {
+                if (p_id != null && u_id != null)
+                {
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT Price FROM Price WHERE P_id=@p_id and U_id=@u_id";
+                    cmd.Parameters.AddWithValue("@p_id", p_id);
+                    cmd.Parameters.AddWithValue("@u_id", u_id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                          
+                            comboBoxUPPrice();
+
+                        }
+
+                    }
+                    else
+                    {
+                      
+                    }
+                }
+                else
+                {
+                   
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+
+                con.Close();
+            }
+        }
+        private void comboBoxUPPrice()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            try
+            {
+                //comboBoxUpdate.DataSource = null;
+
+                cmdCate = con.CreateCommand();
+                cmdCate.CommandText = "SELECT Price FROM Price Where P_id=@p_id and U_id=@u_id";
+                cmdCate.Parameters.AddWithValue("@p_id", p_id);
+                cmdCate.Parameters.AddWithValue("@u_id", u_id);
+                SqlDataReader reader = cmdCate.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    txtPrice.Text = reader["Price"].ToString();
+
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         }
         }
     

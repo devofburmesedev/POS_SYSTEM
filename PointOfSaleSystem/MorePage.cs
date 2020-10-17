@@ -124,9 +124,9 @@ namespace PointOfSaleSystem
                     }
 
                 }
-                catch(Exception e)
+                catch
                 {
-                    MessageBox.Show(e.Data+"");
+                   
 
                 }
                 finally
@@ -292,41 +292,7 @@ namespace PointOfSaleSystem
                             newRows.Cells[5].Value = reader["DateAndTime"].ToString();
                             i++;
                             dataGridView1.Rows.Add(newRows);
-                            /*  if (reader["isCheck"].ToString() == "true")
-                              {
-                                  try{
-                                      con.Open();
-                                       cmd = con.CreateCommand();
-                      cmd.CommandText = "SELECT  From HistoryPayment,Voucher Where Voucher.V_id=@v_id and  HistoryPayment.V_id=Voucher.V_id";
-                  
-                       reader = cmd.ExecuteReader();
-                    
-                      if (reader.HasRows)
-                      {
-
-                                  newRows.CreateCells(dataGridView1);
-                                  newRows.Cells[0].Value = i;
-                                  newRows.Cells[1].Value = reader["V_id"].ToString();
-                                  newRows.Cells[2].Value = reader["CustomerName"].ToString();
-                                  newRows.Cells[3].Value = reader["Amount"].ToString();
-                                  newRows.Cells[4].Value = reader["Total_Amount"].ToString();
-                                  newRows.Cells[5].Value = reader["DateAndTime"].ToString();
-                                
-                                  dataGridView1.Rows.Add(newRows);
-                                  i++;
-                              }
-
-                          }
-                            
-                              catch
-                  {
-                              }
-                  finally
-                  {
-                      con.Close();
-                  }
-
-                      }*/
+                          
                         }
                     }
                 }

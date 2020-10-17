@@ -145,8 +145,8 @@ namespace PointOfSaleSystem
                 comboBoxSelection.Items.Clear();
                 cmd = con.CreateCommand();
 
-                cmd.CommandText = "SELECT * FROM Voucher Where isCredit=@credit";
-                cmd.Parameters.AddWithValue("@credit", "true");
+                cmd.CommandText = "SELECT * FROM Voucher";
+                //cmd.Parameters.AddWithValue("@credit", "true");
                 
                 var reader = cmd.ExecuteReader();
 
@@ -542,7 +542,13 @@ namespace PointOfSaleSystem
 
              private void txtPaidAmount_KeyPress(object sender, KeyPressEventArgs e)
              {
-                 if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+                 char ch = e.KeyChar;
+                 if (ch == 46 && txtPaidAmount.Text.IndexOf('.') != -1)
+                 {
+                     e.Handled = true;
+                     return;
+                 }
+                 if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                      e.Handled = true;
              }
 

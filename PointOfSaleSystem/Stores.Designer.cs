@@ -262,12 +262,12 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(105, 237);
+            this.label7.Location = new System.Drawing.Point(71, 237);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 23);
+            this.label7.Size = new System.Drawing.Size(89, 23);
             this.label7.TabIndex = 12;
-            this.label7.Text = "ပမာဏ";
+            this.label7.Text = "အရေအတွက်";
             // 
             // label8
             // 

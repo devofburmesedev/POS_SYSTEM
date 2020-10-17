@@ -29,6 +29,7 @@ namespace PointOfSaleSystem
         private void SaleLiatMainForm_Load(object sender, EventArgs e)
         {
             BindGrid();
+            txtTotal.Enabled = false;
         }
 
 
@@ -62,7 +63,7 @@ namespace PointOfSaleSystem
                 voucher.Name = "Id";
                 voucher.HeaderText = "ဘောင်ချာနံပါတ်";
                 voucher.DataPropertyName = "id";
-                voucher.Width = 150;
+                voucher.Width = 160;
                 dataGridView1.Columns.Insert(2, voucher);
                 DataGridViewColumn Tprice = new DataGridViewTextBoxColumn();
                 Tprice.Name = "price";
@@ -91,6 +92,7 @@ namespace PointOfSaleSystem
                 int.TryParse(dateTime[0],out day);
                 int.TryParse(dateTime[1], out month);
                 int.TryParse(dateTime[2], out year);
+                
                 try
                 {
                     cmd = con.CreateCommand();
@@ -102,7 +104,7 @@ namespace PointOfSaleSystem
                     if (reader.HasRows)
                     {
                         int i = 1;
-                       
+                        double total = 0;
                         while (reader.Read())
                         {
                             DataGridViewRow newRow = new DataGridViewRow();
@@ -112,11 +114,13 @@ namespace PointOfSaleSystem
                             newRow.Cells[1].Value = reader["CustomerName"].ToString();
                             newRow.Cells[2].Value = reader["V_id"].ToString();
                             newRow.Cells[3].Value = reader["Total_Amount"].ToString();
-                           
+                            total += Convert.ToInt32(reader["Total_Amount"].ToString());
                             i++;
                             dataGridView1.Rows.Add(newRow);
 
                         }
+                        txtTotal.Text = total.ToString();
+
                     }
 
                 }

@@ -134,7 +134,7 @@ namespace PointOfSaleSystem
                             cmd.Parameters.AddWithValue("@month", month);
                             cmd.Parameters.AddWithValue("@day", day);
                             reader = cmd.ExecuteReader();
-                           
+                            
                         }
                         int i = 1;
                         double sum = 0.0;
@@ -297,9 +297,14 @@ namespace PointOfSaleSystem
 
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
                 e.Handled = true;
-
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
+                e.Handled = true;
         }
 
         private void txtAmount_TextChanged(object sender, EventArgs e)

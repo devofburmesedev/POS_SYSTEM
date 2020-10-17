@@ -32,5 +32,16 @@ namespace PointOfSaleSystem.Properties {
                 return ((string)(this["pointofsaleConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-1P3FEHV\\MSSQLSERVER02;Initial Catalog=pointofsale;Integrated " +
+            "Security=True")]
+        public string pointofsaleConnectionString1 {
+            get {
+                return ((string)(this["pointofsaleConnectionString1"]));
+            }
+        }
     }
 }

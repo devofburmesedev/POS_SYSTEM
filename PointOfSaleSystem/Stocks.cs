@@ -1055,7 +1055,13 @@ namespace PointOfSaleSystem
 
         private void tetAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar))
+            char ch = e.KeyChar;
+            if (ch == 46 && tetAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
                 e.Handled = true;
         }
 
