@@ -28,5 +28,9 @@ namespace PointOfSaleSystem
         {
             MessageBox.Show("ကျေးဇူးပြု၍ဒေတာထည့်သွင်းပါ","သတိပေးချက်", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+        public static void showNumberErrorMessage()
+        {
+            MessageBox.Show("Please enter correcr number", "သတိပေးချက်", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
     }
 }

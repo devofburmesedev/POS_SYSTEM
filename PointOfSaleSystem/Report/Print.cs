@@ -34,8 +34,8 @@ namespace PointOfSaleSystem.Report
         {
             string[] dateTime = datetime.Split('/');
             int day, month, years;
-            int.TryParse(dateTime[1], out day);
-            int.TryParse(dateTime[0], out month);
+            int.TryParse(dateTime[0], out day);
+            int.TryParse(dateTime[1], out month);
             int.TryParse(dateTime[2], out years);
             SqlConnection con = new MyConnection().GetConnection();
 
@@ -46,7 +46,7 @@ namespace PointOfSaleSystem.Report
             new Microsoft.Reporting.WinForms.ReportParameter("date",datetime),
             new Microsoft.Reporting.WinForms.ReportParameter("total",total),
             new Microsoft.Reporting.WinForms.ReportParameter("discount",discount),
-            //new Microsoft.Reporting.WinForms.ReportParameter("paidamount",paidamount)
+            new Microsoft.Reporting.WinForms.ReportParameter("paidamount",paidamount)
             
         };
             this.reportViewer1.LocalReport.SetParameters(p);
@@ -59,7 +59,7 @@ namespace PointOfSaleSystem.Report
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * From Voucher,VoucherProduct,Product Where Day(Voucher.DateAndTime)=@day and Voucher.V_id=VoucherProduct.V_id and Year(Voucher.DateAndTime)=@year and Month(Voucher.DateAndTime)=@month and Voucher.CustomerName=@name and Product.P_id=VoucherProduct.P_id and Voucher.Total_Amount=@amount and Voucher.Paid_Amount=@pamount and Voucher.Discount=@discount", con);
                 da.SelectCommand.Parameters.AddWithValue("@day", day);
                 da.SelectCommand.Parameters.AddWithValue("@month", month);
-                da.SelectCommand.Parameters.AddWithValue("@year", 2020);
+                da.SelectCommand.Parameters.AddWithValue("@year", years);
                 da.SelectCommand.Parameters.AddWithValue("@name", name);
                 da.SelectCommand.Parameters.AddWithValue("@amount",total);
                 da.SelectCommand.Parameters.AddWithValue("@discount", discount);

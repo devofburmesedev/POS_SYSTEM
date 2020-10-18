@@ -342,6 +342,7 @@
             this.txtDiscout.Size = new System.Drawing.Size(100, 30);
             this.txtDiscout.TabIndex = 25;
             this.txtDiscout.TextChanged += new System.EventHandler(this.txtDiscout_TextChanged);
+            this.txtDiscout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscout_KeyPress);
             // 
             // creditCheckBox
             // 
@@ -373,6 +374,7 @@
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.Size = new System.Drawing.Size(100, 30);
             this.txtPaidAmount.TabIndex = 26;
+            this.txtPaidAmount.TextChanged += new System.EventHandler(this.txtPaidAmount_TextChanged);
             // 
             // tableLayoutPanel2
             // 

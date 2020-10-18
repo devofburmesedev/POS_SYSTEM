@@ -691,7 +691,16 @@ namespace PointOfSaleSystem
         
         private void tetAmount_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+              if(tetAmount.Text.ToString()!="")
+                  Convert.ToDouble(tetAmount.Text.ToString());
+            }
+            catch
+            {
+                tetAmount.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
         private void updateLabel_Click_1(object sender, EventArgs e)
@@ -1055,14 +1064,18 @@ namespace PointOfSaleSystem
 
         private void tetAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && tetAmount.Text.IndexOf('.') != -1)
-            {
-                e.Handled = true;
-                return;
-            }
-            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
-                e.Handled = true;
+
+            
+                char ch = e.KeyChar;
+                if (ch == 46 && tetAmount.Text.IndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                    return;
+                }
+                if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
+                    e.Handled = true;
+            
+            
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)

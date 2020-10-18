@@ -318,7 +318,7 @@ namespace PointOfSaleSystem
 
         }
 
-        private int getVId(String credit,String p_amount,String total,String date,String name)
+        private int getVId(String credit,String p_amount,String total,DateTime date,String name)
         {
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
@@ -367,20 +367,7 @@ namespace PointOfSaleSystem
 
         }
 
-        private void creditCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-           /* if(creditCheckBox.Checked)
-            {
-                txtPaidAmount.Visible = false;
-                paidAmountLabel.Visible = false;
-            }
-            else
-            {
-               
-                txtPaidAmount.Visible = true;
-                paidAmountLabel.Visible = true;
-            }*/
-        }
+      
 
        
 
@@ -414,7 +401,8 @@ namespace PointOfSaleSystem
                                txtAmount.Text = "";
                                comboBoxUnit.SelectedIndex = 0;
                                comboBoxCategory1.SelectedIndex = 0;
-
+                               if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "")
+                                   txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
         
         }
 
@@ -446,18 +434,38 @@ namespace PointOfSaleSystem
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
-
-            if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
-                txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
+            try
+            {
+                if (txtPrice.Text.ToString() != "")
+                    Convert.ToDouble(txtPrice.Text.ToString());
+                if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
+                    txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
+            }
+            catch
+            {
+                txtPrice.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
         private void txtDiscout_TextChanged(object sender, EventArgs e)
         {
-            if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "" && !creditCheckBox.Checked)
-                txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
+
+            try
+            {
+                if (txtDiscout.Text.ToString() != "")
+                     Convert.ToDouble(txtDiscout.Text.ToString()).ToString();
+                if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "" && !creditCheckBox.Checked)
+                    txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
+            }
+            catch
+            {
+                txtDiscout.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
         String name = null;
-        String  date;
+        DateTime  date;
         String discount = null, totals = null, paidamount = null;
         private void btnAmountTwo_Click(object sender, EventArgs e)
         {
@@ -472,16 +480,16 @@ namespace PointOfSaleSystem
             String total = txtTotalTwo.Text.ToString();
             totals = txtTotalTwo.Text.ToString();
             discount = txtDiscout.Text.ToString();
-            date = DateTime.Now.Date.ToString("dd/mm/yyyy");
+            date = DateTime.Now.Date;
             try
             {
                 cmdCate = con.CreateCommand();
-                string[] dateTime = date.Split('/');
+                string[] dateTime = date.ToString().Split('/');
                 int day, month, years;
                 int.TryParse(dateTime[1], out day);
                 int.TryParse(dateTime[0], out month);
                 int.TryParse(dateTime[2], out years);
-                cmdCate.CommandText = "SELECT * FROM Voucher WHERE  Total_Amount=@totalamount and CustomerName=@name and Paid_Amount=@pamount And Discount=@discount and Day(Voucher.DateAndTime)=@day and Voucher.V_id=VoucherProduct.V_id and Year(Voucher.DateAndTime)=@year";
+                cmdCate.CommandText = "SELECT * FROM Voucher WHERE  Total_Amount=@totalamount and CustomerName=@name and Paid_Amount=@pamount And Discount=@discount and Day(DateAndTime)=@day and Year(DateAndTime)=@year";
                 cmdCate.Parameters.AddWithValue("@name", name);
                 cmdCate.Parameters.AddWithValue("@pamount", txtPaidAmount.Text.ToString());
                 cmdCate.Parameters.AddWithValue("@discount", txtDiscout.Text.ToString());
@@ -563,7 +571,7 @@ namespace PointOfSaleSystem
                         }
 
                         txtTotalTwo.Text = "";
-                        txtDiscout.Text = "";
+                        txtDiscout.Text = "0";
                         creditCheckBox.Checked = false;
                         txtPaidAmount.Text = "";
                         
@@ -578,7 +586,7 @@ namespace PointOfSaleSystem
 
                 }
                 MessageBoxShowing.showSuccessfulMessage();
-
+               
             }
             catch
             {
@@ -672,8 +680,20 @@ namespace PointOfSaleSystem
 
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
-            if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
-                txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
+            try
+            {
+                if (txtAmount.Text.ToString() != "")
+                Convert.ToDouble(txtAmount.Text.ToString()).ToString();
+                if (txtPrice.Text.ToString() != "" && txtAmount.Text.ToString() != "")
+                {
+                    txtTotal.Text = (Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString())).ToString();
+                }
+            }
+            catch
+            {
+                txtAmount.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
         private void creditCheckBox_CheckedChanged_1(object sender, EventArgs e)
@@ -693,7 +713,7 @@ namespace PointOfSaleSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Report.Print print = new Report.Print(name,date,totals,paidamount,discount);
+            Report.Print print = new Report.Print(name,date.ToString("dd/MM/yyyy"),totals,paidamount,discount);
             print.Show();
         }
 
@@ -842,6 +862,36 @@ namespace PointOfSaleSystem
                 con.Close();
             }
         }
+
+        private void txtDiscout_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (ch == 46 && txtAmount.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
+                e.Handled = true;
+        }
+
+        private void txtPaidAmount_TextChanged(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                if (txtPaidAmount.Text.ToString() != "")
+                    Convert.ToDouble(txtPaidAmount.Text.ToString());
+                }
+                catch
+            {
+                txtPaidAmount.Text = "";
+                    MessageBoxShowing.showNumberErrorMessage();
+
+                }
+        }
+
+      
         }
         }
     

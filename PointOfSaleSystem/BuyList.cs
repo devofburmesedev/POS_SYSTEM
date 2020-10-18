@@ -697,12 +697,30 @@ namespace PointOfSaleSystem
 
         private void txtTotalPrice_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtTotalPrice.Text.ToString() != "")
+                    Convert.ToDouble(txtTotalPrice.Text.ToString());
+            }
+            catch
+            {
+                txtTotalPrice.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtQty.Text.ToString() != "")
+                    Convert.ToDouble(txtQty.Text.ToString());
+            }
+            catch
+            {
+                txtQty.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
        

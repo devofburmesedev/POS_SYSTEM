@@ -434,7 +434,16 @@ namespace PointOfSaleSystem
 
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtAmount.Text.ToString() != "")
+                    Convert.ToDouble(txtAmount.Text.ToString());
+            }
+            catch
+            {
+                txtAmount.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
         }
 
         private void BindGrid(String data)
