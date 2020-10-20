@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.83186F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.557522F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1233, 811);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1606, 811);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridView1
@@ -102,9 +102,10 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(976, 651);
+            this.dataGridView1.Size = new System.Drawing.Size(1272, 651);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.MouseEnter += new System.EventHandler(this.dataGridView1_MouseEnter);
             // 
             // tableLayoutPanel2
             // 
@@ -120,7 +121,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(968, 67);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1264, 67);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // label2
@@ -129,7 +130,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(736, 20);
+            this.label2.Location = new System.Drawing.Point(993, 20);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 26);
@@ -140,7 +141,7 @@
             // 
             this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtTotal.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(845, 18);
+            this.txtTotal.Location = new System.Drawing.Point(1102, 18);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(115, 30);
@@ -161,7 +162,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(968, 51);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1264, 51);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // dateTimePicker1
@@ -183,7 +184,7 @@
             this.btnViewCreditList.BackColor = System.Drawing.Color.Lime;
             this.btnViewCreditList.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewCreditList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewCreditList.Location = new System.Drawing.Point(135, 7);
+            this.btnViewCreditList.Location = new System.Drawing.Point(190, 7);
             this.btnViewCreditList.Margin = new System.Windows.Forms.Padding(0);
             this.btnViewCreditList.Name = "btnViewCreditList";
             this.btnViewCreditList.Size = new System.Drawing.Size(86, 37);
@@ -198,7 +199,7 @@
             this.btnPayment.BackColor = System.Drawing.Color.Lime;
             this.btnPayment.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPayment.Location = new System.Drawing.Point(236, 7);
+            this.btnPayment.Location = new System.Drawing.Point(308, 7);
             this.btnPayment.Margin = new System.Windows.Forms.Padding(0);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(75, 36);
@@ -213,7 +214,7 @@
             this.btnMore.BackColor = System.Drawing.Color.Lime;
             this.btnMore.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMore.Location = new System.Drawing.Point(978, 12);
+            this.btnMore.Location = new System.Drawing.Point(1274, 12);
             this.btnMore.Margin = new System.Windows.Forms.Padding(0);
             this.btnMore.Name = "btnMore";
             this.btnMore.Size = new System.Drawing.Size(75, 36);
@@ -228,7 +229,7 @@
             this.btnAddUser.BackColor = System.Drawing.Color.Lime;
             this.btnAddUser.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddUser.Location = new System.Drawing.Point(978, 732);
+            this.btnAddUser.Location = new System.Drawing.Point(1274, 732);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(75, 36);
@@ -242,7 +243,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1233, 811);
+            this.ClientSize = new System.Drawing.Size(1606, 811);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
@@ -250,6 +251,7 @@
             this.Name = "SaleLiatMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SaleLiatMainForm";
+            this.Activated += new System.EventHandler(this.SaleLiatMainForm_Activated);
             this.Load += new System.EventHandler(this.SaleLiatMainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

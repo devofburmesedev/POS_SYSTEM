@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -99,6 +99,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DeletePricecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeletePricecs.Designer.cs">
+      <DependentUpon>DeletePricecs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteProductcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteProductcs.Designer.cs">
+      <DependentUpon>DeleteProductcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistoryPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +164,30 @@
     <Compile Include="Stores.Designer.cs">
       <DependentUpon>Stores.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdatePrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdatePrice.Designer.cs">
+      <DependentUpon>UpdatePrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateProduct.Designer.cs">
+      <DependentUpon>UpdateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateProductCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateProductCategory.Designer.cs">
+      <DependentUpon>UpdateProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateUnit.Designer.cs">
+      <DependentUpon>UpdateUnit.cs</DependentUpon>
+    </Compile>
     <Compile Include="UseCost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +205,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeletePricecs.resx">
+      <DependentUpon>DeletePricecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteProductcs.resx">
+      <DependentUpon>DeleteProductcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistoryPayment.resx">
       <DependentUpon>HistoryPayment.cs</DependentUpon>
@@ -204,6 +246,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stores.resx">
       <DependentUpon>Stores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdatePrice.resx">
+      <DependentUpon>UpdatePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateProduct.resx">
+      <DependentUpon>UpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateProductCategory.resx">
+      <DependentUpon>UpdateProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateUnit.resx">
+      <DependentUpon>UpdateUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UseCost.resx">
       <DependentUpon>UseCost.cs</DependentUpon>

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Stocks));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -39,7 +39,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.productDeleteLabel = new System.Windows.Forms.Label();
-            this.comboBoxProductUD = new System.Windows.Forms.ComboBox();
             this.addProduct = new System.Windows.Forms.Button();
             this.comboBoxCategory2 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -54,7 +53,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tetAmount = new System.Windows.Forms.TextBox();
             this.btnPrice = new System.Windows.Forms.Button();
-            this.comboBoxPriceUD = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.priceDeleteLabel = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -66,7 +64,6 @@
             this.tetCategory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.updateLabel = new System.Windows.Forms.Label();
-            this.comboBoxUpdate = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,7 +72,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.unitUpdateLabel = new System.Windows.Forms.Label();
-            this.comboBoxUnitUpdate = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxCategory1 = new System.Windows.Forms.ComboBox();
@@ -149,7 +145,6 @@
             this.tableLayoutPanel5.Controls.Add(this.label6, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label7, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.productDeleteLabel, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.comboBoxProductUD, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.addProduct, 1, 3);
             this.tableLayoutPanel5.Controls.Add(this.comboBoxCategory2, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.textBox3, 1, 2);
@@ -218,18 +213,6 @@
             this.productDeleteLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.productDeleteLabel.Click += new System.EventHandler(this.productDeleteLabel_Click);
             // 
-            // comboBoxProductUD
-            // 
-            this.comboBoxProductUD.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxProductUD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxProductUD.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxProductUD.FormattingEnabled = true;
-            this.comboBoxProductUD.Location = new System.Drawing.Point(370, 3);
-            this.comboBoxProductUD.Name = "comboBoxProductUD";
-            this.comboBoxProductUD.Size = new System.Drawing.Size(109, 31);
-            this.comboBoxProductUD.TabIndex = 15;
-            this.comboBoxProductUD.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductUD_SelectedIndexChanged);
-            // 
             // addProduct
             // 
             this.addProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -284,7 +267,7 @@
             this.productUpdateLabel.TabIndex = 16;
             this.productUpdateLabel.Text = "ပြင်မည်";
             this.productUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.productUpdateLabel.Click += new System.EventHandler(this.productUpdateLabel_Click_1);
+            this.productUpdateLabel.Click += new System.EventHandler(this.productUpdateLabel_Click);
             // 
             // label16
             // 
@@ -311,7 +294,6 @@
             this.tableLayoutPanel6.Controls.Add(this.label11, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.tetAmount, 1, 3);
             this.tableLayoutPanel6.Controls.Add(this.btnPrice, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.comboBoxPriceUD, 4, 0);
             this.tableLayoutPanel6.Controls.Add(this.label18, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.priceDeleteLabel, 3, 0);
             this.tableLayoutPanel6.Controls.Add(this.label17, 4, 1);
@@ -427,19 +409,6 @@
             this.btnPrice.UseVisualStyleBackColor = false;
             this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click_1);
             // 
-            // comboBoxPriceUD
-            // 
-            this.comboBoxPriceUD.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxPriceUD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPriceUD.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxPriceUD.FormattingEnabled = true;
-            this.comboBoxPriceUD.Location = new System.Drawing.Point(371, 3);
-            this.comboBoxPriceUD.Name = "comboBoxPriceUD";
-            this.comboBoxPriceUD.Size = new System.Drawing.Size(105, 31);
-            this.comboBoxPriceUD.TabIndex = 16;
-            this.comboBoxPriceUD.Visible = false;
-            this.comboBoxPriceUD.SelectedIndexChanged += new System.EventHandler(this.comboBoxPriceUD_SelectedIndexChanged);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -488,7 +457,7 @@
             this.priceUpdateLabel.TabIndex = 20;
             this.priceUpdateLabel.Text = "\r\nပြင်မည်";
             this.priceUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.priceUpdateLabel.Click += new System.EventHandler(this.priceUpdateLabel_Click_1);
+            this.priceUpdateLabel.Click += new System.EventHandler(this.priceUpdateLabel_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -496,7 +465,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.05623F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.94378F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.comboBoxUpdate, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -592,25 +560,12 @@
             this.updateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.updateLabel.Click += new System.EventHandler(this.updateLabel_Click_1);
             // 
-            // comboBoxUpdate
-            // 
-            this.comboBoxUpdate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxUpdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxUpdate.ForeColor = System.Drawing.Color.Gray;
-            this.comboBoxUpdate.FormattingEnabled = true;
-            this.comboBoxUpdate.Location = new System.Drawing.Point(321, 3);
-            this.comboBoxUpdate.Name = "comboBoxUpdate";
-            this.comboBoxUpdate.Size = new System.Drawing.Size(115, 31);
-            this.comboBoxUpdate.TabIndex = 1;
-            this.comboBoxUpdate.SelectedIndexChanged += new System.EventHandler(this.comboBoxUpdate_SelectedIndexChanged);
-            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.87952F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.12048F));
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.comboBoxUnitUpdate, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 90);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
@@ -715,18 +670,6 @@
             this.unitUpdateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.unitUpdateLabel.Click += new System.EventHandler(this.unitUpdateLabel_Click_1);
             // 
-            // comboBoxUnitUpdate
-            // 
-            this.comboBoxUnitUpdate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxUnitUpdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxUnitUpdate.ForeColor = System.Drawing.Color.Gray;
-            this.comboBoxUnitUpdate.FormattingEnabled = true;
-            this.comboBoxUnitUpdate.Location = new System.Drawing.Point(350, 3);
-            this.comboBoxUnitUpdate.Name = "comboBoxUnitUpdate";
-            this.comboBoxUnitUpdate.Size = new System.Drawing.Size(113, 31);
-            this.comboBoxUnitUpdate.TabIndex = 2;
-            this.comboBoxUnitUpdate.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnitUpdate_SelectedIndexChanged);
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -809,23 +752,24 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Times New Roman", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.NullValue = null;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(742, 507);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.MouseEnter += new System.EventHandler(this.dataGridView1_MouseEnter);
             // 
             // imageList1
             // 
@@ -855,7 +799,9 @@
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "Stocks";
             this.Text = "Stocks";
+            this.Activated += new System.EventHandler(this.Stocks_Activated);
             this.Load += new System.EventHandler(this.Stocks_Load);
+            this.MouseEnter += new System.EventHandler(this.Stocks_MouseEnter);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -908,14 +854,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tetCategory;
         private System.Windows.Forms.Button btnCategory;
-        private System.Windows.Forms.ComboBox comboBoxUpdate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.ComboBox comboBoxUnitUpdate;
         private System.Windows.Forms.Label productDeleteLabel;
-        private System.Windows.Forms.ComboBox comboBoxProductUD;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox comboBoxPriceUD;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label priceDeleteLabel;

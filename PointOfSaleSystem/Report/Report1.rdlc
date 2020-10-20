@@ -447,7 +447,7 @@
         <Top>0.35222in</Top>
         <Left>0.11975in</Left>
         <Height>0.59443in</Height>
-        <Width>5.7658in</Width>
+        <Width>5.76581in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -746,7 +746,7 @@
   <Width>5.93833in</Width>
   <Page>
     <PageHeader>
-      <Height>2.18556in</Height>
+      <Height>2.07778in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -824,7 +824,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value> အိမ်ဆောက်ပစ္စည်းရေချိုးခန်းနှင့်ရေသန့်ပစ္စည်းအမျိုးမျိုး|သံလုံး|သံပြား| စက်မှုလုပ်ငန်းသုံးနှင့်              တောင်သူသုံးပစ္စည်းအမျိုးမျိုးအမှတ်(၈၉) မြို့မလမ်း| ရိုးမဘဏ်ရှေ့ | အမှတ်(၈)ရက်ကွက် |                                                 ဝါးတမ်းရပ်| ပခုက္ကူမြို့။</Value>
+                  <Value>       အိမ်ဆောက်ပစ္စည်းရေချိုးခန်းနှင့်ရေသန့်ပစ္စည်းအမျိုးမျိုး|သံလုံး|သံပြား| စက်မှုလုပ်ငန်းသုံးနှင့်              တောင်သူသုံးပစ္စည်းအမျိုးမျိုးအမှတ်(၈၉) မြို့မလမ်း| ရိုးမဘဏ်ရှေ့ | အမှတ်(၈)ရက်ကွက် |                                                 ဝါးတမ်းရပ်| ပခုက္ကူမြို့။</Value>
                   <Style>
                     <FontFamily>Myanmar Text</FontFamily>
                     <FontWeight>Bold</FontWeight>
@@ -838,7 +838,7 @@
           <Top>0.68333in</Top>
           <Left>0.03in</Left>
           <Height>1.11667in</Height>
-          <Width>5.54167in</Width>
+          <Width>5.85556in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1029,12 +1029,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>8.27in</PageHeight>
-    <PageWidth>5.83in</PageWidth>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>6in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
     <Style>
       <Border>
         <Color>White</Color>

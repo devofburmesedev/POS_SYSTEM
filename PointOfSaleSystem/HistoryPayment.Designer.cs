@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxHistoryPayment = new System.Windows.Forms.ComboBox();
-            this.comboBoxCustomerName = new System.Windows.Forms.ComboBox();
             this.txtPaidAmount = new System.Windows.Forms.TextBox();
             this.btnPayment = new System.Windows.Forms.Button();
+            this.txtVId2 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxSelection = new System.Windows.Forms.ComboBox();
+            this.txtVId1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -58,7 +58,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.comboBoxSelection, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtVId1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -79,10 +79,10 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label5, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBoxHistoryPayment, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBoxCustomerName, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.txtPaidAmount, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.btnPayment, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.txtVId2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtName, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 88);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -144,32 +144,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "ငွေပေးချေမှုမှတ်တမ်း";
             // 
-            // comboBoxHistoryPayment
-            // 
-            this.comboBoxHistoryPayment.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxHistoryPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxHistoryPayment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxHistoryPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxHistoryPayment.FormattingEnabled = true;
-            this.comboBoxHistoryPayment.Location = new System.Drawing.Point(243, 107);
-            this.comboBoxHistoryPayment.Name = "comboBoxHistoryPayment";
-            this.comboBoxHistoryPayment.Size = new System.Drawing.Size(72, 31);
-            this.comboBoxHistoryPayment.TabIndex = 5;
-            this.comboBoxHistoryPayment.SelectedIndexChanged += new System.EventHandler(this.comboBoxHistoryPayment_SelectedIndexChanged);
-            // 
-            // comboBoxCustomerName
-            // 
-            this.comboBoxCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCustomerName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxCustomerName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxCustomerName.FormattingEnabled = true;
-            this.comboBoxCustomerName.Location = new System.Drawing.Point(243, 183);
-            this.comboBoxCustomerName.Name = "comboBoxCustomerName";
-            this.comboBoxCustomerName.Size = new System.Drawing.Size(72, 31);
-            this.comboBoxCustomerName.TabIndex = 6;
-            this.comboBoxCustomerName.SelectedIndexChanged += new System.EventHandler(this.comboBoxCustomerName_SelectedIndexChanged);
-            // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -195,6 +169,24 @@
             this.btnPayment.UseVisualStyleBackColor = false;
             this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
+            // txtVId2
+            // 
+            this.txtVId2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtVId2.Location = new System.Drawing.Point(243, 112);
+            this.txtVId2.Name = "txtVId2";
+            this.txtVId2.Size = new System.Drawing.Size(90, 22);
+            this.txtVId2.TabIndex = 10;
+            this.txtVId2.TextChanged += new System.EventHandler(this.txtVId2_TextChanged);
+            this.txtVId2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVId2_KeyPress);
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtName.Location = new System.Drawing.Point(243, 188);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(90, 22);
+            this.txtName.TabIndex = 11;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
@@ -202,10 +194,10 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(489, 88);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(990, 862);
             this.dataGridView1.TabIndex = 1;
@@ -236,18 +228,15 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "ဘောင်ချာနံပါတ်\n";
             // 
-            // comboBoxSelection
+            // txtVId1
             // 
-            this.comboBoxSelection.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBoxSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSelection.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxSelection.FormattingEnabled = true;
-            this.comboBoxSelection.Location = new System.Drawing.Point(489, 27);
-            this.comboBoxSelection.Name = "comboBoxSelection";
-            this.comboBoxSelection.Size = new System.Drawing.Size(86, 31);
-            this.comboBoxSelection.TabIndex = 3;
-            this.comboBoxSelection.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelection_SelectedIndexChanged);
+            this.txtVId1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtVId1.Location = new System.Drawing.Point(489, 31);
+            this.txtVId1.Name = "txtVId1";
+            this.txtVId1.Size = new System.Drawing.Size(169, 22);
+            this.txtVId1.TabIndex = 3;
+            this.txtVId1.TextChanged += new System.EventHandler(this.txtVId1_TextChanged);
+            this.txtVId1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVId1_KeyPress);
             // 
             // HistoryPayment
             // 
@@ -261,6 +250,7 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.HistoryPayment_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -278,13 +268,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBoxHistoryPayment;
-        private System.Windows.Forms.ComboBox comboBoxCustomerName;
         private System.Windows.Forms.TextBox txtPaidAmount;
         private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.ComboBox comboBoxSelection;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtVId1;
+        private System.Windows.Forms.TextBox txtVId2;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

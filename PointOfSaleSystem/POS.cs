@@ -30,7 +30,26 @@ namespace PointOfSaleSystem
             this.TopLevel = true;
             this.WindowState = FormWindowState.Maximized;
             this.Cursor = Cursors.Arrow;
-            viewForm();
+            if (saleForm == null)
+            {
+                saleForm = new SaleLiatMainForm();
+                saleForm.TopLevel = false;
+                panel1.Controls.Add(saleForm);
+                saleForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                saleForm.Dock = DockStyle.Fill;
+                saleForm.Show();
+            }
+            else
+            {
+                saleForm.BringToFront();
+            }
+            button1.BackColor = Color.Aqua;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
             
         }
 
@@ -56,6 +75,19 @@ namespace PointOfSaleSystem
         
         private void button1_Click(object sender, EventArgs e)
         {
+            if (saleForm == null)
+            {
+                saleForm = new SaleLiatMainForm();
+                saleForm.TopLevel = false;
+                panel1.Controls.Add(saleForm);
+                saleForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                saleForm.Dock = DockStyle.Fill;
+                saleForm.Show();
+            }
+            else
+            {
+                saleForm.BringToFront();
+            }
             button1.BackColor = Color.Aqua;
             button2.BackColor = Color.Lime;
             button3.BackColor = Color.Lime;
@@ -63,7 +95,6 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
-            viewForm();
         }
       
 
@@ -94,19 +125,8 @@ namespace PointOfSaleSystem
         private void button3_Click(object sender, EventArgs e)
         {
 
-            if (saleForm== null)
-            {
-                saleForm = new SaleLiatMainForm();
-                saleForm.TopLevel = false;
-                panel1.Controls.Add(saleForm);
-                saleForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                saleForm.Dock = DockStyle.Fill;
-                saleForm.Show();
-            }
-            else
-            {
-                saleForm.BringToFront();
-            }
+           
+
             button1.BackColor = Color.Lime;
             button2.BackColor = Color.Lime;
             button3.BackColor = Color.Aqua;
@@ -114,6 +134,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
+            viewForm();
         }
         private void button4_Click(object sender, EventArgs e)
         {

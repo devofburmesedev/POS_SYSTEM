@@ -33,7 +33,7 @@ namespace PointOfSaleSystem
         }
 
 
-        private void BindGrid()
+        public  void BindGrid()
         {
             try
             {
@@ -43,7 +43,7 @@ namespace PointOfSaleSystem
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.White;
 
-                style.Font = new Font("Times New Roman", 18, FontStyle.Bold);
+                style.Font = new Font("Times New Roman", 16, FontStyle.Bold);
                 dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 20, FontStyle.Bold);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
@@ -71,6 +71,17 @@ namespace PointOfSaleSystem
                 Tprice.DataPropertyName = "price";
                 Tprice.Width = 200;
                 dataGridView1.Columns.Insert(3, Tprice);
+                DataGridViewButtonColumn more = new DataGridViewButtonColumn();
+               
+                more.Text = "ပို၍";
+                more.DataPropertyName = "delete";
+                more.Width = 100;
+                more.CellTemplate.Style.BackColor = Color.Aqua;
+
+                more.FlatStyle = FlatStyle.Standard;
+                more.UseColumnTextForButtonValue = true;
+               
+                dataGridView1.Columns.Insert(4, more);
                 //DataGridViewColumn date = new DataGridViewTextBoxColumn();
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
 
@@ -82,7 +93,7 @@ namespace PointOfSaleSystem
 
                 btnDelete.FlatStyle = FlatStyle.Standard;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dataGridView1.Columns.Insert(4, btnDelete);
+                dataGridView1.Columns.Insert(5, btnDelete);
                 dataGridView1.DataSource = null;
                 SqlConnection con = new MyConnection().GetConnection();
                 SqlCommand cmd;
@@ -161,9 +172,52 @@ namespace PointOfSaleSystem
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
 
+            if (e.ColumnIndex == 4)
+            {
+                String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+                String name=null,  total=null, discount=null, paidamount=null;
+                DateTime date = new DateTime() ;
+                con.Open();
+                try
+                {
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT * From Voucher Where Voucher.V_id=@vid";
+                    cmd.Parameters.AddWithValue("@vid",v_id );
+                    
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+
+                       
+                        while (reader.Read())
+                        {
+                            name=reader["CustomerName"].ToString();
+                            total = reader["Total_Amount"].ToString();
+                            paidamount = reader["Paid_Amount"].ToString();
+                            date =(DateTime )reader["DateAndTime"];
+                            discount = reader["Discount"].ToString();
+                        }
+                    }
+                    Report.Print print = new Report.Print(name, date.ToString("dd/MM/yyyy"), total, paidamount, discount);
+                    print.Show();
+                }
+                catch
+                {
+
+
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+            }
 
             
-                if (e.ColumnIndex == 4)
+                if (e.ColumnIndex == 5)
                 {
 
                     String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -208,6 +262,16 @@ namespace PointOfSaleSystem
              {
                  HistoryPayment payment = new HistoryPayment();
                  payment.Show();
+             }
+
+             private void SaleLiatMainForm_Activated(object sender, EventArgs e)
+             {
+                 BindGrid();
+             }
+
+             private void dataGridView1_MouseEnter(object sender, EventArgs e)
+             {
+                 BindGrid();
              }
        
 

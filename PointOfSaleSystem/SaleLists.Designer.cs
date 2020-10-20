@@ -150,7 +150,7 @@
             this.comboBoxCategory1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxCategory1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory1.FormattingEnabled = true;
-            this.comboBoxCategory1.Location = new System.Drawing.Point(199, 172);
+            this.comboBoxCategory1.Location = new System.Drawing.Point(199, 175);
             this.comboBoxCategory1.Name = "comboBoxCategory1";
             this.comboBoxCategory1.Size = new System.Drawing.Size(87, 31);
             this.comboBoxCategory1.TabIndex = 20;
@@ -161,7 +161,7 @@
             this.comboBoxProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProduct.FormattingEnabled = true;
-            this.comboBoxProduct.Location = new System.Drawing.Point(199, 247);
+            this.comboBoxProduct.Location = new System.Drawing.Point(199, 250);
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(87, 31);
             this.comboBoxProduct.TabIndex = 21;
@@ -182,7 +182,7 @@
             this.comboBoxUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboBoxUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnit.FormattingEnabled = true;
-            this.comboBoxUnit.Location = new System.Drawing.Point(199, 397);
+            this.comboBoxUnit.Location = new System.Drawing.Point(199, 400);
             this.comboBoxUnit.Name = "comboBoxUnit";
             this.comboBoxUnit.Size = new System.Drawing.Size(87, 31);
             this.comboBoxUnit.TabIndex = 21;

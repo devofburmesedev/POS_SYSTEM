@@ -586,14 +586,16 @@ namespace PointOfSaleSystem
 
                 }
                 MessageBoxShowing.showSuccessfulMessage();
-               
+                new SaleLiatMainForm().BindGrid();
             }
             catch
             {
 
             }
+                
             finally
             {
+                
                 con.Close();
             }
          

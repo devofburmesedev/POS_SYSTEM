@@ -17,11 +17,11 @@ namespace PointOfSaleSystem
             
            
            InitializeComponent();
-           VoucherId();
+          
 
            //CustomerName(comboBoxHistoryPayment.SelectedItem.ToString());
-           if (comboBoxSelection.DataSource != null)
-               BindGrid(Convert.ToInt32(comboBoxSelection.SelectedItem.ToString()));
+           //if (comboBoxSelection.DataSource != null)
+               //BindGrid(Convert.ToInt32(comboBoxSelection.SelectedItem.ToString()));
         }
         double totalPaidAmount = 0,realPaidAmount=0;
         double total = 0;
@@ -30,7 +30,7 @@ namespace PointOfSaleSystem
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd,cmdCate;
             DateTime date=DateTime.Now.Date;
-            String v_id=comboBoxHistoryPayment.SelectedItem.ToString();
+            //String v_id=comboBoxHistoryPayment.SelectedItem.ToString();
             con.Open();
             bool condition = false;
             
@@ -42,7 +42,7 @@ namespace PointOfSaleSystem
                 cmdCate.Parameters.AddWithValue("@p_amount", txtPaidAmount.Text);
 
                 cmdCate.Parameters.AddWithValue("@datetime", date);
-                cmdCate.Parameters.AddWithValue("@v_id", v_id);
+                cmdCate.Parameters.AddWithValue("@v_id", txtVId2.Text.ToString());
                 var reader = cmdCate.ExecuteReader();
                 if (!reader.HasRows)
                 {
@@ -70,9 +70,9 @@ namespace PointOfSaleSystem
             {
                 con.Open();
 
-                if ((txtPaidAmount.Text.ToString().Trim() == "" || comboBoxHistoryPayment.SelectedItem==null) && condition )
+                if ((txtPaidAmount.Text.ToString().Trim() == "" || txtVId2.Text.ToString().Trim()!="") && condition )
                     MessageBoxShowing.showIncomplementMessage();
-                else if (txtPaidAmount.Text.ToString().Trim() != "" && comboBoxHistoryPayment.SelectedItem.ToString().Trim() != null && condition)
+                else if (txtPaidAmount.Text.ToString().Trim() != "" && txtVId2.Text.ToString().Trim() == ""  && condition)
                 {
                     try
                     {
@@ -82,13 +82,12 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@p_amount", txtPaidAmount.Text);
 
                         cmd.Parameters.AddWithValue("@datetime",date);
-                        cmd.Parameters.AddWithValue("@v_id",v_id );
+                        cmd.Parameters.AddWithValue("@v_id",txtVId2.Text.ToString().Trim() );
                         cmd.ExecuteNonQuery();
-                        BindGrid(Convert.ToInt32(comboBoxSelection.SelectedItem.ToString()));
+                        BindGrid(Convert.ToInt32(txtVId1.Text.ToString().Trim()));
                         MessageBoxShowing.showSuccessfulMessage();
                         txtPaidAmount.Text = "";
-                        comboBoxHistoryPayment.SelectedIndex = 0;
-                        comboBoxCustomerName.SelectedIndex=0;
+                       
                     }
                     catch
                     {
@@ -118,7 +117,7 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@credit", "false");
                     cmd.Parameters.AddWithValue("@p_amount", totalPaidAmount);
                     cmd.Parameters.AddWithValue("@date", date);
-                    cmd.Parameters.AddWithValue("@v_id",v_id );
+                    cmd.Parameters.AddWithValue("@v_id",txtVId2.Text.ToString().Trim() );
                   
                     cmd.ExecuteNonQuery();
                     
@@ -127,12 +126,12 @@ namespace PointOfSaleSystem
                 {
 
                 }
-                VoucherId();
+               
             }
         }
 
         
-        private void VoucherId()
+      /*  private void VoucherId()
         {
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
@@ -171,7 +170,7 @@ namespace PointOfSaleSystem
             }
 
             
-        }
+        }*/
         private void CustomerName(string id)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -181,7 +180,7 @@ namespace PointOfSaleSystem
 
             try
             {
-                comboBoxCustomerName.Items.Clear();
+               
                 cmd = con.CreateCommand();
 
                 cmd.CommandText = "SELECT CustomerName FROM Voucher Where  V_id=@v_id";
@@ -191,10 +190,10 @@ namespace PointOfSaleSystem
 
                 while (reader.Read())
                 {
-                    comboBoxCustomerName.Items.Add(reader["CustomerName"].ToString());
+                   txtName.Text= reader["CustomerName"].ToString();
 
                 }
-                comboBoxCustomerName.SelectedIndex = 0;
+                
             }
 
             catch
@@ -215,11 +214,7 @@ namespace PointOfSaleSystem
 
         }
         double overvalue = 0;
-        private void comboBoxHistoryPayment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CustomerName(comboBoxHistoryPayment.SelectedItem.ToString());
-           
-        }
+       
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -378,13 +373,13 @@ namespace PointOfSaleSystem
 
         private void HistoryPayment_Load(object sender, EventArgs e)
         {
-            if (comboBoxHistoryPayment.DataSource != null)
-                BindGrid(Convert.ToInt32(comboBoxSelection.SelectedItem.ToString()));
-            VoucherId();
-            if(comboBoxHistoryPayment.DataSource!=null)
-            CustomerName(comboBoxHistoryPayment.SelectedItem.ToString());
+            if (txtVId1.Text.ToString().Trim()!="")
+                BindGrid(Convert.ToInt32(txtVId1.Text.ToString().Trim()));
+            //VoucherId();
+            if (txtVId2.Text.ToString().Trim() != "")
+                CustomerName(txtVId2.Text.ToString().Trim());
             btnPayment.Enabled = true;
-            
+            txtName.Enabled = false;
         }
         double flag = 0;
         private void txtPaidAmount_TextChanged(object sender, EventArgs e)
@@ -402,7 +397,7 @@ namespace PointOfSaleSystem
                 //cmdCate.Parameters.AddWithValue("@p_amount", txtPaidAmount.Text);
 
                 //cmdCate.Parameters.AddWithValue("@datetime", );
-                cmdCate.Parameters.AddWithValue("@v_id", comboBoxHistoryPayment.SelectedItem.ToString());
+                cmdCate.Parameters.AddWithValue("@v_id", txtVId2.Text.ToString().Trim());
                 var reader = cmdCate.ExecuteReader();
 
 
@@ -437,7 +432,7 @@ namespace PointOfSaleSystem
                 //cmdCate.Parameters.AddWithValue("@p_amount", txtPaidAmount.Text);
 
                 //cmdCate.Parameters.AddWithValue("@datetime", );
-                cmdCate.Parameters.AddWithValue("@v_id", comboBoxHistoryPayment.SelectedItem.ToString());
+                cmdCate.Parameters.AddWithValue("@v_id", txtVId2.Text.ToString().Trim());
                 var reader = cmdCate.ExecuteReader();
 
 
@@ -485,7 +480,7 @@ namespace PointOfSaleSystem
        
         private void txtPaidAmount_CursorChanged(object sender, EventArgs e)
         {
-             /*SqlConnection con = new MyConnection().GetConnection();
+             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmdCate;
            
             con.Open();
@@ -498,7 +493,7 @@ namespace PointOfSaleSystem
                 //cmdCate.Parameters.AddWithValue("@p_amount", txtPaidAmount.Text);
 
                 //cmdCate.Parameters.AddWithValue("@datetime", );
-                cmdCate.Parameters.AddWithValue("@v_id", comboBoxHistoryPayment.SelectedItem.ToString());
+                cmdCate.Parameters.AddWithValue("@v_id", txtVId2.Text.ToString().Trim());
                 var reader = cmdCate.ExecuteReader();
                 totalPaidAmount += Convert.ToDouble(txtPaidAmount.Text.ToString());
                
@@ -530,15 +525,10 @@ namespace PointOfSaleSystem
             finally
             {
                 con.Close();
-            }*/
+            }
         }
 
       
-             private void comboBoxSelection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGrid(Convert.ToInt32(comboBoxSelection.SelectedItem.ToString()));
-
-        }
 
              private void txtPaidAmount_KeyPress(object sender, KeyPressEventArgs e)
              {
@@ -549,6 +539,28 @@ namespace PointOfSaleSystem
                      return;
                  }
                  if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) && ch != 8 && ch != 46)
+                     e.Handled = true;
+             }
+
+             private void txtVId2_TextChanged(object sender, EventArgs e)
+             {
+                 CustomerName(txtVId2.Text.ToString().Trim());
+             }
+
+             private void txtVId1_TextChanged(object sender, EventArgs e)
+             {
+                 BindGrid(Convert.ToInt32(txtVId1.Text.ToString().Trim()));
+             }
+
+             private void txtVId1_KeyPress(object sender, KeyPressEventArgs e)
+             {
+                 if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) )
+                     e.Handled = true;
+             }
+
+             private void txtVId2_KeyPress(object sender, KeyPressEventArgs e)
+             {
+                 if (!Char.IsControl(e.KeyChar) && !Char.IsDigit(e.KeyChar) )
                      e.Handled = true;
              }
 
