@@ -174,44 +174,49 @@ namespace PointOfSaleSystem
 
             if (e.ColumnIndex == 4)
             {
-                String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-
-                String name=null,  total=null, discount=null, paidamount=null;
-                DateTime date = new DateTime() ;
-                con.Open();
-                try
+                DialogResult result = MessageBoxShowing.showDeleteYesNo();
+                if (result == DialogResult.Yes)
                 {
 
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "SELECT * From Voucher Where Voucher.V_id=@vid";
-                    cmd.Parameters.AddWithValue("@vid",v_id );
-                    
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-                    if (reader.HasRows)
+                    String name = null, total = null, discount = null, paidamount = null;
+                    DateTime date = new DateTime();
+                    con.Open();
+                    try
                     {
 
-                       
-                        while (reader.Read())
+                        cmd = con.CreateCommand();
+                        cmd.CommandText = "SELECT * From Voucher Where Voucher.V_id=@vid";
+                        cmd.Parameters.AddWithValue("@vid", v_id);
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.HasRows)
                         {
-                            name=reader["CustomerName"].ToString();
-                            total = reader["Total_Amount"].ToString();
-                            paidamount = reader["Paid_Amount"].ToString();
-                            date =(DateTime )reader["DateAndTime"];
-                            discount = reader["Discount"].ToString();
+
+
+                            while (reader.Read())
+                            {
+                                name = reader["CustomerName"].ToString();
+                                total = reader["Total_Amount"].ToString();
+                                paidamount = reader["Paid_Amount"].ToString();
+                                date = (DateTime)reader["DateAndTime"];
+                                discount = reader["Discount"].ToString();
+                            }
                         }
+                        Report.Print print = new Report.Print(name, date.ToString("dd/MM/yyyy"), total, paidamount, discount);
+                        print.Show();
                     }
-                    Report.Print print = new Report.Print(name, date.ToString("dd/MM/yyyy"), total, paidamount, discount);
-                    print.Show();
-                }
-                catch
-                {
+                    catch
+                    {
 
 
-                }
-                finally
-                {
-                    con.Close();
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
 
             }

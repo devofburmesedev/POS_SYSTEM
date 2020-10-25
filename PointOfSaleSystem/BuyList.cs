@@ -628,31 +628,33 @@ namespace PointOfSaleSystem
             else if (e.ColumnIndex == 7)
             {
 
-
-
-                con.Open();
-                try
-                {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "Delete  From BuyList  Where C_id=@c_id and P_id=@p_id and U_amt=@u_amt and U_id=@u_id and TotalPrice=@price";
-                    cmd.Parameters.AddWithValue("@p_id", p_id);
-                    cmd.Parameters.AddWithValue("@u_id", u_id);
-                    cmd.Parameters.AddWithValue("@u_amt", number);
-                    cmd.Parameters.AddWithValue("@price", totalprice);
-                    cmd.Parameters.AddWithValue("@c_id", c_id);
-                    cmd.ExecuteNonQuery();
-                    string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
-                    int month, year;
-                    int.TryParse(dateTime[0], out month);
-                    int.TryParse(dateTime[1], out year);
-                    BindGrid(comboBoxCategory1.SelectedItem.ToString(),month,year);
-
-                }
-                catch
+                DialogResult result = MessageBoxShowing.showDeleteYesNo();
+                if (result == DialogResult.Yes)
                 {
 
-                }
+                    con.Open();
+                    try
+                    {
+                        cmd = con.CreateCommand();
+                        cmd.CommandText = "Delete  From BuyList  Where C_id=@c_id and P_id=@p_id and U_amt=@u_amt and U_id=@u_id and TotalPrice=@price";
+                        cmd.Parameters.AddWithValue("@p_id", p_id);
+                        cmd.Parameters.AddWithValue("@u_id", u_id);
+                        cmd.Parameters.AddWithValue("@u_amt", number);
+                        cmd.Parameters.AddWithValue("@price", totalprice);
+                        cmd.Parameters.AddWithValue("@c_id", c_id);
+                        cmd.ExecuteNonQuery();
+                        string[] dateTime = dateTimePicker1.Text.ToString().Split('/');
+                        int month, year;
+                        int.TryParse(dateTime[0], out month);
+                        int.TryParse(dateTime[1], out year);
+                        BindGrid(comboBoxCategory1.SelectedItem.ToString(), month, year);
 
+                    }
+                    catch
+                    {
+
+                    }
+                }
             }
                 
                

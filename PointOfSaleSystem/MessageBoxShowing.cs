@@ -32,5 +32,9 @@ namespace PointOfSaleSystem
         {
             MessageBox.Show("Please enter correcr number", "သတိပေးချက်", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
+        public static DialogResult showDeleteYesNo()
+        {
+           return MessageBox.Show("Are you sure to delete", "သတိပေးချက်", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+        }
     }
 }

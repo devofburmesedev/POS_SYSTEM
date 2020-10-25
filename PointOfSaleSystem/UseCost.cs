@@ -327,8 +327,11 @@ namespace PointOfSaleSystem
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
             if (e.ColumnIndex == 5)
+            {DialogResult result = MessageBoxShowing.showDeleteYesNo();
+            if (result == DialogResult.Yes)
             {
-                String name= dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                String name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 String des = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 String date = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -354,7 +357,7 @@ namespace PointOfSaleSystem
                 {
                     con.Close();
                 }
-
+            }
             }
 
         }

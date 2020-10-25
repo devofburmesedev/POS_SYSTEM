@@ -19,11 +19,11 @@ namespace PointOfSaleSystem
             categoryComobox();
             unitComobox();
             productComobox();
-            
+            storeComobox();
         }
-       
+            double qty = 0;
         double totalprice=0;
-       
+        double s_id = 0;
         private int getProductId(String p)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -367,18 +367,46 @@ namespace PointOfSaleSystem
 
         }
 
+
+
       
 
-       
+        private void comboBoBoxName()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            con.Open();
+            try
+            {
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT S_id FROM Stores WHERE Name=@name";
+                cmd.Parameters.AddWithValue("@name", comboBoxStores.SelectedItem.ToString());
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
-        
+                    s_id = Convert.ToInt32(reader["S_id"].ToString());
+
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
 
     
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-        
-               
+
+            double leftqty = qty - Convert.ToDouble(txtAmount.Text.ToString().Trim());
 
                                 DataGridViewRow newRow = new DataGridViewRow();
                                 newRow.CreateCells(dataGridView1);
@@ -403,6 +431,31 @@ namespace PointOfSaleSystem
                                comboBoxCategory1.SelectedIndex = 0;
                                if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "")
                                    txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
+                               SqlConnection con = new MyConnection().GetConnection();
+                               SqlCommand cmdCate;
+                               con.Open();
+                               try
+                               {
+                                   //comboBoxUpdate.DataSource = null;
+
+                                   cmdCate = con.CreateCommand();
+                                   cmdCate.CommandText = "Update ProductInStores Set Amount=@amount Where P_id=@p_id and U_id=@u_id and S_id=@s_id";
+                                   cmdCate.Parameters.AddWithValue("@p_id", getProductId(comboBoxProduct.SelectedItem.ToString()));
+                                   cmdCate.Parameters.AddWithValue("@u_id", getUnitId(comboBoxUnit.SelectedItem.ToString()));
+                                   cmdCate.Parameters.AddWithValue("@s_id",s_id );
+                                   cmdCate.Parameters.AddWithValue("@amount", leftqty);
+                                   cmdCate.ExecuteNonQuery();
+
+                               }
+                               catch
+                               {
+
+
+                               }
+                               finally
+                               {
+                                   con.Close();
+                               }
         
         }
 
@@ -610,9 +663,40 @@ namespace PointOfSaleSystem
             paidAmountLabel.Visible = true;
             txtTotalTwo.ReadOnly = true;
             BindGrid();
-
+            storeComobox();
         }
+        private void storeComobox()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdUnit;
+            con.Open();
+            try
+            {
+                
+                comboBoxStores.Items.Clear();
+                cmdUnit = con.CreateCommand();
+                comboBoxStores.Items.Add("None");
+                cmdUnit.CommandText = "SELECT Name FROM Stores";
+                var reader = cmdUnit.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    comboBoxStores.Items.Add(reader["Name"].ToString());
 
+                }
+                
+                comboBoxStores.SelectedIndex = 0;
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         private void BindGrid()
         {
             dataGridView1.AllowUserToAddRows = false;
@@ -676,7 +760,14 @@ namespace PointOfSaleSystem
             if (e.ColumnIndex == 5)
             {
                 if (this.dataGridView1.Rows.Count > 0)
-                    dataGridView1.Rows.Remove(this.dataGridView1.Rows[e.RowIndex]);
+                {
+                    DialogResult result = MessageBoxShowing.showDeleteYesNo();
+                    if (result == DialogResult.Yes)
+                    {
+
+                        dataGridView1.Rows.Remove(this.dataGridView1.Rows[e.RowIndex]);
+                    }
+                }
             }
         }
 
@@ -891,6 +982,54 @@ namespace PointOfSaleSystem
                     MessageBoxShowing.showNumberErrorMessage();
 
                 }
+        }
+
+        private void comboBoxStores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            comboBoBoxName();
+            try
+            {
+                //comboBoxUpdate.DataSource = null;
+                string name = comboBoxStores.SelectedItem.ToString();
+                if (name != "None")
+                {
+                    cmdCate = con.CreateCommand();
+                    cmdCate.CommandText = "SELECT ProductInStores.Amount FROM ProductInStores,Stores Where ProductInStores.P_id=@p_id and ProductInStores.U_id=@u_id and ProductInStores.S_id=Stores.S_id and Stores.Name=@name";
+                    cmdCate.Parameters.AddWithValue("@p_id", getProductId(comboBoxProduct.SelectedItem.ToString()));
+                    cmdCate.Parameters.AddWithValue("@u_id", getUnitId(comboBoxUnit.SelectedItem.ToString()));
+                    cmdCate.Parameters.AddWithValue("@name", comboBoxStores.SelectedItem.ToString());
+                    SqlDataReader reader = cmdCate.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        qty = Convert.ToDouble(reader["Amount"].ToString());
+
+
+                    }
+                }
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+           // MessageBox.Show(qty+" "+getProductId(comboBoxProduct.SelectedItem.ToString())+" "+getUnitId(comboBoxUnit.SelectedItem.ToString()));
+            if (qty < Convert.ToDouble(txtAmount.Text.ToString()))
+            {
+                MessageBox.Show("No enough...");
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
         }
 
       

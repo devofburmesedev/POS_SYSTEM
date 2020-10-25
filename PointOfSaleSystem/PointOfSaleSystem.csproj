@@ -70,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayList.cs" />
+    <Compile Include="BackUpAndRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackUpAndRestore.Designer.cs">
+      <DependentUpon>BackUpAndRestore.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuyList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     <Compile Include="UseCost.Designer.cs">
       <DependentUpon>UseCost.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BackUpAndRestore.resx">
+      <DependentUpon>BackUpAndRestore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuyList.resx">
       <DependentUpon>BuyList.cs</DependentUpon>
     </EmbeddedResource>

@@ -564,6 +564,11 @@ namespace PointOfSaleSystem
                      e.Handled = true;
              }
 
+             private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+             {
+
+             }
+
             
        
     }

@@ -876,35 +876,39 @@ namespace PointOfSaleSystem
                 {
                     if (e.ColumnIndex == 6)
                     {
-
+                        DialogResult result = MessageBoxShowing.showDeleteYesNo();
+                        if (result == DialogResult.Yes)
+                        {
                         int store = getStoreProductId(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                       
                         int product = getProductId(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
                         int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
                         String amount = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-                     
-                        con.Open();
-                        try
-                        {
-                            cmd = con.CreateCommand();
-                            cmd.CommandText = "Delete  From ProductInStores  Where P_id=@p_id and U_id=@u_id and S_id=@s_id and Amount=@amount";
-                            cmd.Parameters.AddWithValue("@p_id", product);
+                    
 
-                            cmd.Parameters.AddWithValue("@u_id", unit);
-                            cmd.Parameters.AddWithValue("@s_id", store);
-                            cmd.Parameters.AddWithValue("@amount", amount);
-                            cmd.ExecuteNonQuery();
-                            BindGrid(comboBoxStores2.SelectedItem.ToString());
+                         con.Open();
+                         try
+                         {
+                             cmd = con.CreateCommand();
+                             cmd.CommandText = "Delete  From ProductInStores  Where P_id=@p_id and U_id=@u_id and S_id=@s_id and Amount=@amount";
+                             cmd.Parameters.AddWithValue("@p_id", product);
 
-                        }
-                        catch
-                        {
+                             cmd.Parameters.AddWithValue("@u_id", unit);
+                             cmd.Parameters.AddWithValue("@s_id", store);
+                             cmd.Parameters.AddWithValue("@amount", amount);
+                             cmd.ExecuteNonQuery();
+                             BindGrid(comboBoxStores2.SelectedItem.ToString());
 
-                        }
-                        finally
-                        {
-                            con.Close();
-                        }
+                         }
+                         catch
+                         {
+
+                         }
+                         finally
+                         {
+                             con.Close();
+                         }
+                     }
                     }
                 }
                     else

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,6 +59,8 @@
             this.txtPaidAmount = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBoxStores = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
@@ -121,7 +123,7 @@
             // 
             this.တန.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.တန.AutoSize = true;
-            this.တန.Location = new System.Drawing.Point(95, 476);
+            this.တန.Location = new System.Drawing.Point(95, 551);
             this.တန.Name = "တန";
             this.တန.Size = new System.Drawing.Size(98, 23);
             this.တန.TabIndex = 12;
@@ -131,7 +133,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(108, 551);
+            this.label7.Location = new System.Drawing.Point(108, 626);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 23);
             this.label7.TabIndex = 13;
@@ -191,7 +193,7 @@
             // txtPrice
             // 
             this.txtPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtPrice.Location = new System.Drawing.Point(199, 472);
+            this.txtPrice.Location = new System.Drawing.Point(199, 547);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(87, 30);
             this.txtPrice.TabIndex = 18;
@@ -205,10 +207,10 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1259, 524);
             this.dataGridView1.TabIndex = 0;
@@ -217,7 +219,7 @@
             // txtTotal
             // 
             this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtTotal.Location = new System.Drawing.Point(199, 547);
+            this.txtTotal.Location = new System.Drawing.Point(199, 622);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(87, 30);
             this.txtTotal.TabIndex = 19;
@@ -227,7 +229,7 @@
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAdd.BackColor = System.Drawing.Color.Green;
-            this.btnAdd.Location = new System.Drawing.Point(199, 620);
+            this.btnAdd.Location = new System.Drawing.Point(199, 698);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 34);
             this.btnAdd.TabIndex = 22;
@@ -403,17 +405,19 @@
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.တန, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.label7, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.txtCustomer, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxCategory1, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxProduct, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.txtAmount, 1, 4);
             this.tableLayoutPanel3.Controls.Add(this.comboBoxUnit, 1, 5);
-            this.tableLayoutPanel3.Controls.Add(this.txtPrice, 1, 6);
-            this.tableLayoutPanel3.Controls.Add(this.txtTotal, 1, 7);
-            this.tableLayoutPanel3.Controls.Add(this.btnAdd, 1, 8);
             this.tableLayoutPanel3.Controls.Add(this.label12, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnAdd, 1, 9);
+            this.tableLayoutPanel3.Controls.Add(this.txtTotal, 1, 8);
+            this.tableLayoutPanel3.Controls.Add(this.label7, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.txtPrice, 1, 7);
+            this.tableLayoutPanel3.Controls.Add(this.တန, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.comboBoxStores, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label6, 0, 6);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -430,6 +434,27 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(373, 755);
             this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // comboBoxStores
+            // 
+            this.comboBoxStores.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboBoxStores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStores.FormattingEnabled = true;
+            this.comboBoxStores.Location = new System.Drawing.Point(199, 475);
+            this.comboBoxStores.Name = "comboBoxStores";
+            this.comboBoxStores.Size = new System.Drawing.Size(87, 31);
+            this.comboBoxStores.TabIndex = 24;
+            this.comboBoxStores.SelectedIndexChanged += new System.EventHandler(this.comboBoxStores_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(117, 476);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 23);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "သိုလှောင်ရုံ";
             // 
             // tableLayoutPanel1
             // 
@@ -506,5 +531,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox comboBoxStores;
+        private System.Windows.Forms.Label label6;
     }
 }

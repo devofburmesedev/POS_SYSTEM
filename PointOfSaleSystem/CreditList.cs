@@ -397,32 +397,37 @@ namespace PointOfSaleSystem
             SqlCommand cmd;
             if (e.ColumnIndex == 5)
             {
-                String name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                String rec = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                String date= dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-                con.Open();
-                try
-                {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec and DateAndTime=@date";
-                    cmd.Parameters.AddWithValue("@c_id", p_id);
+               DialogResult result = MessageBoxShowing.showDeleteYesNo();
+               if (result == DialogResult.Yes)
+               {
 
-                    cmd.Parameters.AddWithValue("@amount", amount);
-                    cmd.Parameters.AddWithValue("@rec", rec);
-                    cmd.Parameters.AddWithValue("@date",date );
-                    cmd.ExecuteNonQuery();
-                    BindGrid(date, method);
+                   String name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                   String amount = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                   String rec = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                   String date = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                   con.Open();
+                   try
+                   {
+                       cmd = con.CreateCommand();
+                       cmd.CommandText = "Delete  From creditlist Where C_id=@c_id and Amount=@amount and Receiver=@rec and DateAndTime=@date";
+                       cmd.Parameters.AddWithValue("@c_id", p_id);
 
-                }
-                catch
-                {
+                       cmd.Parameters.AddWithValue("@amount", amount);
+                       cmd.Parameters.AddWithValue("@rec", rec);
+                       cmd.Parameters.AddWithValue("@date", date);
+                       cmd.ExecuteNonQuery();
+                       BindGrid(date, method);
 
-                }
-                finally
-                {
-                    con.Close();
-                }
+                   }
+                   catch
+                   {
+
+                   }
+                   finally
+                   {
+                       con.Close();
+                   }
+               }
 
             }
         }

@@ -23,6 +23,7 @@ namespace PointOfSaleSystem
         private CreditList creditForm = null;
         private Stores storeForm = null;
         private SaleLiatMainForm saleForm = null;
+        private BackUpAndRestore backForm = null;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -30,6 +31,12 @@ namespace PointOfSaleSystem
             this.TopLevel = true;
             this.WindowState = FormWindowState.Maximized;
             this.Cursor = Cursors.Arrow;
+            viewSaleList();
+            
+        }
+
+        private void viewSaleList()
+        {
             if (saleForm == null)
             {
                 saleForm = new SaleLiatMainForm();
@@ -50,7 +57,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
-            
+            button8.BackColor = Color.Lime;
         }
 
         private void viewForm()
@@ -75,26 +82,7 @@ namespace PointOfSaleSystem
         
         private void button1_Click(object sender, EventArgs e)
         {
-            if (saleForm == null)
-            {
-                saleForm = new SaleLiatMainForm();
-                saleForm.TopLevel = false;
-                panel1.Controls.Add(saleForm);
-                saleForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                saleForm.Dock = DockStyle.Fill;
-                saleForm.Show();
-            }
-            else
-            {
-                saleForm.BringToFront();
-            }
-            button1.BackColor = Color.Aqua;
-            button2.BackColor = Color.Lime;
-            button3.BackColor = Color.Lime;
-            button4.BackColor = Color.Lime;
-            button5.BackColor = Color.Lime;
-            button6.BackColor = Color.Lime;
-            button7.BackColor = Color.Lime;
+            viewSaleList();
         }
       
 
@@ -121,6 +109,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Lime;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -134,6 +123,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Lime;
             viewForm();
         }
         private void button4_Click(object sender, EventArgs e)
@@ -158,6 +148,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Lime;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -182,6 +173,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Aqua;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Lime;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -206,6 +198,7 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Aqua;
             button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Lime;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -230,6 +223,34 @@ namespace PointOfSaleSystem
             button5.BackColor = Color.Lime;
             button6.BackColor = Color.Lime;
             button7.BackColor = Color.Aqua;
+            button8.BackColor = Color.Lime;
+        }
+
+       
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (backForm == null)
+            {
+                backForm = new BackUpAndRestore();
+                backForm.TopLevel = false;
+                panel1.Controls.Add(backForm);
+                backForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                backForm.Dock = DockStyle.Fill;
+                backForm.Show();
+            }
+            else
+            {
+                backForm.BringToFront();
+            }
+            button1.BackColor = Color.Lime;
+            button2.BackColor = Color.Lime;
+            button3.BackColor = Color.Lime;
+            button4.BackColor = Color.Lime;
+            button5.BackColor = Color.Lime;
+            button6.BackColor = Color.Lime;
+            button7.BackColor = Color.Lime;
+            button8.BackColor = Color.Aqua;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
