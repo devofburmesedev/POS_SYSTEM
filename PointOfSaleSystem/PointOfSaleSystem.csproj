@@ -146,6 +146,12 @@
     <Compile Include="Report\Print.Designer.cs">
       <DependentUpon>Print.cs</DependentUpon>
     </Compile>
+    <Compile Include="RestoreInStores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RestoreInStores.Designer.cs">
+      <DependentUpon>RestoreInStores.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleLiatMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,12 @@
     </Compile>
     <Compile Include="Stores.Designer.cs">
       <DependentUpon>Stores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StoresHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoresHistory.Designer.cs">
+      <DependentUpon>StoresHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdatePrice.cs">
       <SubType>Form</SubType>
@@ -244,6 +256,9 @@
       <DependentUpon>Print.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Report1.rdlc" />
+    <EmbeddedResource Include="RestoreInStores.resx">
+      <DependentUpon>RestoreInStores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleLiatMainForm.resx">
       <DependentUpon>SaleLiatMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stores.resx">
       <DependentUpon>Stores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoresHistory.resx">
+      <DependentUpon>StoresHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdatePrice.resx">
       <DependentUpon>UpdatePrice.cs</DependentUpon>

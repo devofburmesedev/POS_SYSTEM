@@ -59,10 +59,9 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxStores2 = new System.Windows.Forms.ComboBox();
             this.btnViewHistory = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
+            this.comboBoxStores2 = new System.Windows.Forms.ComboBox();
+            this.btnRestore = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -494,10 +493,9 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.26426F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.66366F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.49549F));
-            this.tableLayoutPanel7.Controls.Add(this.dateTimePicker2, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.comboBoxStores2, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnViewHistory, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnView, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.btnViewHistory, 4, 0);
+            this.tableLayoutPanel7.Controls.Add(this.comboBoxStores2, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnRestore, 4, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -508,37 +506,12 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(1000, 91);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker2.CustomFormat = "MM/yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(292, 6);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(82, 30);
-            this.dateTimePicker2.TabIndex = 17;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
-            // 
-            // comboBoxStores2
-            // 
-            this.comboBoxStores2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBoxStores2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStores2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxStores2.FormattingEnabled = true;
-            this.comboBoxStores2.Location = new System.Drawing.Point(159, 9);
-            this.comboBoxStores2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxStores2.Name = "comboBoxStores2";
-            this.comboBoxStores2.Size = new System.Drawing.Size(86, 31);
-            this.comboBoxStores2.TabIndex = 16;
-            this.comboBoxStores2.SelectedIndexChanged += new System.EventHandler(this.comboBoxStores2_SelectedIndexChanged_1);
-            // 
             // btnViewHistory
             // 
-            this.btnViewHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnViewHistory.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnViewHistory.BackColor = System.Drawing.Color.Lime;
             this.btnViewHistory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewHistory.Location = new System.Drawing.Point(25, 4);
+            this.btnViewHistory.Location = new System.Drawing.Point(903, 4);
             this.btnViewHistory.Margin = new System.Windows.Forms.Padding(4);
             this.btnViewHistory.Name = "btnViewHistory";
             this.btnViewHistory.Size = new System.Drawing.Size(93, 34);
@@ -547,19 +520,32 @@
             this.btnViewHistory.UseVisualStyleBackColor = false;
             this.btnViewHistory.Click += new System.EventHandler(this.btnViewHistory_Click);
             // 
-            // btnView
+            // comboBoxStores2
             // 
-            this.btnView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnView.BackColor = System.Drawing.Color.Lime;
-            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnView.Location = new System.Drawing.Point(29, 47);
-            this.btnView.Margin = new System.Windows.Forms.Padding(4);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(84, 39);
-            this.btnView.TabIndex = 19;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.comboBoxStores2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBoxStores2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStores2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxStores2.FormattingEnabled = true;
+            this.comboBoxStores2.Location = new System.Drawing.Point(28, 9);
+            this.comboBoxStores2.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxStores2.Name = "comboBoxStores2";
+            this.comboBoxStores2.Size = new System.Drawing.Size(86, 31);
+            this.comboBoxStores2.TabIndex = 16;
+            this.comboBoxStores2.SelectedIndexChanged += new System.EventHandler(this.comboBoxStores2_SelectedIndexChanged_1);
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnRestore.BackColor = System.Drawing.Color.Lime;
+            this.btnRestore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRestore.Location = new System.Drawing.Point(903, 50);
+            this.btnRestore.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Size = new System.Drawing.Size(93, 34);
+            this.btnRestore.TabIndex = 21;
+            this.btnRestore.Text = "Restore";
+            this.btnRestore.UseVisualStyleBackColor = false;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // Stores
             // 
@@ -617,7 +603,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.ComboBox comboBoxStores2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
@@ -625,6 +610,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.ComboBox comboBoxLocation;
         private System.Windows.Forms.Button btnViewHistory;
-        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnRestore;
     }
 }

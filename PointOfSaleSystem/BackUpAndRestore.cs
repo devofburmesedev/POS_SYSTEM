@@ -43,7 +43,7 @@ namespace PointOfSaleSystem
                    // String sql = String.Format("BACKUP DATANASE[{0}] TO DISK='{1}'",database,textBox1.Text.ToString().Trim());
                     con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "BACKUP DATABASE [" + database + "] TO DISK='" + textBox1.Text.ToString().Trim() + "\\"+"Database"+"-" + DateTime.Now.ToString("dd-MM-yyyy")+ ".bak'" ;
+                    cmd.CommandText = "BACKUP DATABASE [" + database + "] TO DISK='" + textBox1.Text.ToString().Trim() + "\\"+"Database"+"-" + DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss")+ ".bak'" ;
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Success.......");
                     btnBackUp.Enabled = false;
@@ -104,6 +104,11 @@ namespace PointOfSaleSystem
             {
                 con.Close();
             }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         

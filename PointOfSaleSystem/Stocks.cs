@@ -314,8 +314,8 @@ namespace PointOfSaleSystem
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.White;
 
-                style.Font = new Font("Times New Roman", 18, FontStyle.Bold); 
-                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman",20,FontStyle.Bold);
+                style.Font = new Font("Times New Roman", 14, FontStyle.Bold); 
+                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman",12,FontStyle.Bold);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
                 id.HeaderText = "စဉ်";

@@ -56,7 +56,7 @@ namespace PointOfSaleSystem
                 cname.Name = "CName";
                 cname.HeaderText = "ဝယ်ယူသူအမည်";
                 cname.DataPropertyName = "CName";
-                cname.Width = 200;
+                cname.Width = 150;
                 dataGridView1.Columns.Insert(1, cname);
                 
                 DataGridViewColumn voucher = new DataGridViewTextBoxColumn();
@@ -69,7 +69,7 @@ namespace PointOfSaleSystem
                 Tprice.Name = "price";
                 Tprice.HeaderText = "စုစုပေါင်းငွေ";
                 Tprice.DataPropertyName = "price";
-                Tprice.Width = 200;
+                Tprice.Width = 150;
                 dataGridView1.Columns.Insert(3, Tprice);
                 DataGridViewButtonColumn more = new DataGridViewButtonColumn();
                
@@ -174,9 +174,7 @@ namespace PointOfSaleSystem
 
             if (e.ColumnIndex == 4)
             {
-                DialogResult result = MessageBoxShowing.showDeleteYesNo();
-                if (result == DialogResult.Yes)
-                {
+              
 
                     String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
 
@@ -219,39 +217,42 @@ namespace PointOfSaleSystem
                     }
                 }
 
-            }
+            
 
             
                 if (e.ColumnIndex == 5)
                 {
+          DialogResult result = MessageBoxShowing.showDeleteYesNo();
+          if (result == DialogResult.Yes)
+          {
 
-                    String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+              String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-                    //String product = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    //String unit = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                   
-                    con.Open();
-                    try
-                    {
-                        cmd = con.CreateCommand();
-                        cmd.CommandText = "Delete  From Voucher  Where V_id=@v_id;Delete From VoucherProduct Where V_id=@V_id";
-                        cmd.Parameters.AddWithValue("@v_id", v_id);
+              //String product = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+              //String unit = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-                        
-                        cmd.ExecuteNonQuery();
-                        BindGrid();
-                        
+              con.Open();
+              try
+              {
+                  cmd = con.CreateCommand();
+                  cmd.CommandText = "Delete  From Voucher  Where V_id=@v_id;Delete From VoucherProduct Where V_id=@V_id";
+                  cmd.Parameters.AddWithValue("@v_id", v_id);
 
-                    }
-                    catch
-                    {
-                      
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
-                
+
+                  cmd.ExecuteNonQuery();
+                  BindGrid();
+
+
+              }
+              catch
+              {
+
+              }
+              finally
+              {
+                  con.Close();
+              }
+          }
             }
         }
 

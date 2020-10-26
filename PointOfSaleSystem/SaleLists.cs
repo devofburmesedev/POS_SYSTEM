@@ -123,6 +123,39 @@ namespace PointOfSaleSystem
             }
             return data;
         }
+        private int getStoresId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT S_id FROM Stores Where Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["S_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
         private string getUnit(string p)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -283,39 +316,43 @@ namespace PointOfSaleSystem
         
       
        
-        private void InsertProduct(int id,String product,String price,String qty)
+        private void InsertProduct(int id,String product,String price,String qtys,String stores)
         {
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmd;
             
-             String []datetimes=qty.Split(' ');
+             String []datetimes=qtys.Split(' ');
                                 String amount, unit;
                                 amount = datetimes[0];
                                 unit = datetimes[1];
           
-            con.Open();
             
-                    try
-                    {
-                        cmd = con.CreateCommand();
-                        cmd.CommandText = "INSERT INTO VoucherProduct(P_id,Price,Amount,U_id,V_id,Total) VALUES(@p_id,@price,@amount,@u_id,@v_id,@total)";
-                        cmd.Parameters.AddWithValue("@p_id", getProductId(product));
-                        cmd.Parameters.AddWithValue("@price", price);
-                        cmd.Parameters.AddWithValue("@amount", amount);
-                        cmd.Parameters.AddWithValue("@u_id", getUnitId(unit));
-                        cmd.Parameters.AddWithValue("@v_id", id);
-                        cmd.Parameters.AddWithValue("@total",((Convert.ToDouble( price))*(Convert.ToDouble(amount))).ToString());
-                        cmd.ExecuteNonQuery();
-                       
-                        
-                    }
-                    catch
-                    {
-                    }
+            try
+            {
+                con.Open();
 
-             
-          
+                cmd = con.CreateCommand();
+                cmd.CommandText = "INSERT INTO VoucherProduct(P_id,Price,Amount,U_id,V_id,Total,S_id) VALUES(@p_id,@price,@amount,@u_id,@v_id,@total,@s_id)";
+                cmd.Parameters.AddWithValue("@p_id", getProductId(product));
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                cmd.Parameters.AddWithValue("@u_id", getUnitId(unit));
+                cmd.Parameters.AddWithValue("@v_id", id);
+                cmd.Parameters.AddWithValue("@total", ((Convert.ToDouble(price)) * (Convert.ToDouble(amount))).ToString());
+                cmd.Parameters.AddWithValue("@s_id", getStoresId(stores));
+                cmd.ExecuteNonQuery();
 
+
+            }
+            catch
+            {
+            }
+
+            finally
+            {
+                con.Close();
+            }
+           
         }
 
         private int getVId(String credit,String p_amount,String total,DateTime date,String name)
@@ -406,7 +443,7 @@ namespace PointOfSaleSystem
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            double leftqty = qty - Convert.ToDouble(txtAmount.Text.ToString().Trim());
+            
 
                                 DataGridViewRow newRow = new DataGridViewRow();
                                 newRow.CreateCells(dataGridView1);
@@ -416,47 +453,26 @@ namespace PointOfSaleSystem
                                 newRow.Cells[2].Value = txtPrice.Text.ToString();
                                 newRow.Cells[3].Value = txtAmount.Text.ToString() + " " + comboBoxUnit.SelectedItem.ToString();
                                 newRow.Cells[4].Value = Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString());
+                                newRow.Cells[5].Value = comboBoxStores.SelectedItem.ToString();
                                 i++;
                                 totalprice += Convert.ToDouble(txtPrice.Text.ToString()) * Convert.ToDouble(txtAmount.Text.ToString());
                                 dataGridView1.Rows.Add(newRow);
 
 
-                            
+                                txtTotalTwo.Text = totalprice.ToString();
+                               
+                               
+                               if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "")
+                                   txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
+
+
+                               comboBoxUnit.SelectedIndex = 0;
+                               comboBoxCategory1.SelectedIndex = 0;
                                txtTotalTwo.Text = totalprice.ToString();
-                               comboBoxProduct.SelectedIndex=0;
+                               comboBoxProduct.SelectedIndex = 0;
                                txtPrice.Text = "";
                                txtTotal.Text = "";
                                txtAmount.Text = "";
-                               comboBoxUnit.SelectedIndex = 0;
-                               comboBoxCategory1.SelectedIndex = 0;
-                               if (txtTotalTwo.Text.ToString() != "" && txtDiscout.Text.ToString() != "")
-                                   txtPaidAmount.Text = (Convert.ToDouble(txtTotalTwo.Text.ToString()) - Convert.ToDouble(txtDiscout.Text.ToString())).ToString();
-                               SqlConnection con = new MyConnection().GetConnection();
-                               SqlCommand cmdCate;
-                               con.Open();
-                               try
-                               {
-                                   //comboBoxUpdate.DataSource = null;
-
-                                   cmdCate = con.CreateCommand();
-                                   cmdCate.CommandText = "Update ProductInStores Set Amount=@amount Where P_id=@p_id and U_id=@u_id and S_id=@s_id";
-                                   cmdCate.Parameters.AddWithValue("@p_id", getProductId(comboBoxProduct.SelectedItem.ToString()));
-                                   cmdCate.Parameters.AddWithValue("@u_id", getUnitId(comboBoxUnit.SelectedItem.ToString()));
-                                   cmdCate.Parameters.AddWithValue("@s_id",s_id );
-                                   cmdCate.Parameters.AddWithValue("@amount", leftqty);
-                                   cmdCate.ExecuteNonQuery();
-
-                               }
-                               catch
-                               {
-
-
-                               }
-                               finally
-                               {
-                                   con.Close();
-                               }
-        
         }
 
       
@@ -619,17 +635,20 @@ namespace PointOfSaleSystem
                             String price = dataGridView1.Rows[rows].Cells[2].Value.ToString();
                             String qty = dataGridView1.Rows[rows].Cells[3].Value.ToString();
                             String amount = dataGridView1.Rows[rows].Cells[4].Value.ToString();
-
-                            InsertProduct(id, product, price, qty);
+                            String stores = dataGridView1.Rows[rows].Cells[5].Value.ToString();
+                           // MessageBox.Show(qty + " " + stores+" "+product+" "+price);
+                            InsertProduct(id, product, price, qty, stores);
+                            UpdateStores(id, product, price, qty,stores);
+                            
                         }
-
+                        BindGrid();
                         txtTotalTwo.Text = "";
                         txtDiscout.Text = "0";
                         creditCheckBox.Checked = false;
                         txtPaidAmount.Text = "";
-                        
+                        //dataGridView1.Columns.Clear();
                         txtCustomer.Text = "";
-                        BindGrid();
+                       
                         i = 1;
 
                     }
@@ -639,7 +658,7 @@ namespace PointOfSaleSystem
 
                 }
                 MessageBoxShowing.showSuccessfulMessage();
-                new SaleLiatMainForm().BindGrid();
+               
             }
             catch
             {
@@ -654,6 +673,72 @@ namespace PointOfSaleSystem
          
            
            
+        }
+
+        private void UpdateStores(int id, string product, string price, string qtys, string stores)
+        {
+            double amount = 0;
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            String[] datetimes = qtys.Split(' ');
+            String amounts, unit;
+            amounts= datetimes[0];
+            unit = datetimes[1];
+            
+            try
+            {
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT ProductInStores.Amount FROM ProductInStores,Stores Where ProductInStores.P_id=@p_id and ProductInStores.U_id=@u_id and ProductInStores.S_id=Stores.S_id and Stores.Name=@name";
+                cmd.Parameters.AddWithValue("@p_id", getProductId(product));
+                cmd.Parameters.AddWithValue("@u_id", getUnitId(unit));
+                cmd.Parameters.AddWithValue("@name", stores);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    amount = Convert.ToDouble(reader["Amount"].ToString());
+
+
+                }
+            }
+
+            catch
+            {
+
+                MessageBox.Show("erroe1");
+            }
+            finally
+            {
+                comboBoBoxName();
+                con.Close();
+            }
+            double leftqty = amount- Convert.ToDouble(amounts);
+
+         
+            try
+            {
+                //  MessageBox.Show(getProductId(comboBoxProduct.SelectedItem.ToString())+" "+getUnitId(comboBoxUnit.SelectedItem.ToString())+" "+s_id);
+                con.Open();
+                cmd = con.CreateCommand();
+                cmd.CommandText = "Update ProductInStores Set Amount=@amount Where P_id=@p_id and U_id=@u_id and S_id=@s_id";
+                cmd.Parameters.AddWithValue("@p_id", getProductId(product));
+                cmd.Parameters.AddWithValue("@u_id", getUnitId(unit));
+                cmd.Parameters.AddWithValue("@s_id", getStoresId(stores));
+                cmd.Parameters.AddWithValue("@amount", leftqty);
+                cmd.ExecuteNonQuery();
+                //MessageBox.Show(qty+" "+amount);
+            }
+            catch
+            {
+
+                MessageBox.Show("erroe2");
+            }
+            finally
+            {
+                con.Close();
+
+            }
         }
 
         private void SaleLists_Load(object sender, EventArgs e)
@@ -741,6 +826,12 @@ namespace PointOfSaleSystem
             amount.DataPropertyName = "amount";
             amount.Width = 100;
             dataGridView1.Columns.Insert(4, amount);
+            DataGridViewColumn store = new DataGridViewTextBoxColumn();
+            store.Name = "Product";
+            store.HeaderText = "သိုလှောင်ရုံ";
+            store.DataPropertyName = "Product";
+            store.Width = 150;
+            dataGridView1.Columns.Insert(5, store);
             DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
 
             btnDelete.Text = "ဖြတ်မည်";
@@ -751,13 +842,13 @@ namespace PointOfSaleSystem
 
             btnDelete.FlatStyle = FlatStyle.Standard;
             btnDelete.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Insert(5, btnDelete);
+            dataGridView1.Columns.Insert(6, btnDelete);
             dataGridView1.DataSource = null;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 if (this.dataGridView1.Rows.Count > 0)
                 {
@@ -786,6 +877,15 @@ namespace PointOfSaleSystem
             {
                 txtAmount.Text = "";
                 MessageBoxShowing.showNumberErrorMessage();
+            }
+            if (  txtAmount.Text.ToString() != "" && qty < Convert.ToDouble(txtAmount.Text.ToString()) && comboBoxStores.SelectedItem.ToString()!= "None")
+            {
+                MessageBox.Show("No enough...");
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
             }
         }
 
@@ -989,11 +1089,12 @@ namespace PointOfSaleSystem
             SqlConnection con = new MyConnection().GetConnection();
             SqlCommand cmdCate;
             con.Open();
-            comboBoBoxName();
+            
+            string name = comboBoxStores.SelectedItem.ToString();
             try
             {
                 //comboBoxUpdate.DataSource = null;
-                string name = comboBoxStores.SelectedItem.ToString();
+               
                 if (name != "None")
                 {
                     cmdCate = con.CreateCommand();
@@ -1018,10 +1119,11 @@ namespace PointOfSaleSystem
             }
             finally
             {
+                comboBoBoxName();
                 con.Close();
             }
            // MessageBox.Show(qty+" "+getProductId(comboBoxProduct.SelectedItem.ToString())+" "+getUnitId(comboBoxUnit.SelectedItem.ToString()));
-            if (qty < Convert.ToDouble(txtAmount.Text.ToString()))
+            if (txtAmount.Text.ToString()!="" && qty < Convert.ToDouble(txtAmount.Text.ToString()) && name != "None" )
             {
                 MessageBox.Show("No enough...");
                 btnAdd.Enabled = false;

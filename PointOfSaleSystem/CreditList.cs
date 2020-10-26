@@ -131,22 +131,22 @@ namespace PointOfSaleSystem
                 DataGridViewCellStyle style = dataGridView1.ColumnHeadersDefaultCellStyle;
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.Green;
-                style.Font = new Font("Times New Roman", 18, FontStyle.Bold);
+                style.Font = new Font("Times New Roman", 14, FontStyle.Bold);
 
 
-                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 16);
+                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 12);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
                 id.HeaderText = "စဉ်";
                 id.DataPropertyName = "No.";
-                id.Width = 93;
+                id.Width = 50;
                 dataGridView1.Columns.Insert(0, id);
 
                 DataGridViewColumn product = new DataGridViewTextBoxColumn();
                 product.Name = "Product";
                 product.HeaderText = "ကုန်ပစ္စည်းများ";
                 product.DataPropertyName = "Product";
-                product.Width = 260;
+                product.Width = 150;
                 dataGridView1.Columns.Insert(1, product);
 
 
@@ -154,19 +154,19 @@ namespace PointOfSaleSystem
                 price.Name = "price";
                 price.HeaderText = "စုစုပေါင်းငွေ";
                 price.DataPropertyName = "price";
-                price.Width = 200;
+                price.Width = 150;
                 dataGridView1.Columns.Insert(2, price);
                 DataGridViewColumn desc = new DataGridViewTextBoxColumn();
                 desc.Name = "ဖော်ပြချက်";
                 desc.HeaderText = "လက်ခံသူ";
                 desc.DataPropertyName = "ဖော်ပြချက်";
-                desc.Width = 240;
+                desc.Width = 150;
                 dataGridView1.Columns.Insert(3, desc);
                 DataGridViewColumn time = new DataGridViewTextBoxColumn();
                 time.Name = "date";
                 time.HeaderText = "ရက်စွဲ";
                 time.DataPropertyName = "date";
-                time.Width = 100;
+                time.Width = 160;
                 dataGridView1.Columns.Insert(4, time);
 
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
@@ -174,7 +174,7 @@ namespace PointOfSaleSystem
                 btnDelete.Text = "ဖြတ်မည်";
                 //btnDelete.HeaderText = "ဖြတ်မည်";
                 btnDelete.DataPropertyName = "delete";
-                btnDelete.Width = 90;
+                btnDelete.Width = 70;
                 btnDelete.CellTemplate.Style.BackColor = Color.Aqua;
 
                 btnDelete.FlatStyle = FlatStyle.Standard;

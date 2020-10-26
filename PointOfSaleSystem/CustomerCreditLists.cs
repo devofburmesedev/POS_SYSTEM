@@ -31,44 +31,44 @@ namespace PointOfSaleSystem
                 style.BackColor = Color.Green;
                 style.ForeColor = Color.White;
 
-                style.Font = new Font("Times New Roman", 18, FontStyle.Bold);
-                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 20, FontStyle.Bold);
+                style.Font = new Font("Times New Roman", 14, FontStyle.Bold);
+                dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 12, FontStyle.Bold);
                 DataGridViewColumn id = new DataGridViewTextBoxColumn();
                 id.Name = "id";
                 id.HeaderText = "စဉ်";
                 id.DataPropertyName = "No.";
-                id.Width = 60;
+                id.Width = 50;
                 dataGridView1.Columns.Insert(0, id);
                 DataGridViewColumn voucher = new DataGridViewTextBoxColumn();
                 voucher.Name = "Id";
                 voucher.HeaderText = "ဘောင်ချာနံပါတ်";
                 voucher.DataPropertyName = "id";
-                voucher.Width = 160;
+                voucher.Width = 130;
                 dataGridView1.Columns.Insert(1, voucher);
                 DataGridViewColumn cname = new DataGridViewTextBoxColumn();
                 cname.Name = "CName";
                 cname.HeaderText = "ဝယ်ယူသူအမည်";
                 cname.DataPropertyName = "CName";
-                cname.Width = 200;
+                cname.Width = 150;
                 dataGridView1.Columns.Insert(2, cname);
 
                 DataGridViewColumn price = new DataGridViewTextBoxColumn();
                 price.Name = "price";
                 price.HeaderText = "ပေးချေငွေ";
                 price.DataPropertyName = "price";
-                price.Width = 200;
+                price.Width = 150;
                 dataGridView1.Columns.Insert(3, price);
                 DataGridViewColumn Tprice = new DataGridViewTextBoxColumn();
                 Tprice.Name = "price";
                 Tprice.HeaderText = "စုစုပေါင်းငွေ";
                 Tprice.DataPropertyName = "price";
-                Tprice.Width = 200;
+                Tprice.Width = 150;
                 dataGridView1.Columns.Insert(4, Tprice);
                 DataGridViewColumn date = new DataGridViewTextBoxColumn();
                 date.Name = "date";
                 date.HeaderText = "ရက်စွဲ";
                 date.DataPropertyName = "date";
-                date.Width = 100;
+                date.Width = 160;
                 dataGridView1.Columns.Insert(5, date);
                 dataGridView1.DataSource = null;
                 SqlConnection con = new MyConnection().GetConnection();
@@ -115,6 +115,11 @@ namespace PointOfSaleSystem
             {
 
             }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
