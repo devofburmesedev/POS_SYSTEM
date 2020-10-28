@@ -29,7 +29,7 @@ namespace PointOfSaleSystem
             updateLabel.Visible = true;
             productUpdateLabel.Visible = true;
             productDeleteLabel.Visible = true;
-           
+            categoryComoboxs();
             unitUpdateLabel.Visible = true;
            
             priceUpdateLabel.Visible = true;
@@ -43,8 +43,74 @@ namespace PointOfSaleSystem
             BindGrid(comboBoxCategory1.SelectedItem.ToString());
            
          }
+        private int getCategoryId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
 
-            
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category Where C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["C_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
+        private void categoryComoboxs()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            try
+            {
+                comboBoxCategory.Items.Clear();
+
+                cmdCate = con.CreateCommand();
+                cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
+                SqlDataReader reader = cmdCate.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBoxCategory.Items.Add(reader["C_Name"].ToString());
+
+                }
+                comboBoxCategory.SelectedIndex = 0;
+
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                
+                con.Close();
+            }
+        }
+
+       
+        
+     
         private void btnCategory_Click(object sender, EventArgs e)
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -397,7 +463,8 @@ namespace PointOfSaleSystem
             {
                 comboBoxProduct.Items.Clear();
                 cmdProduct = con.CreateCommand();
-                cmdProduct.CommandText = "SELECT P_Name FROM Product";
+                cmdProduct.CommandText = "SELECT P_Name FROM Product where C_id=@c_id";
+                cmdProduct.Parameters.AddWithValue("@c_id", getCategoryId(comboBoxCategory.SelectedItem.ToString()));
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
@@ -808,7 +875,28 @@ namespace PointOfSaleSystem
                 BindGrid(comboBoxCategory1.SelectedItem.ToString());
         }
 
-      
+        private void Stocks_Enter(object sender, EventArgs e)
+        {
+            productComobox();
+            
+            BindGrid(comboBoxCategory1.SelectedItem.ToString());
+        }
+
+        private void UpdateProduct_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            productComobox();
+        }
+
+        private void UpdatePrice_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            BindGrid(comboBoxCategory1.SelectedItem.ToString());
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            productComobox();
+        }
+
       
         }
 

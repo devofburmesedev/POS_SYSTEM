@@ -17,8 +17,9 @@ namespace PointOfSaleSystem
             productComobox();
             unitComobox();
             storeComobox();
-            if (comboBoxStores2.DataSource != null)
-                BindGrid(comboBoxStores2.SelectedItem.ToString());
+            categoryComobox();
+            
+            BindGrid(comboBoxStores2.SelectedItem.ToString());
            
         }
         int p_id, u_id, s_id;
@@ -26,7 +27,7 @@ namespace PointOfSaleSystem
         private void Stores_Load(object sender, EventArgs e)
         {
             storeComobox();
-           if(comboBoxStores2.DataSource!=null)
+           
             BindGrid(comboBoxStores2.SelectedItem.ToString());
            
             comboBoxName.Visible = false;
@@ -35,6 +36,70 @@ namespace PointOfSaleSystem
            
            
         }
+         private int getCategoryId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category Where C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["C_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
+        private void categoryComobox()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            try
+            {
+                comboBoxCategory.Items.Clear();
+               
+                cmdCate = con.CreateCommand();
+                cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
+                SqlDataReader reader = cmdCate.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBoxCategory.Items.Add(reader["C_Name"].ToString());
+                   
+                }
+                comboBoxCategory.SelectedIndex = 0;
+                          
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         private void storeComobox()
         {
             SqlConnection con = new MyConnection().GetConnection();
@@ -138,7 +203,8 @@ namespace PointOfSaleSystem
             {
                 comboBoxProduct.Items.Clear();
                 cmdProduct = con.CreateCommand();
-                cmdProduct.CommandText = "SELECT P_Name FROM Product";
+                cmdProduct.CommandText = "SELECT P_Name FROM Product where C_id=@c_id";
+                cmdProduct.Parameters.AddWithValue("@c_id", getCategoryId(comboBoxCategory.SelectedItem.ToString()));
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
@@ -471,31 +537,26 @@ namespace PointOfSaleSystem
                 stores.DataPropertyName = "date";
                 stores.Width = 150;
                 dataGridView1.Columns.Insert(1, stores);
-                DataGridViewColumn location = new DataGridViewTextBoxColumn();
-                location.Name = "Product";
-                location.HeaderText = "နေရာ";
-                location.DataPropertyName = "Product";
-                location.Width = 120;
-                dataGridView1.Columns.Insert(2, location);
+               
                 DataGridViewColumn product = new DataGridViewTextBoxColumn();
                 product.Name = "Product";
                 product.HeaderText = "ကုန်ပစ္စည်းများ";
                 product.DataPropertyName = "Product";
                 product.Width = 180;
-                dataGridView1.Columns.Insert(3, product);
+                dataGridView1.Columns.Insert(2, product);
                 DataGridViewColumn price = new DataGridViewTextBoxColumn();
                 price.Name = "price";
                 price.HeaderText = "အရေအတွက်";
                 price.DataPropertyName = "price";
                 price.Width = 130;
-                dataGridView1.Columns.Insert(4, price);
+                dataGridView1.Columns.Insert(3, price);
                 
                 DataGridViewColumn units = new DataGridViewTextBoxColumn();
                 units.Name = "unit";
                 units.HeaderText = "ယူနစ်";
                 units.DataPropertyName = "unit";
                 units.Width = 120;
-                dataGridView1.Columns.Insert(5, units);
+                dataGridView1.Columns.Insert(4, units);
               
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
                 //btnDelete.Name = "Delete";
@@ -507,7 +568,7 @@ namespace PointOfSaleSystem
 
                 btnDelete.FlatStyle = FlatStyle.Standard;
                 btnDelete.UseColumnTextForButtonValue = true;
-                dataGridView1.Columns.Insert(6, btnDelete);
+                dataGridView1.Columns.Insert(5, btnDelete);
                 dataGridView1.DataSource = null;
                
                 SqlConnection con = new MyConnection().GetConnection();
@@ -530,12 +591,11 @@ namespace PointOfSaleSystem
                                 newRow.CreateCells(dataGridView1);
                                 newRow.Cells[0].Value = i;
                                 newRow.Cells[1].Value = reader["Name"].ToString();
-                                newRow.Cells[2].Value = reader["Location"].ToString();
+                                
 
-
-                                newRow.Cells[3].Value = getProduct(reader["P_id"].ToString());
-                                newRow.Cells[5].Value =getUnit( reader["U_id"].ToString());
-                                newRow.Cells[4].Value = reader["Amount"].ToString();
+                                newRow.Cells[2].Value = getProduct(reader["P_id"].ToString());
+                                newRow.Cells[4].Value =getUnit( reader["U_id"].ToString());
+                                newRow.Cells[3].Value = reader["Amount"].ToString();
                                 i++;
                                 dataGridView1.Rows.Add(newRow);
 
@@ -746,16 +806,16 @@ namespace PointOfSaleSystem
             SqlCommand cmd;
 
            
-                  if (e.ColumnIndex == 6)
+                  if (e.ColumnIndex == 5)
                     {
                         DialogResult result = MessageBoxShowing.showDeleteYesNo();
                         if (result == DialogResult.Yes)
                         {
                         int store = getStoreProductId(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                       
-                        int product = getProductId(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
-                        int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
-                        String amount = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        int product = getProductId(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+                        int unit = getUnitId(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString());
+                        String amount = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                     
 
                          con.Open();
@@ -939,6 +999,34 @@ namespace PointOfSaleSystem
         {
             RestoreInStores restore = new RestoreInStores();
             restore.Show();
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            productComobox();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            ViewProduct vProduct = new ViewProduct();
+            vProduct.Show();
+        }
+
+       
+
+        private void RestoreInStores_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            BindGrid(comboBoxStores2.SelectedItem.ToString());
+        }
+
+        private void Stores_MouseEnter(object sender, EventArgs e)
+        {
+            BindGrid(comboBoxStores2.SelectedItem.ToString());
+        }
+
+        private void dataGridView1_MouseEnter(object sender, EventArgs e)
+        {
+            BindGrid(comboBoxStores2.SelectedItem.ToString());
         }
 
         

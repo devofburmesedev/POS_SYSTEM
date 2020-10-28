@@ -32,3 +32,4 @@ C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSal
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.BackUpAndRestore.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.StoresHistory.resources
 C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.RestoreInStores.resources
+C:\Users\ASUS\Documents\Visual Studio 2010\Projects\PointOfSaleSystem\PointOfSaleSystem\obj\x86\Debug\PointOfSaleSystem.ViewProduct.resources

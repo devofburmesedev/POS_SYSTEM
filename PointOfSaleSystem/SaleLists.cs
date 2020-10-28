@@ -534,7 +534,7 @@ namespace PointOfSaleSystem
             }
         }
         String name = null;
-        DateTime  date;
+        DateTime date; int id = 0;
         String discount = null, totals = null, paidamount = null;
         private void btnAmountTwo_Click(object sender, EventArgs e)
         {
@@ -542,7 +542,7 @@ namespace PointOfSaleSystem
             SqlCommand cmd, cmdCate;
             con.Open();
             bool condition = false;
-            int id = 0;
+            
              name = txtCustomer.Text.ToString();
             String credit = null;
             String p_amount = null;
@@ -790,10 +790,10 @@ namespace PointOfSaleSystem
             DataGridViewCellStyle style = dataGridView1.ColumnHeadersDefaultCellStyle;
             style.BackColor = Color.Green;
             style.ForeColor = Color.Green;
-            style.Font = new Font("Times New Roman", 18, FontStyle.Bold);
+            style.Font = new Font("Times New Roman", 14, FontStyle.Bold);
 
 
-            dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 14);
+            dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 12);
             DataGridViewColumn id = new DataGridViewTextBoxColumn();
             id.Name = "id";
             id.HeaderText = "စဉ်";
@@ -906,7 +906,7 @@ namespace PointOfSaleSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Report.Print print = new Report.Print(name,date.ToString("dd/MM/yyyy"),totals,paidamount,discount);
+            Report.Print print = new Report.Print(id,name,date.ToString("dd/MM/yyyy"),totals,paidamount,discount);
             print.Show();
         }
 

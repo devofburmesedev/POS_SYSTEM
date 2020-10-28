@@ -71,7 +71,7 @@ namespace PointOfSaleSystem
                 date.Name = "date";
                 date.HeaderText = "ရက်စွဲ";
                 date.DataPropertyName = "date";
-                date.Width = 120;
+                date.Width = 160;
                 dataGridView1.Columns.Insert(5, date);
                 
                 DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
@@ -229,8 +229,19 @@ namespace PointOfSaleSystem
 
         private void txtVId1_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (txtVId1.Text.ToString() != "")
+                    Convert.ToDouble(txtVId1.Text.ToString());
+            }
+            catch
+            {
+                txtVId1.Text = "";
+                MessageBoxShowing.showNumberErrorMessage();
+            }
             if (txtVId1.Text.ToString().Trim() != "")
                 BindGridHistory(txtVId1.Text.ToString().Trim(),dateTimePicker1.Text);
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -239,6 +250,38 @@ namespace PointOfSaleSystem
             SqlCommand cmd;
             if(e.ColumnIndex==6)
             {
+                double amount = 0;
+               
+               
+
+                try
+                {
+                    con.Open();
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "SELECT Amount FROM ProductInStores Where ProductInStores.P_id=@p_id and ProductInStores.U_id=@u_id and ProductInStores.S_id=@s_id ";
+                    cmd.Parameters.AddWithValue("@p_id", getProductId(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@u_id", getUnitId(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@s_id", getStoresId(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()));
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        amount = Convert.ToDouble(reader["Amount"].ToString());
+
+
+                    }
+                }
+
+                catch
+                {
+
+                    MessageBox.Show("erroe1");
+                }
+                finally
+                {
+                    
+                    con.Close();
+                }
                 try
                 {
                     //  MessageBox.Show(getProductId(comboBoxProduct.SelectedItem.ToString())+" "+getUnitId(comboBoxUnit.SelectedItem.ToString())+" "+s_id);
@@ -249,7 +292,7 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@p_id", getProductId( dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString()));
                     cmd.Parameters.AddWithValue("@u_id", getUnitId( dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()));
                     cmd.Parameters.AddWithValue("@s_id", getStoresId( dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()));
-                    cmd.Parameters.AddWithValue("@amount",  dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    cmd.Parameters.AddWithValue("@amount", Convert.ToDouble( dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString())+Convert.ToDouble(amount));
                     cmd.Parameters.AddWithValue("@v_id", dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                     cmd.ExecuteNonQuery();
                     //MessageBox.Show(qty+" "+amount);
@@ -409,6 +452,8 @@ namespace PointOfSaleSystem
                  }
                  return data;
              }
+
+             
         }
     
 }

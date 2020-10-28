@@ -70,9 +70,9 @@ namespace PointOfSaleSystem
             {
                 con.Open();
 
-                if ((txtPaidAmount.Text.ToString().Trim() == "" || txtVId2.Text.ToString().Trim()!="") && condition )
+                if ((txtPaidAmount.Text.ToString().Trim() == "" || txtVId2.Text.ToString().Trim()=="") && condition )
                     MessageBoxShowing.showIncomplementMessage();
-                else if (txtPaidAmount.Text.ToString().Trim() != "" && txtVId2.Text.ToString().Trim() == ""  && condition)
+                else if (txtPaidAmount.Text.ToString().Trim() != "" && txtVId2.Text.ToString().Trim() != ""  && condition)
                 {
                     try
                     {
@@ -242,26 +242,26 @@ namespace PointOfSaleSystem
                 voucher.Name = "Id";
                 voucher.HeaderText = "ဘောင်ချာနံပါတ်";
                 voucher.DataPropertyName = "id";
-                voucher.Width = 150;
+                voucher.Width = 140;
                 dataGridView1.Columns.Insert(1, voucher);
                 DataGridViewColumn cname = new DataGridViewTextBoxColumn();
                 cname.Name = "CName";
                 cname.HeaderText = "ဝယ်ယူသူအမည်";
                 cname.DataPropertyName = "CName";
-                cname.Width = 150;
+                cname.Width = 130;
                 dataGridView1.Columns.Insert(2, cname);
 
                 DataGridViewColumn price = new DataGridViewTextBoxColumn();
                 price.Name = "price";
                 price.HeaderText = "ပေးချေငွေ";
                 price.DataPropertyName = "price";
-                price.Width = 150;
+                price.Width = 130;
                 dataGridView1.Columns.Insert(3, price);
                 DataGridViewColumn Tprice = new DataGridViewTextBoxColumn();
                 Tprice.Name = "price";
                 Tprice.HeaderText = "စုစုပေါင်းငွေ";
                 Tprice.DataPropertyName = "price";
-                Tprice.Width = 150;
+                Tprice.Width = 130;
                 dataGridView1.Columns.Insert(4, Tprice);
                 DataGridViewColumn date = new DataGridViewTextBoxColumn();
                 date.Name = "date";
@@ -296,7 +296,7 @@ namespace PointOfSaleSystem
                                 newRow.Cells[1].Value = reader["V_id"].ToString();
                                 newRow.Cells[2].Value = reader["CustomerName"].ToString();
                                 newRow.Cells[3].Value = reader["Paid_Amount"].ToString();
-                                newRow.Cells[4].Value = reader["Total_Amount"].ToString();
+                                newRow.Cells[4].Value = Convert.ToInt32(reader["Total_Amount"].ToString()) - Convert.ToInt32(reader["Discount"].ToString());
                                 newRow.Cells[5].Value = reader["DateAndTime"].ToString();
                                 realPaidAmount = Convert.ToInt32(reader["Paid_Amount"].ToString());
                                 dataGridView1.Rows.Add(newRow);

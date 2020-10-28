@@ -212,6 +212,12 @@
     <Compile Include="UseCost.Designer.cs">
       <DependentUpon>UseCost.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewProduct.Designer.cs">
+      <DependentUpon>ViewProduct.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BackUpAndRestore.resx">
       <DependentUpon>BackUpAndRestore.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UseCost.resx">
       <DependentUpon>UseCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewProduct.resx">
+      <DependentUpon>ViewProduct.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="DataSet1.xsc">

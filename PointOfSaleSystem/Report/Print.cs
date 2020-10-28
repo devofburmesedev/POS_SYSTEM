@@ -14,7 +14,8 @@ namespace PointOfSaleSystem.Report
     public partial class Print : Form
     {
         String name, datetime, total, discount, paidamount;
-        public Print(String name, String date, String total, String paidamount, String discount)
+        int id;
+        public Print(int id,String name, String date, String total, String paidamount, String discount)
         {
             InitializeComponent();
             this.name = name;
@@ -22,6 +23,7 @@ namespace PointOfSaleSystem.Report
             this.total = total;
             this.discount = discount;
             this.paidamount = paidamount;
+            this.id = id;
         }
 
         private void Print_Load(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace PointOfSaleSystem.Report
             try
             {
                
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * From Voucher,VoucherProduct,Product Where Day(Voucher.DateAndTime)=@day and Voucher.V_id=VoucherProduct.V_id and Year(Voucher.DateAndTime)=@year and Month(Voucher.DateAndTime)=@month and Voucher.CustomerName=@name and Product.P_id=VoucherProduct.P_id and Voucher.Total_Amount=@amount and Voucher.Paid_Amount=@pamount and Voucher.Discount=@discount", con);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * From Voucher,VoucherProduct,Product Where Day(Voucher.DateAndTime)=@day and Voucher.V_id=VoucherProduct.V_id and Year(Voucher.DateAndTime)=@year and Month(Voucher.DateAndTime)=@month and Voucher.CustomerName=@name and Product.P_id=VoucherProduct.P_id and Voucher.Total_Amount=@amount and Voucher.Paid_Amount=@pamount and Voucher.Discount=@discount and Voucher.V_id=@id", con);
                 da.SelectCommand.Parameters.AddWithValue("@day", day);
                 da.SelectCommand.Parameters.AddWithValue("@month", month);
                 da.SelectCommand.Parameters.AddWithValue("@year", years);
@@ -64,6 +66,7 @@ namespace PointOfSaleSystem.Report
                 da.SelectCommand.Parameters.AddWithValue("@amount",total);
                 da.SelectCommand.Parameters.AddWithValue("@discount", discount);
                 da.SelectCommand.Parameters.AddWithValue("@pamount", paidamount);
+                da.SelectCommand.Parameters.AddWithValue("@id", id);
                 DataSet1 ds = new DataSet1();
                 da.Fill(ds, "DataTable1");
 

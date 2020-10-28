@@ -18,6 +18,7 @@ namespace PointOfSaleSystem
             productComobox();
             unitComobox();
             comboBoxUPPrice();
+            categoryComoboxs();
         }
         String u_id = null;
         String p_id = null;
@@ -27,6 +28,7 @@ namespace PointOfSaleSystem
             productComobox();
             unitComobox();
             comboBoxUPPrice();
+            categoryComoboxs();
         }
         private void productComobox()
         {
@@ -37,7 +39,8 @@ namespace PointOfSaleSystem
             {
                 comboBoxProduct.Items.Clear();
                 cmdProduct = con.CreateCommand();
-                cmdProduct.CommandText = "SELECT P_Name FROM Product";
+                cmdProduct.CommandText = "SELECT P_Name FROM Product where C_id=@c_id";
+                cmdProduct.Parameters.AddWithValue("@c_id", getCategoryId(comboBoxCategory.SelectedItem.ToString()));
                 var reader = cmdProduct.ExecuteReader();
                 while (reader.Read())
                 {
@@ -53,6 +56,70 @@ namespace PointOfSaleSystem
             }
             finally
             {
+                con.Close();
+            }
+        }
+        private int getCategoryId(String p)
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmd;
+            int data = 0;
+            con.Open();
+            try
+            {
+
+                cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT C_id FROM Category Where C_Name=@name";
+                cmd.Parameters.AddWithValue("@name", p);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    data = Convert.ToInt32(reader["C_id"].ToString());
+
+                }
+
+            }
+            catch
+            {
+
+
+            }
+
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
+        private void categoryComoboxs()
+        {
+            SqlConnection con = new MyConnection().GetConnection();
+            SqlCommand cmdCate;
+            con.Open();
+            try
+            {
+                comboBoxCategory.Items.Clear();
+
+                cmdCate = con.CreateCommand();
+                cmdCate.CommandText = "SELECT C_id,C_Name FROM Category";
+                SqlDataReader reader = cmdCate.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBoxCategory.Items.Add(reader["C_Name"].ToString());
+
+                }
+                comboBoxCategory.SelectedIndex = 0;
+
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                productComobox();
                 con.Close();
             }
         }
@@ -255,6 +322,11 @@ namespace PointOfSaleSystem
                     con.Close();
                 }
             }
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            productComobox();
         }
     }
 }

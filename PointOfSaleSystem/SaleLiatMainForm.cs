@@ -179,6 +179,7 @@ namespace PointOfSaleSystem
                     String v_id = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
 
                     String name = null, total = null, discount = null, paidamount = null;
+                    
                     DateTime date = new DateTime();
                     con.Open();
                     try
@@ -196,6 +197,7 @@ namespace PointOfSaleSystem
 
                             while (reader.Read())
                             {
+                                
                                 name = reader["CustomerName"].ToString();
                                 total = reader["Total_Amount"].ToString();
                                 paidamount = reader["Paid_Amount"].ToString();
@@ -203,7 +205,7 @@ namespace PointOfSaleSystem
                                 discount = reader["Discount"].ToString();
                             }
                         }
-                        Report.Print print = new Report.Print(name, date.ToString("dd/MM/yyyy"), total, paidamount, discount);
+                        Report.Print print = new Report.Print(Convert.ToInt32(v_id),name, date.ToString("dd/MM/yyyy"), total, paidamount, discount);
                         print.Show();
                     }
                     catch
